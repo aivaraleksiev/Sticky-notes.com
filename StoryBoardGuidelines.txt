@@ -1,0 +1,38 @@
+Look at Eliseys storyboard interview tesk
+
+- Make it with an API, web bsed, with server and client side
+On server side make an engine folder with the business logic and an decide about the api part.
+
+- which library am I going to use for network communication:
+boost, POCO, cpprestsdk?
+https://github.com/microsoft/cpprestsdk
+D:\Books\srm boost networking books
+
+- library for logging:
+?
+
+- library for test:
+gtest
+
+- read/write client/server app configuration from xml/json file:
+?
+
+- package manager:
+begin with vcpkg, because it is more easy, then use conan package manager.
+
+- look at books for API:
+APIs: A StrategyGuide
+API Design for C++
+How to Design A Good API and Why It Matters
+
+- Can the client app be written in python and the server in c++? 
+For starter look at book API Design for C++, for example chapter "ADDING SCRIPT BINDINGS"
+
+
+------
+api usage metrics
+certificates
+users (login token), administrator
+database
+
+ 
