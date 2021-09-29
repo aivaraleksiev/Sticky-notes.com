@@ -15,7 +15,9 @@ A place where you can create, edit and access your notes online. This is current
   
 ## P1 Goals
 - Choose some logging library for help. Something that is easy to use and quick to configure.
-  
+
+## Testing
+- Manual testing for now is sufficient.
   
 ## Collaborators
 https://github.com/michael-stanin will help me with some of the decisions that I have to make during this initial pre-alpha phase.
