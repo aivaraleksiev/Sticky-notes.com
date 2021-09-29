@@ -17,7 +17,7 @@ A place where you can create, edit and access your notes online. This is current
   
   
 ## Collaborators
-https://github.com/michael-stanin will help wtih some of the decisions that I have to make during this initial pre-alpha phase.
+https://github.com/michael-stanin will help me with some of the decisions that I have to make during this initial pre-alpha phase.
 
 ## LICENSE
 BSD 4-clause License
