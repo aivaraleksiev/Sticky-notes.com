@@ -11,6 +11,7 @@ A place where you can create, edit and access your notes online. This is current
   - Start with POCO library https://pocoproject.org/ , https://github.com/pocoproject/poco
   - Write some web server logic
 - Write business logic regarding sticky notes operations.
+- `TODO` Add at least two more goals regarding REST API.
   
 ## P1 Goals
 - Choose some logging library for help. Something that is easy to use and quick to configure.
