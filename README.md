@@ -16,6 +16,17 @@ A place where you can create, edit and access your notes online. This is current
 ## P1 Goals
 - Choose some logging library for help. Something that is easy to use and quick to configure.
 
+## Build project
+
+- Have Visual Studio 2019 to open the project in `vs2019` directory.
+- Install [vcpkg](https://github.com/Microsoft/vcpkg) to add _poco_ package. Run the following commands:
+````sh
+    vcpkg install poco
+    vcpkg integrate install
+````
+- Set _Solution Platform_ in Visual Studio to _x86_.  
+Now you should be able to build and run the project.
+
 ## Testing
 - Manual testing for now is sufficient.
   
