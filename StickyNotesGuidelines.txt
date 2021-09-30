@@ -5,7 +5,7 @@ Look at Eliseys storyboard interview task
 - Make it with an API, web bsed, with server and client side
 On server side make an engine folder with the business logic and an decide about the api part.
 
-Look at https://github.com/ezhangle/WebDebugMenu/blob/master/WebDebugMenu.cpp on example how to handle reqeusts
+Look at https://cpp.hotexamples.com/search 'poco' on example how to handle reqeusts
 
 - which library am I going to use for network communication:
 boost, POCO, cpprestsdk?
