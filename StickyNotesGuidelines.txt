@@ -6,6 +6,7 @@ Look at Eliseys storyboard interview task
 On server side make an engine folder with the business logic and an decide about the api part.
 
 Look at https://cpp.hotexamples.com/search 'poco' on example how to handle reqeusts
+https://github.com/ezhangle/WebDebugMenu/blob/master/WebDebugMenu.cpp
 
 - which library am I going to use for network communication:
 boost, POCO, cpprestsdk?
