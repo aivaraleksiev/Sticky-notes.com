@@ -8,19 +8,22 @@ On server side make an engine folder with the business logic and an decide about
 Look at https://cpp.hotexamples.com/search 'poco' on example how to handle reqeusts
 https://github.com/ezhangle/WebDebugMenu/blob/master/WebDebugMenu.cpp
 
+Libraries resources:
+    https://github.com/fffaraz/awesome-cpp
+
 - which library am I going to use for network communication:
 boost, POCO, cpprestsdk?
 https://github.com/microsoft/cpprestsdk
 D:\Books\srm boost networking books
 
 - library for logging:
-?
+    Check awesome-cpp repo for logging libraries. If we use gtest, maybe we can use glog. Also it should be available in vcpkg
 
 - library for test:
 gtest
 
 - read/write client/server app configuration from xml/json file:
-?
+    There is JSON parser in POCO framework
 
 - look at books for API:
 APIs: A StrategyGuide
