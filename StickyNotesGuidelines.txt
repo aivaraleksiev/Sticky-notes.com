@@ -2,18 +2,18 @@ Copyright (c)  2021 Ayvar Aleksiev. All rights reserved.
 
 Look at Eliseys storyboard interview task
 
-- Make it with an API, web bsed, with server and client side
+- Make it with a REST API, web based, with server and client side
 On server side make an engine folder with the business logic and an decide about the api part.
 
-Look at https://cpp.hotexamples.com/search 'poco' on example how to handle reqeusts
-https://github.com/ezhangle/WebDebugMenu/blob/master/WebDebugMenu.cpp
+
+
 
 Libraries resources:
     https://github.com/fffaraz/awesome-cpp
 
 - which library am I going to use for network communication:
-boost, POCO, cpprestsdk?
-https://github.com/microsoft/cpprestsdk
+boost?
+https://github.com/microsoft/cpprestsdk?
 D:\Books\srm boost networking books
 
 - library for logging:

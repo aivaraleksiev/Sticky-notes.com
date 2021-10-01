@@ -8,7 +8,8 @@ A place where you can create, edit and access your notes online. This is current
 ## P0 Goals
 - use vcpkg package manager for and visual studio for ease of use and speed
 - Choose a library for network communication.
-  - Start with POCO library https://pocoproject.org/ , https://github.com/pocoproject/poco
+  - POCO library -> Not suitable for RPC, only they paid version - PocoPro
+  - cpprestsdk -> Investigation in progress.
   - Write some web server logic
 - Write business logic regarding sticky notes operations.
 - `TODO` Add at least two more goals regarding REST API.
