@@ -28,7 +28,7 @@ A place where you can create, edit and access your notes online. This is current
 Now you should be able to build and run the project.
 
 ## Testing
-- Manual testing for now is sufficient.
+- Manual testing using curl and browser for now is sufficient. 
 
 ## Project tracking
 [**Sticky-notes.com project**](https://github.com/aivaraleksiev/Sticky-notes.com/projects/1)

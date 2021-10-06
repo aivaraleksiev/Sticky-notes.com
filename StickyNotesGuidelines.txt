@@ -2,13 +2,6 @@ Copyright (c)  2021 Ayvar Aleksiev. All rights reserved.
 
 Look at Eliseys storyboard interview task
 
-- Make it with a REST API, web based, with server and client side
-On server side make an engine folder with the business logic and an decide about the api part.
-
-
-- Crossport project and issues in github:
-crossport tasks from jira manually.
-similar to https://github.com/Corvusoft/restbed/projects
 
 - which library am I going to use for network communication:
 
@@ -47,9 +40,6 @@ https://www.youtube.com/watch?v=NC7IGLm69Ts
 APIs a strategy guide
 API Design for C++
 How to Design A Good API and Why It Matters
-
-- Can the client app be written in python and the server in c++? 
-For starter look at book API Design for C++, for example chapter "ADDING SCRIPT BINDINGS"
 
 
 ------
