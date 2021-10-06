@@ -31,7 +31,7 @@ Now you should be able to build and run the project.
 - Manual testing for now is sufficient.
 
 ## Project tracking
-[**Sticky-notes.com** project](https://github.com/aivaraleksiev/Sticky-notes.com/projects/1)
+[**Sticky-notes.com project**](https://github.com/aivaraleksiev/Sticky-notes.com/projects/1)
   
 ## Collaborators
 https://github.com/michael-stanin will help me with some of the decisions that I have to make during this initial pre-alpha phase.
