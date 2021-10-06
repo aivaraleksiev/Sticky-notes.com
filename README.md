@@ -18,9 +18,10 @@ A place where you can create, edit and access your notes online. This is current
 ## Build project
 
 - Have Visual Studio 2019 to open the project in `vs2019` directory.
-- Install [vcpkg](https://github.com/Microsoft/vcpkg) to add _poco_ package. Run the following commands:
+- Install [vcpkg](https://github.com/Microsoft/vcpkg) to add _restinio_, _nlohmann-json_  packages. Run the following commands:
 ````sh
-    vcpkg install poco
+    vcpkg install restinio
+	vcpkg install nlohmann-json
     vcpkg integrate install
 ````
 - Set _Solution Platform_ in Visual Studio to _x86_.  
@@ -28,6 +29,9 @@ Now you should be able to build and run the project.
 
 ## Testing
 - Manual testing for now is sufficient.
+
+## Project tracking
+[Sticky-notes.com project](https://github.com/aivaraleksiev/Sticky-notes.com/projects/1)
   
 ## Collaborators
 https://github.com/michael-stanin will help me with some of the decisions that I have to make during this initial pre-alpha phase.
