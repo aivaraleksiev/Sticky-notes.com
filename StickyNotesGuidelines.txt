@@ -10,27 +10,23 @@ On server side make an engine folder with the business logic and an decide about
 crossport tasks from jira manually.
 similar to https://github.com/Corvusoft/restbed/projects
 
-Libraries resources:
-    https://github.com/fffaraz/awesome-cpp
-
 - which library am I going to use for network communication:
-cpprestsdk -> 
-   https://mariusbancila.ro/blog/2017/11/19/revisited-full-fledged-client-server-example-with-c-rest-sdk-2-10/
-   https://github.com/Microsoft/cpprestsdk/wiki/Samples
-   https://github.com/microsoft/cpprestsdk/tree/master/Release/samples
 
-libhttpserver
-   https://github.com/etr/libhttpserver
+Look at example: https://github.com/pistacheio/pistache/blob/master/examples/rest_server.cc
 
-restbed ?
- 
-RESTinio -> in progress
-   https://stiffstream.com/en/docs/restinio/0.6/
+RESTinio -> in progress 
+   https://github.com/Stiffstream/restinio
+   https://stiffstream.com/en/docs/restinio/0.6/  -> guide
    https://github.com/Stiffstream/restinio/tree/v.0.6.0.1/dev/sample
+   https://bestofcpp.com/repo/Stiffstream-restinio-cpp-network
+   https://github.com/Stiffstream/restinio/issues/34 -> logger
+   https://github.com/Stiffstream/restinio/issues/51
+   https://github.com/Stiffstream/restinio/issues/52
+   https://github.com/Stiffstream/restinio/issues/27 -> https://habr-com.translate.goog/ru/post/417527/?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=nui
 
-https://github.com/meltwater/served
-
-D:\Books\srm boost networking books
+use nlohmann json for creating responses in json format:
+	https://github.com/nlohmann/json -> Arbitrary types conversions
+	https://github.com/nlohmann/json/blob/develop/doc/examples/push_back.cpp
 
 - library for logging:
     Check awesome-cpp repo for logging libraries. If we use gtest, maybe we can use glog. Also it should be available in vcpkg
@@ -38,11 +34,17 @@ D:\Books\srm boost networking books
 - library for test:
 gtest
 
+-REST API design
+https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/
+https://yalantis.com/blog/how-to-create-a-restful-api/
+https://www.youtube.com/watch?v=NC7IGLm69Ts
+
 - read/write client/server app configuration from xml/json file:
     There is JSON parser in POCO framework
+	https://github.com/nlohmann/json
 
 - look at books for API:
-APIs: A StrategyGuide
+APIs a strategy guide
 API Design for C++
 How to Design A Good API and Why It Matters
 
