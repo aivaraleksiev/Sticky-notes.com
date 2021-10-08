@@ -14,7 +14,7 @@ A place where you can create, edit and access your notes online. This is current
 
   
 ## P1 Goals
-- Choose some logging library for help. Something that is easy to use and quick to configure.
+- [ ] Choose some logging library for help. Something that is easy to use and quick to configure.
 
 ## Build project
 
