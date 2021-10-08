@@ -21,9 +21,9 @@ The business requierments that we need to met are:
 | POST   | /notes                    | Add a collection of new notes. Request in body as json. | 201 |
 | PUT    | /notes                    | Update/Edit existing notes. Request in body as json | 204, 400 |
 | POST   | /notes/tags               | Add new tags. Request body. | 400, 201 |
-| PUT    | /notes/tags/:tagId/:tagName | Edit existing tag's name with 'tagId' to 'tagName'  | _todo_ |
-| DELETE | /notes/:noteId | Delete existing note with 'noteId' | _todo_ |
-| DELETE | /notes/tags/:tagId | Delete existing tag with 'tagId' | _todo_ |
+| PUT    | /notes/tags/{tagId}/{tagName} | Edit existing tag's name with 'tagId' to 'tagName'  | _todo_ |
+| DELETE | /notes/{noteId} | Delete existing note with 'noteId' | _todo_ |
+| DELETE | /notes/tags/{tagId} | Delete existing tag with 'tagId' | _todo_ |
 
 Questions:
 Maybe add method to delete all notes/tags with one call.
@@ -55,7 +55,7 @@ TODO PASTE JSON RESPONSE
 GET localhsot:9066/api/v0/notes/{noteId}
 ```
 List information for a note. <br>
-__Path parameters__ <br>
+Path parameters <br>
 _String `noteId` - Identifiers that notes must have to match the filter._
 
 ### Reponse
