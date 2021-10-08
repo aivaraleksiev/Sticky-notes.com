@@ -14,8 +14,6 @@ The business requierments that we need to met are:
 
 | Method | Endpoint | description| error status code |
 | ------ | ------   | ------     | ------            |
-
 | GET    | /notes   | Lists all notes created by the user |  _todo_ |
-
 | GET    | /notes/tags | Lists all tags create by the user | _todo_ |
 
