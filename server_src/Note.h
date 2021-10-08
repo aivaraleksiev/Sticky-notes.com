@@ -51,6 +51,10 @@ public:
       _tags.erase(tag);
    }
 
+   void editTag(Tag tag)
+   {
+      //Finds the tag and edits it's name.
+   }
 private:
    Title _title;
    Text _text;

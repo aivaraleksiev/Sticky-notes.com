@@ -14,7 +14,15 @@ The business requierments that we need to met are:
 
 | Method | Endpoint | description| status codes |
 | ------ | ------   | ------     | ------            |
-| GET    | /notes   | Lists all notes created by the user.  | _todo_ |
+| GET    | /notes   | Lists all notes created by the user. _todo:  Pagination_ | _todo_ |
+| GET    | /notes/:noteId   | List information for a note with 'noteId'| _todo_ |
 | GET    | /notes/tags | Lists all tags created by the user and the asscoicated notes {noteId: title} with them. | _todo_ |
-| GET    |  _todo_ /notes?searcByTtitle=$1&searcByText=$2&searcByTag=$3 searcByText maybe be long. Put In URL or send in body as json? | Search for notes: _by title_ and/or _by text_ and/or _by tags_ | 400 Bad Request<br> 404 Not Found<br> 200 OK returns string of type application/json  |
-| POST    | /notes/:title | Add new note. Param: "title" | _todo_ |
+| GET    | /notes/tags/:tagId | Lists information for a tag with 'tagId' | _todo_ |
+| GET    |  _todo_ /notes?searchByTtitle=$1&searchByText=$2&searchByTag=$3 searcByText maybe be long. Put In URL or send in body as json? | Search for notes: _by title_ and/or _by text_ and/or _by tags_ | 400 Bad Request<br> 404 Not Found<br> 200 OK returns string of type application/json  |
+| POST   | /notes/:title | Add new note with title. Param: "title" | _todo_ |
+| POST   | /notes  _todo_  | Add a collection of new notes. Request in body as json | 200 OK returns _todo_ |
+| PUT    | /notes/:noteId | Update/Edit existing note. Request in body as json | _todo_ |
+| PUT    | /notes/tags/:tagId/:tagName | Edit existing tag's name with 'tagId' to 'tagName'  | _todo_ |
+| DELETE | /notes/:noteId | Delete existing note with 'noteId' | _todo_ |
+| DELETE | /notes/tags/:tagId | Delete existing tag with 'tagId' | _todo_ |
+
