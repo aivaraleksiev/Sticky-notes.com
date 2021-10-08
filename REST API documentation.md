@@ -16,5 +16,5 @@ The business requierments that we need to met are:
 | ------ | ------   | ------     | ------            |
 | GET    | /notes   | Lists all notes created by the user.  | _todo_ |
 | GET    | /notes/tags | Lists all tags created by the user and the asscoicated notes {noteId: title} with them. | _todo_ |
-| GET    |  _todo_ /notes?searcByTtitle=$1&searcByText=$2&searcByTag=$3 searcByText maybe be long. Put In URL or send in body as json? | Search for notes: _by title_ and/or _by text_ and/or _by tags_ | 400 Bad Request<br>, 404 Not Found, 200 OK returns string of type application/json  |
+| GET    |  _todo_ /notes?searcByTtitle=$1&searcByText=$2&searcByTag=$3 searcByText maybe be long. Put In URL or send in body as json? | Search for notes: _by title_ and/or _by text_ and/or _by tags_ | 400 Bad Request<br> 404 Not Found<br> 200 OK returns string of type application/json  |
 | POST    | /notes/:title | Add new note. Param: "title" | _todo_ |
