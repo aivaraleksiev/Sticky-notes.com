@@ -13,8 +13,8 @@ The business requierments that we need to met are:
 ## REST API
 
 | Method | Endpoint | description| status codes |
-| ------ | ------   | ------     | ------            |
-| GET    | /notes   | Lists all notes created by the user. _todo:  Pagination_ | _todo_ |
+| ------ | ------   | ----------     | ------            |
+| GET    | /notes   | Lists all notes created by the user. _todo:  Pagination_ | 400 Bad Request<br> 404 Not Found<br> 200 OK returns string of type application/json |
 | GET    | /notes/:noteId   | List information for a note with 'noteId'| _todo_ |
 | GET    | /notes/tags | Lists all tags created by the user and the asscoicated notes {noteId: title} with them. | _todo_ |
 | GET -REMOVE. Duplicate of GET /notes?searchByTag  | /notes/tags/:tagId | Lists information for a tag with 'tagId' | _todo_ |
