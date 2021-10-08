@@ -55,7 +55,7 @@ TODO PASTE JSON RESPONSE
 GET localhsot:9066/api/v0/notes/{noteId}
 ```
 List information for a note. <br>
-Requiers path parameters <br>
+__Path parameters__ <br>
 _String `noteId` - Identifiers that notes must have to match the filter._
 
 ### Reponse
