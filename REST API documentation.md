@@ -28,3 +28,20 @@ The business requierments that we need to met are:
 Questions:
 Maybe add method to delete all notes/tags with one call.
 
+## REST API VERSION 2 LAYOUT
+
+```sh
+GET localhsot:9066/api/v0/notes
+```
+
+```js
+GET localhsot:9066/api/v0/notes
+```
+
+```console
+GET localhsot:9066/api/v0/notes
+```
+
+```json
+GET localhsot:9066/api/v0/notes
+```
