@@ -14,7 +14,7 @@ The business requierments that we need to met are:
 
 | Method | Endpoint         | description| status codes |
 | ------ | ------           | ------     | ------            |
-| GET    | /notes           | Lists all notes created by the user. _todo:  Pagination_ | 400 Bad Request<br> 404 Not Found<br> 200 OK returns string of type text/json |
+| GET    | /notes           | Lists all notes created by the user.| 400 Bad Request<br> 404 Not Found<br> 200 OK returns string of type text/json |
 | GET    | /notes/:noteId   | List information for a note with 'noteId'| _todo_ |
 | GET    | /notes/tags      | Lists all tags created by the user and the asscoicated notes {noteId: title} with them. | _todo_ |
 | GET    | _todo_ /notes?searchByTtitle=$1&searchByText=$2&searchByTagName=$3&searchByTagId=$4 searcByText maybe be long. Put In URL or send in body as json? | Search for notes: _by title_ and/or _by text_ and/or _by tags_ | 400 Bad Request<br> 404 Not Found<br> 200 OK returns string of type text/json  |
@@ -30,18 +30,16 @@ Maybe add method to delete all notes/tags with one call.
 
 ## REST API VERSION 2 LAYOUT
 
-```sh
-GET localhsot:9066/api/v0/notes
-```
 
-```js
-GET localhsot:9066/api/v0/notes
-```
+### Request
 
 ```console
 GET localhsot:9066/api/v0/notes
 ```
+_Lists all notes created by the user._
 
-```json
-GET localhsot:9066/api/v0/notes
-```
+### Reponse
+204 No Content
+400 Bad Request
+200 OK
+Returns string of type text/json.
