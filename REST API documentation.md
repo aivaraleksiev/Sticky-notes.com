@@ -28,7 +28,7 @@ The business requierments that we need to met are:
 Questions:
 Maybe add method to delete all notes/tags with one call.
 
-## REST API VERSION 2 LAYOUT
+## REST API another layout
 
 
 ### Request
