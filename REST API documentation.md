@@ -12,18 +12,18 @@ The business requierments that we need to met are:
 
 ## REST API
 
-| Method | Endpoint                  | description                              | status codes |
-| ------ | ------                    | ------                                   | ------       |
-| GET    | /notes                    | Lists all notes created by the user.     | 204, 400, 200 |
-| GET    | /notes/{noteId}           | List information for a note with 'noteId'| 204, 400, 200 |
-| GET    | /notes/tags               | Lists all tags created by the user and the asscoicated notes {noteId: title} with them. | 204, 400, 200 |
-| GET    | _TODO_ /notes?searchByTtitle=$1&searchByText=$2&searchByTagName=$3&searchByTagId=$4 Use requestBody for `searcByText` - too long. OR JUST /notes and request body?? | Search for notes: _by title_ and/or _by text_ and/or _by tags_ | 400, 404, 200 |
-| POST   | /notes                    | Add a collection of new notes. Request in body as json. | 201 |
-| PUT    | /notes                    | Update/Edit existing notes. Request in body as json | 204, 400 |
-| POST   | /notes/tags               | Add new tags. Request body. | 400, 201 |
-| PUT    | /notes/tags/{tagId}/{tagName} | Edit existing tag's name with 'tagId' to 'tagName'  | _todo_ |
-| DELETE | /notes/{noteId} | Delete existing note with 'noteId' | _todo_ |
-| DELETE | /notes/tags/{tagId} | Delete existing tag with 'tagId' | _todo_ |
+| Method | Endpoint                  | description  |                             
+| ------ | ------                    | ------       |                               
+| GET    | /notes                    | Lists all notes created by the user. |     
+| GET    | /notes/{noteId}           | List information for a note with 'noteId'. |
+| GET    | /notes/tags               | Lists all tags created by the user and the asscoicated notes {noteId: title} with them. |
+| GET _TODO_   | _TODO_ /notes?searchByTtitle=$1&searchByText=$2&searchByTagName=$3&searchByTagId=$4 Use requestBody for `searcByText` - too long. OR JUST /notes and request body?? | Search for notes: _by title_ and/or _by text_ and/or _by tags_ |
+| POST   | /notes                    | Add a collection of new notes. Request in body as json. |
+| PUT    | /notes                    | Update/Edit existing notes. Request in body as json.  |
+| POST   | /notes/tags               | Add new tags. Request body. |
+| PUT    | /notes/tags/{tagId}/{tagName} | Edit existing tag's name with 'tagId' to 'tagName' |
+| DELETE | /notes/{noteId} | Delete existing note with 'noteId' |
+| DELETE | /notes/tags/{tagId} | Delete existing tag with 'tagId' |
 
 Questions:
 Maybe add method to delete all notes/tags with one call.
