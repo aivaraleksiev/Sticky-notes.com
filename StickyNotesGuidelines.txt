@@ -30,9 +30,13 @@ gtest
 -REST API design
 https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/
 https://yalantis.com/blog/how-to-create-a-restful-api/
+
 https://stackoverflow.blog/2021/10/06/best-practices-for-authentication-and-authorization-for-rest-apis/
 
+https://www.mixmax.com/engineering/api-paging-built-the-right-way -> Look at The right approach: Cursor-based paging
 
+https://www.freecodecamp.org/news/how-to-version-a-rest-api/
+https://www.troyhunt.com/your-api-versioning-is-wrong-which-is/
 - DB
 https://www.youtube.com/watch?v=NC7IGLm69Ts
 
