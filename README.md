@@ -9,8 +9,9 @@ A place where you can create, edit and access your notes online. This is current
 - use vcpkg package manager and visual studio for ease of use and speed.
 - Choose a suitable library for creating C++ REST server and client.
   - Write some web server logic
-- Write business logic regarding sticky notes operations. Write Notes API.
-- `TODO` Add at least two more goals regarding REST API.
+- Define and implement Sticky-notes REST API.
+- Write business logic regarding sticky notes operations.
+
   
 ## P1 Goals
 - Choose some logging library for help. Something that is easy to use and quick to configure.
