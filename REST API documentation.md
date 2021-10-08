@@ -166,4 +166,4 @@ Returns identifiers of the created tags of type text/json. <br>
 
 ---
 
-`__**TODO**__` ADD DOCUMENTATION FOR THE LAST THREE moethods fro the table.
+`__**TODO**__` ADD DOCUMENTATION FOR THE LAST THREE moethods from the table.
