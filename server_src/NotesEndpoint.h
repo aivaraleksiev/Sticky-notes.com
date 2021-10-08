@@ -61,7 +61,7 @@ public:
       });
       
       router->http_post( // ayvar comment: maybe http_put here.
-      	"/api/v0/notes/addNote/:title",
+      	"/api/v0/notes/addNote/:title", // remove verb. Use only nouns
       	[localBoard](auto req, auto params) mutable {
       		
       		Note newNote;
