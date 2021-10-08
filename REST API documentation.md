@@ -22,7 +22,7 @@ The business requierments that we need to met are:
 | POST REMOVE. Duplicate of POST /notes  | /notes/:title | Add new note with title. Param: "title" | _todo_ |
 | POST   | /notes  _todo_  | Add a collection of new notes. Request in body as json. | 200 OK returns _todo_ |
 | PUT    | /notes/:noteId | Update/Edit existing note. Request in body as json | _todo_ |
-| POST   | /notes/tags    | Add new tags. Request { tag1 : noteID}, {tag2 }| todo |
+| POST   | /notes/tags    | Add new tags. Request { tag1 : noteID}, {tag2 : "" }| todo |
 | PUT    | /notes/tags/:tagId/:tagName | Edit existing tag's name with 'tagId' to 'tagName'  | _todo_ |
 | DELETE | /notes/:noteId | Delete existing note with 'noteId' | _todo_ |
 | DELETE | /notes/tags/:tagId | Delete existing tag with 'tagId' | _todo_ |
