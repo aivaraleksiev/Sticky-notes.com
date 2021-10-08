@@ -39,7 +39,7 @@ GET localhsot:9066/api/v0/notes
 _Lists all notes created by the user._
 
 ### Reponse
-204 No Content
-400 Bad Request
-200 OK
-Returns string of type text/json.
+204 No Content <br>
+400 Bad Request <br>
+200 OK <br>
+Returns string of type text/json. <br>
