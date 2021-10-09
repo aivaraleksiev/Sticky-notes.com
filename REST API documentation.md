@@ -23,7 +23,7 @@ The business requierments that we need to met are:
 | POST   | /notes/tags               | Add new tags.  |
 | PUT    | /notes/tags/              | Edit existing tags'  name and associations. |
 | DELETE | /notes/                   | Delete existing notes. |
-| DELETE | /notes/tags/              | Delete existing tags.  |
+| ![DELETE](https://github.com/aivaraleksiev/Sticky-notes.com/blob/pre-alpha/resources/DELETE.png) | /notes/tags/              | Delete existing tags.  |
 
 Questions:
 `_*TODO*_` Maybe add method to delete all notes/tags with one call.
