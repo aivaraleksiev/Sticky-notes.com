@@ -17,7 +17,7 @@ The business requierments that we need to met are:
 | GET    | /notes                    | Lists all notes created by the user. |     
 | GET    | /notes/{noteId}           | List information for a note with 'noteId'. |
 | GET    | /notes/tags               | Lists all tags created by the user and the asscoicated notes {noteId: title} with them. |
-| GET `_*TODO*_`   | /notes?searchByTtitle=$1&searchByText=$2&searchByTagName=$3&searchByTagId=$4 Use requestBody for `searchByText` - too long. OR JUST /notes and request body?? | Search for notes: _by title_ and/or _by text_ and/or _by tags_ |
+| GET `_*TODO*_`   | /notes?searchByTtitle=$1&searchByText=$2&searchByTagName=$3&searchByTagId=$4 `TODO` Use requestBody for `searchByText` - too long. OR JUST /notes and request body?? | Search for notes: _by title_ and/or _by text_ and/or _by tags_ |
 | POST   | /notes                    | Add a collection of new notes. Request in body as json. |
 | PUT    | /notes                    | Update/Edit existing notes. Request in body as json.  |
 | POST   | /notes/tags               | Add new tags. Request body. |
