@@ -14,15 +14,15 @@ The business requierments that we need to met are:
 
 | Method | Endpoint                  | description  |                             
 | ------ | ------                    | ------       |                               
-| ![GET](https://github.com/aivaraleksiev/Sticky-notes.com/blob/pre-alpha/resources/GET.png)    | /notes                    | Lists all notes created by the user. |     
-| GET    | /notes/{noteId}           | List information for a note with 'noteId'. |
-| GET    | /notes/tags               | Lists all tags created by the user and the asscoicated notes with them. |
-| GET `_*TODO*_`   | /notes?searchByTtitle=$1&searchByText=$2&searchByTagName=$3&searchByTagId=$4 `TODO` Use requestBody for `searchByText` - too long. OR JUST /notes and request body?? | Search/Filter? for notes: _by title_ and/or _by text_ and/or _by tags_ `TODO` Can I merge it with the first method |
-| POST   | /notes                    | Add/Create new notes. |
-| PUT    | /notes                    | Update/Edit existing notes. |
-| POST   | /notes/tags               | Add new tags.  |
-| PUT    | /notes/tags/              | Edit existing tags'  name and associations. |
-| DELETE | /notes/                   | Delete existing notes. |
+| ![GET](https://github.com/aivaraleksiev/Sticky-notes.com/blob/pre-alpha/resources/GET.png) | /notes                    | Lists all notes created by the user. |     
+| ![GET](https://github.com/aivaraleksiev/Sticky-notes.com/blob/pre-alpha/resources/GET.png)    | /notes/{noteId}           | List information for a note with 'noteId'. |
+| ![GET](https://github.com/aivaraleksiev/Sticky-notes.com/blob/pre-alpha/resources/GET.png)    | /notes/tags               | Lists all tags created by the user and the asscoicated notes with them. |
+| ![GET](https://github.com/aivaraleksiev/Sticky-notes.com/blob/pre-alpha/resources/GET.png) `_*TODO*_`   | /notes?searchByTtitle=$1&searchByText=$2&searchByTagName=$3&searchByTagId=$4 `TODO` Use requestBody for `searchByText` - too long. OR JUST /notes and request body?? | Search/Filter? for notes: _by title_ and/or _by text_ and/or _by tags_ `TODO` Can I merge it with the first method |
+| ![POST](https://github.com/aivaraleksiev/Sticky-notes.com/blob/pre-alpha/resources/POST.png)   | /notes                    | Add/Create new notes. |
+| ![PUT](https://github.com/aivaraleksiev/Sticky-notes.com/blob/pre-alpha/resources/PUT.png)    | /notes                    | Update/Edit existing notes. |
+| ![POST](https://github.com/aivaraleksiev/Sticky-notes.com/blob/pre-alpha/resources/POST.png)   | /notes/tags               | Add new tags.  |
+| ![PUT](https://github.com/aivaraleksiev/Sticky-notes.com/blob/pre-alpha/resources/PUT.png)    | /notes/tags/              | Edit existing tags'  name and associations. |
+| ![DELETE](https://github.com/aivaraleksiev/Sticky-notes.com/blob/pre-alpha/resources/DELETE.png) | /notes/                   | Delete existing notes. |
 | ![DELETE](https://github.com/aivaraleksiev/Sticky-notes.com/blob/pre-alpha/resources/DELETE.png) | /notes/tags/              | Delete existing tags.  |
 
 Questions:
