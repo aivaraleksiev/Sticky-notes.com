@@ -26,7 +26,7 @@ The business requierments that we need to met are:
 | DELETE | /notes/tags/              | Delete existing tags.  |
 
 Questions:
-Maybe add method to delete all notes/tags with one call.
+`_*TODO*_` Maybe add method to delete all notes/tags with one call.
 
 ## REST API another layout
 
