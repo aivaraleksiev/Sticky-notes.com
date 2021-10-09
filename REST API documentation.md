@@ -12,18 +12,18 @@ The business requierments that we need to met are:
 
 ## REST API
 
-| Method            | Endpoint                       | description  |                             
-| :------:          | ------                         | ------       |                               
-| [GET](#Request)   | [/notes](#Request)             | Lists all notes created by the user. |     
-| [GET](#Request-1) | [/notes/{noteId}](#Request-1)  | List information for a note with 'noteId'. |
-| GET               | /notes/tags               | Lists all tags created by the user and the asscoicated notes with them. |
-| GET `_*TODO*_`    | /notes?searchByTtitle=$1&searchByText=$2&searchByTagName=$3&searchByTagId=$4 `TODO` Use requestBody for `searchByText` - too long. OR JUST /notes and request body?? | Search/Filter? for notes: _by title_ and/or _by text_ and/or _by tags_ `TODO` Can I merge it with the first method |
-| POST              | /notes                    | Add/Create new notes. |
-| PUT               | /notes                    | Update/Edit existing notes. |
-| POST              | /notes/tags               | Add new tags.  |
-| PUT               | /notes/tags/              | Edit existing tags'  name and associations. |
-| DELETE            | /notes/                   | Delete existing notes. |
-| DELETE            | /notes/tags/              | Delete existing tags.  |
+| Method               | Endpoint                       | description  |                             
+| :------:             | ------                         | ------       |                               
+| [GET](#Request)      | [/notes](#Request)             | Lists all notes created by the user. |     
+| [GET](#Request-1)    | [/notes/{noteId}](#Request-1)  | List information for a note with 'noteId'. |
+| [GET](#Request-2)    | [/notes/tags](#Request-2)      | Lists all tags created by the user and the asscoicated notes with them. |
+| [GET](#Request-3)    | [/notes?searchByTtitle=$1&searchByText=$2&searchByTagName=$3&searchByTagId=$4](#Request-3) `TODO` Use requestBody for `searchByText` - too long. OR JUST /notes and request body?? | Search/Filter? for notes: _by title_ and/or _by text_ and/or _by tags_ `TODO` Can I merge it with the first method |
+| [POST](#Request-4)   | [/notes](#Request-4)           | Add/Create new notes. |
+| [PUT](#Request-5)    | [/notes](#Request-5)           | Update/Edit existing notes. |
+| [POST](#Request-6)   | [/notes/tags](#Request-6)      | Add new tags.  |
+| [PUT](#Request-7)    | [/notes/tags/](#Request-7)     | Edit existing tags'  name and associations. |
+| [DELETE](#Request-8) | [/notes/](#Request-8)          | Delete existing notes. |
+| [DELETE](#Request-9) | [/notes/tags/](#Request-9)     | Delete existing tags.  |
 
 Questions:
 `_*TODO*_` Maybe add method to delete all notes/tags with one call.
