@@ -14,8 +14,8 @@ The business requierments that we need to met are:
 
 | Method            | Endpoint                  | description  |                             
 | ------            | ------                    | ------       |                               
-| [GET](#Request) | /notes                    | Lists all notes created by the user. |     
-| GET               | /notes/{noteId}           | List information for a note with 'noteId'. |
+| [GET](#Request)   | /notes(#Request)          | Lists all notes created by the user. |     
+| [GET](#Request-1)               | /notes/{noteId}           | List information for a note with 'noteId'. |
 | GET               | /notes/tags               | Lists all tags created by the user and the asscoicated notes with them. |
 | GET `_*TODO*_`    | /notes?searchByTtitle=$1&searchByText=$2&searchByTagName=$3&searchByTagId=$4 `TODO` Use requestBody for `searchByText` - too long. OR JUST /notes and request body?? | Search/Filter? for notes: _by title_ and/or _by text_ and/or _by tags_ `TODO` Can I merge it with the first method |
 | POST              | /notes                    | Add/Create new notes. |
@@ -34,7 +34,7 @@ Questions:
 ### Request
 
 ```console
-GET localhsot:9066/api/v0/notes
+GET localhost:9066/api/v0/notes
 ```
 Lists all notes created by the user.
 
@@ -52,7 +52,7 @@ Returns Array of notes of type text/json. <br>
 ### Request
 
 ```console
-GET localhsot:9066/api/v0/notes/{noteId}
+GET localhost:9066/api/v0/notes/{noteId}
 ```
 List information for a note. <br>
 Path parameters <br>
@@ -72,7 +72,7 @@ Returns string of type text/json. <br>
 ### Request
 
 ```console
-GET localhsot:9066/api/v0/notes/tags
+GET localhost:9066/api/v0/notes/tags
 ```
 Lists all tags created by the user and the asscoicated notes with them.
 
@@ -111,7 +111,7 @@ Returns Array of notes of type text/json. <br>
 ### Request
 
 ```console
-POST localhsot:9066/api/v0/notes
+POST localhost:9066/api/v0/notes
 ```
 Add/Create new notes. <br>
 _TODO Add Request body_ <br>
@@ -131,7 +131,7 @@ Returns identifiers of the created notes of type text/json. <br>
 ### Request
 
 ```console
-PUT localhsot:9066/api/v0/notes
+PUT localhost:9066/api/v0/notes
 ```
 Update/Edit existing note. <br>
 _TODO Add Request body - JSON Array of obj_ <br>
@@ -150,7 +150,7 @@ Operation does not return any data structure. Updated successfully. <br>
 ### Request
 
 ```console
-POST localhsot:9066/api/v0/notes/tags
+POST localhost:9066/api/v0/notes/tags
 ```
 Add new tags. <br>
 _TODO Add Request body - JSON Array of obj_ <br>
@@ -169,7 +169,7 @@ Returns identifiers of the created tags of type text/json. <br>
 ### Request
 
 ```console
-PUT localhsot:9066/api/v0/notes/tags
+PUT localhost:9066/api/v0/notes/tags
 ```
 Edit existing tags' name and associations. <br>
 _TODO Add Request body - JSON Array of obj. Example tagId-> Tagname, TagAssociation_ <br>
@@ -189,7 +189,7 @@ Operation does not return any data structure. Updated successfully. <br>
 ### Request
 
 ```console
-DELETE localhsot:9066/api/v0/notes
+DELETE localhost:9066/api/v0/notes
 ```
 Delete existing notes. <br>
 _TODO Add Request body - JSON Array._ <br>
