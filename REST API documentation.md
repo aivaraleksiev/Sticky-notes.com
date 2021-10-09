@@ -21,9 +21,9 @@ The business requierments that we need to met are:
 | POST   | /notes                    | Add a collection of new notes. Request in body as json. |
 | PUT    | /notes                    | Update/Edit existing notes. Request in body as json.  |
 | POST   | /notes/tags               | Add new tags. Request body. |
-| PUT    | /notes/tags/{tagId}/{tagName} | Edit existing tag's name with 'tagId' to 'tagName' |
-| DELETE | /notes/{noteId} | Delete existing note with 'noteId' |
-| DELETE | /notes/tags/{tagId} | Delete existing tag with 'tagId' |
+| PUT    | /notes/tags/              | Edit existing tags'  name and associations. Request body. |
+| DELETE | /notes/                   | Delete existing notes. |
+| DELETE | /notes/tags/              | Delete existing tags.  |
 
 Questions:
 Maybe add method to delete all notes/tags with one call.
@@ -134,7 +134,7 @@ Returns identifiers of the created notes of type text/json. <br>
 PUT localhsot:9066/api/v0/notes
 ```
 Update/Edit existing note. <br>
-_TODO Add Request body_ <br>
+_TODO Add Request body - JSON Array of obj_ <br>
 
 ### Reponse
 204 No Content <br>
@@ -153,7 +153,7 @@ Operation does not return any data structure. Updated successfully. <br>
 POST localhsot:9066/api/v0/notes/tags
 ```
 Add new tags. <br>
-_TODO Add Request body_ <br>
+_TODO Add Request body - JSON Array of obj_ <br>
 
 ### Reponse
 400 Bad Request <br>
@@ -166,4 +166,54 @@ Returns identifiers of the created tags of type text/json. <br>
 
 ---
 
-`__**TODO**__` ADD DOCUMENTATION FOR THE LAST THREE moethods from the table.
+### Request
+
+```console
+PUT localhsot:9066/api/v0/notes/tags
+```
+Edit existing tags' name and associations. <br>
+_TODO Add Request body - JSON Array of obj. Example tagId-> Tagname, TagAssociation_ <br>
+
+### Reponse
+400 Bad Request <br>
+_TODO_ already exists status code
+204 No Content <br>
+Operation does not return any data structure. Updated successfully. <br> 
+
+```json
+`__**TODO**__` PASTE JSON RESPONSE
+```
+
+---
+
+### Request
+
+```console
+DELETE localhsot:9066/api/v0/notes
+```
+Delete existing notes. <br>
+_TODO Add Request body - JSON Array._ <br>
+
+### Reponse
+400 Bad Request <br>
+404 Not Found
+204 No Content <br>
+Operation does not return any data structure. Updated successfully. <br> 
+
+---
+
+### Request
+
+```console
+DELETE localhsot:9066/api/v0/notes/tags
+```
+Delete existing tags. <br>
+_TODO Add Request body - JSON Array._ <br>
+
+### Reponse
+400 Bad Request <br>
+404 Not Found
+204 No Content <br>
+Operation does not return any data structure. Updated successfully. <br> 
+
+---
