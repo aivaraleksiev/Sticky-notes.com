@@ -18,7 +18,7 @@ The business requierments that we need to met are:
 | GET    | /notes/{noteId}           | List information for a note with 'noteId'. |
 | GET    | /notes/tags               | Lists all tags created by the user and the asscoicated notes with them. |
 | GET `_*TODO*_`   | /notes?searchByTtitle=$1&searchByText=$2&searchByTagName=$3&searchByTagId=$4 `TODO` Use requestBody for `searchByText` - too long. OR JUST /notes and request body?? | Search/Filter? for notes: _by title_ and/or _by text_ and/or _by tags_ `TODO` Can I merge it with the first method |
-| POST   | /notes                    | Add a collection of new notes. |
+| POST   | /notes                    | Add/Create new notes. |
 | PUT    | /notes                    | Update/Edit existing notes. |
 | POST   | /notes/tags               | Add new tags.  |
 | PUT    | /notes/tags/              | Edit existing tags'  name and associations. |
@@ -113,7 +113,7 @@ Returns Array of notes of type text/json. <br>
 ```console
 POST localhsot:9066/api/v0/notes
 ```
-Add a collection of new notes. <br>
+Add/Create new notes. <br>
 _TODO Add Request body_ <br>
 
 ### Reponse
