@@ -14,7 +14,7 @@ The business requierments that we need to met are:
 
 | Method | Endpoint                  | description  |                             
 | ------ | ------                    | ------       |                               
-| ![GET](https://github.com/aivaraleksiev/Sticky-notes.com/blob/pre-alpha/resources/GET2.png) | /notes                    | Lists all notes created by the user. |     
+| ![GET](https://github.com/aivaraleksiev/Sticky-notes.com/blob/pre-alpha/resources/GET.png) | /notes                    | Lists all notes created by the user. |     
 | ![GET](https://github.com/aivaraleksiev/Sticky-notes.com/blob/pre-alpha/resources/GET.png)    | /notes/{noteId}           | List information for a note with 'noteId'. |
 | ![GET](https://github.com/aivaraleksiev/Sticky-notes.com/blob/pre-alpha/resources/GET.png)    | /notes/tags               | Lists all tags created by the user and the asscoicated notes with them. |
 | ![GET](https://github.com/aivaraleksiev/Sticky-notes.com/blob/pre-alpha/resources/GET.png) `_*TODO*_`   | /notes?searchByTtitle=$1&searchByText=$2&searchByTagName=$3&searchByTagId=$4 `TODO` Use requestBody for `searchByText` - too long. OR JUST /notes and request body?? | Search/Filter? for notes: _by title_ and/or _by text_ and/or _by tags_ `TODO` Can I merge it with the first method |
