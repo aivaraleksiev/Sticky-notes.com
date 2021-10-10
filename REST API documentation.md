@@ -127,9 +127,10 @@ Returns array of tag structures of type text/json. <br>
 ```console
 GET localhost:9066/api/v0/notes/tags/{tagId}
 ```
-List information for a tag.
+List information for a tag.<br><br>
 
-_TODO Add path param info.
+Path parameters: <br>
+_String `noteId` - Identifiers that tags must have to match the filter._
 
 ### Reponse
 204 No Content <br>
@@ -154,9 +155,12 @@ Returns tag structure of type text/json. <br>
 ```console
 GET /notes?title={string}&text={string}&tagName={string}
 ```
-Search for notes: _by title_ and/or _by text_ and/or _by tagName <br>
-_TODO: 
+Search for notes: _by title_ and/or _by text_ and/or _by tagName <br><br>
 
+Query params:<br>
+_String `title` - Title of the note we are searching. This field is optional._
+_String `text`  - Filter notes containing this text sample. This field is optional._
+_String `tagName`  - Filter notes associated with this tag name. This field is optional._
 
 ### Reponse
 204 No Content <br>
