@@ -158,8 +158,8 @@ GET /notes?title={string}&text={string}&tagName={string}
 Search for notes: _by title_ and/or _by text_ and/or _by tagName <br><br>
 
 Query params:<br>
-_String `title` - Filter notes containing this title. This field is optional._<br>
-_String `text`  - Filter notes containing this text sample. This field is optional._<br>
+_String `title`    - Filter notes containing this title. This field is optional._<br>
+_String `text`     - Filter notes containing this text sample. This field is optional._<br>
 _String `tagName`  - Filter notes associated with this tag name. This field is optional._<br>
 
 ### Reponse
