@@ -7,10 +7,10 @@ Based on [Define Note's REST API task](https://github.com/aivaraleksiev/Sticky-n
 The business requierments that we need to met are: 
 
 > The` user must be able to
-> - create notes with title, text and tags .
-> - edit notes
-> - delete notes
-> - search for Notes: by title / by text / by tags
+> - create notes with title, text and tags
+> - edit/delete notes 
+> - create/edit/delete tags
+> - search for Notes: by title / by text / by tag
 
 ## REST API
 
