@@ -155,7 +155,7 @@ Returns tag structure of type text/json. <br>
 ```console
 GET /notes?title={string}&text={string}&tagName={string}
 ```
-Search for notes: _by title_ and/or _by text_ and/or _by tagName <br><br>
+Search for notes: _by title_ and/or _by text_ and/or _by tagName <br>
 
 Query params:<br>
 _String `title`    - Filter notes containing this title. This field is optional._<br>
