@@ -127,7 +127,7 @@ Returns array of tag structures of type text/json. <br>
 ```console
 GET localhost:9066/api/v0/notes/tags/{tagId}
 ```
-List information for a tag.<br><br>
+List information for a tag.<br>
 
 Path parameters: <br>
 _String `noteId` - Identifiers that tags must have to match the filter._
