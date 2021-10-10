@@ -25,8 +25,6 @@ Based on [Define Note's REST API task](https://github.com/aivaraleksiev/Sticky-n
 | [DELETE](#Request-8) | [/notes/](#Request-8)          | Delete existing notes. |
 | [DELETE](#Request-9) | [/notes/tags/](#Request-9)     | Delete existing tags.  |
 
-Questions:
-`_*TODO*_` Maybe add method to delete all notes/tags with one call.
 
 
 
