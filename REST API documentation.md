@@ -4,8 +4,6 @@ This is the Sticky-notes REST API Reference. It provides API documentation, requ
 
 Based on [Define Note's REST API task](https://github.com/aivaraleksiev/Sticky-notes.com/issues/4)
 
-The business requierments that we need to met are: 
-
 > The` user must be able to
 > - create notes with title, text and tags
 > - edit/delete notes 
