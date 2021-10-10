@@ -78,19 +78,19 @@ _String `noteId` - Identifiers that notes must have to match the filter._
 Returns note structure of type text/json. <br>
 ```json
 {
-      "noteId": "string",
-      "title": "string",
-      "text": "string",
-      "tags": [
-         {
-            "tagId": "string",
-            "name": "string",
-            "associations": [
-               "string"
-            ]
-         }
-      ]
-   }
+   "noteId": "string",
+   "title": "string",
+   "text": "string",
+   "tags": [
+      {
+         "tagId": "string",
+         "name": "string",
+         "associations": [
+            "string"
+         ]
+      }
+   ]
+}
 ```
 
 ---
@@ -135,9 +135,15 @@ _TODO Add path param info.
 204 No Content <br>
 400 Bad Request <br>
 200 OK <br>
-Returns Array of tags of type text/json. <br>
+Returns tag structure of type text/json. <br>
 ```json
-`__**TODO**__` PASTE JSON RESPONSE
+{
+   "tagId": "string",
+   "name": "string",
+   "associations": [
+      "string"
+   ]
+}
 ```
 
 
