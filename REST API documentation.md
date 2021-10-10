@@ -66,8 +66,9 @@ Returns array of note structures of type text/json. <br>
 ```console
 GET localhost:9066/api/v0/notes/{noteId}
 ```
-List information for a note. <br>
-Path parameters <br>
+List information for a note. <br><br>
+
+Path parameters: <br>
 _String `noteId` - Identifiers that notes must have to match the filter._
 
 ### Reponse
@@ -106,9 +107,17 @@ Lists all tags created by the user and the asscoicated notes with them.
 204 No Content <br>
 400 Bad Request <br>
 200 OK <br>
-Returns Array of tags of type text/json. <br>
+Returns array of tag structures of type text/json. <br>
 ```json
-`__**TODO**__` PASTE JSON RESPONSE
+[
+   {
+      "tagId": "string",
+      "name": "string",
+      "associations": [
+         "string"
+      ]
+   }
+]
 ```
 
 ---
