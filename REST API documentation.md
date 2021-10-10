@@ -12,18 +12,18 @@ Based on [Define Note's REST API task](https://github.com/aivaraleksiev/Sticky-n
 
 ## REST API
 
-| Method               | Endpoint                       | description  |                             
-| :------:             | ------                         | ------       |                               
-| [GET](#Request)      | [/notes](#Request)             | Lists all notes created by the user. |     
-| [GET](#Request-1)    | [/notes/{noteId}](#Request-1)  | List information for a note with 'noteId'. |
-| [GET](#Request-2)    | [/notes/tags](#Request-2)      | Lists all tags created by the user and the asscoicated notes with them. |
-| [GET](#Request-3)    | [/notes?byTtitle=$1&byText=$2&byTagName=$3&byTagId=$4](#Request-3) `TODO` Use requestBody for `searchByText` - too long. OR JUST /notes and request body?? | Filter notes: _by title_ and/or _by text_ and/or _by tags_ `TODO` Can I merge it with the first method |
-| [POST](#Request-4)   | [/notes](#Request-4)           | Add/Create new notes. |
-| [PUT](#Request-5)    | [/notes](#Request-5)           | Update/Edit existing notes. |
-| [POST](#Request-6)   | [/notes/tags](#Request-6)      | Add new tags.  |
-| [PUT](#Request-7)    | [/notes/tags/](#Request-7)     | Edit existing tags'  name and associations. |
-| [DELETE](#Request-8) | [/notes/](#Request-8)          | Delete existing notes. |
-| [DELETE](#Request-9) | [/notes/tags/](#Request-9)     | Delete existing tags.  |
+| Method               | Endpoint                           | description  |                             
+| :------:             | ------                             | ------       |                               
+| [GET](#Request)      | [/notes](#Request)                 | Lists all notes created by the user. |     
+| [GET](#Request-1)    | [/notes/{noteId}](#Request-1)      | List information for a note with 'noteId'. |
+| [GET](#Request-2)    | [/notes/tags](#Request-2)          | Lists all tags created by the user and the asscoicated notes with them. |
+| [GET](#Request-3)    | [/notes?title=string&text=string&tagName=string&tagId=string](#Request-3) | Filter notes: _by title_ and/or _by text_ and/or _by tags_ |
+| [POST](#Request-4)   | [/notes](#Request-4)               | Add/Create new notes. |
+| [PUT](#Request-5)    | [/notes](#Request-5)               | Edit existing notes. |
+| [POST](#Request-6)   | [/notes/tags](#Request-6)          | Add new tags.  |
+| [PUT](#Request-7)    | [/notes/tags/](#Request-7)         | Edit existing tags. |
+| [DELETE](#Request-8) | [/notes/{noteId}](#Request-8)      | Delete existing note. |
+| [DELETE](#Request-9) | [/notes/tags/{tagId}](#Request-9)  | Delete existing tags.  |
 
 
 
@@ -130,7 +130,7 @@ Returns identifiers of the created notes of type text/json. <br>
 ```console
 PUT localhost:9066/api/v0/notes
 ```
-Update/Edit existing note. <br>
+Edit existing notes. <br>
 _TODO Add Request body - JSON Array of obj_ <br>
 
 ### Reponse
@@ -168,7 +168,7 @@ Returns identifiers of the created tags of type text/json. <br>
 ```console
 PUT localhost:9066/api/v0/notes/tags
 ```
-Edit existing tags' name and associations. <br>
+Edit existing tags. <br>
 _TODO Add Request body - JSON Array of obj. Example tagId-> Tagname, TagAssociation_ <br>
 
 ### Reponse
@@ -186,10 +186,10 @@ Operation does not return any data structure. Updated successfully. <br>
 ### Request
 
 ```console
-DELETE localhost:9066/api/v0/notes
+DELETE localhost:9066/api/v0/notes/{noteId}
 ```
-Delete existing notes. <br>
-_TODO Add Request body - JSON Array._ <br>
+Delete existing note. <br>
+_TODO Add path params <br>
 
 ### Reponse
 400 Bad Request <br>
@@ -202,10 +202,10 @@ Operation does not return any data structure. Updated successfully. <br>
 ### Request
 
 ```console
-DELETE localhsot:9066/api/v0/notes/tags
+DELETE localhsot:9066/api/v0/notes/tags/{tagId}
 ```
 Delete existing tags. <br>
-_TODO Add Request body - JSON Array._ <br>
+_TODO Add path param <br>
 
 ### Reponse
 400 Bad Request <br>
