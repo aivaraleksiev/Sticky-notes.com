@@ -18,7 +18,7 @@ Based on [Define Note's REST API task](https://github.com/aivaraleksiev/Sticky-n
 | [GET](#Request-1)     | [/notes/{noteId}](#Request-1)       | List information for a note. |
 | [GET](#Request-2)     | [/notes/tags](#Request-2)           | Lists all tags created by the user and the asscoicated notes with them. |
 | [GET](#Request-3)     | [/notes/tags/{tagId}](#Request-3)   | List information for a tag. |
-| [GET](#Request-4)     | [/notes?title={string}&text={string}&tagName={string}](#Request-4) | Filter notes: _by title_ and/or _by text_ and/or _by tags_ |
+| [GET](#Request-4)     | [/notes?title={string}&text={string}&tag={string}](#Request-4) | Filter notes: _by title_ and/or _by text_ and/or _by tag._ |
 | [POST](#Request-5)    | [/notes](#Request-5)                | Add/Create new notes. |
 | [PUT](#Request-6)     | [/notes](#Request-6)                | Edit existing notes. |
 | [POST](#Request-7)    | [/notes/tags](#Request-7)           | Add new tags.  |
@@ -149,14 +149,14 @@ Returns tag structure of type text/json. <br>
 ### Request
 
 ```console
-GET /notes?title={string}&text={string}&tagName={string}
+GET /notes?title={string}&text={string}&tag={string}
 ```
 Search for notes: _by **title**_ and/or _by **text**_ and/or _by **tagName**. <br>
 
 Query params:<br>
-_String `title`    - Filter notes containing this title. This field is optional._<br>
-_String `text`     - Filter notes containing this text sample. This field is optional._<br>
-_String `tagName`  - Filter notes associated with this tag name. This field is optional._<br>
+_String `title` - Filter notes containing this title. This field is optional._<br>
+_String `text`  - Filter notes containing this text sample. This field is optional._<br>
+_String `tag`   - Filter notes associated with this tag name. This field is optional._<br>
 
 ### Response
 204 No Content <br>
