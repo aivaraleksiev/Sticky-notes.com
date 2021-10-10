@@ -28,7 +28,6 @@ Based on [Define Note's REST API task](https://github.com/aivaraleksiev/Sticky-n
 
 
 
-
 ### Request
 
 ```console
@@ -42,7 +41,22 @@ Lists all notes created by the user.
 200 OK <br>
 Returns Array of notes of type text/json. <br>
 ```json
-`__**TODO**__` PASTE JSON RESPONSE
+[
+   {
+      "noteId": "string",
+      "title": "string",
+      "text": "string",
+      "tags": [
+         {
+            "tagId": "string",
+            "name": "string",
+            "associations": [
+               "string"
+            ]
+         }
+      ]
+   }
+]
 ```
 
 ---
