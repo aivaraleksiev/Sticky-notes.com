@@ -35,7 +35,7 @@ Now you should be able to build and run the project.
 [**Sticky-notes.com project**](https://github.com/aivaraleksiev/Sticky-notes.com/projects/1)
   
 ## Collaborators
-https://github.com/michael-stanin will help me with some of the decisions that I have to make during this initial pre-alpha phase.
+[Michael Stanin](https://github.com/michael-stanin) will help me with some of the decisions that I have to make during this initial pre-alpha phase.
 
 ## LICENSE
 BSD 4-clause License
