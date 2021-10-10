@@ -31,11 +31,11 @@ Based on [Define Note's REST API task](https://github.com/aivaraleksiev/Sticky-n
 ### Request
 
 ```console
-GET localhost:9066/api/v0/notes
+GET localhost:9066/api/v1/notes
 ```
 Lists all notes created by the user.
 
-### Reponse
+### Response
 204 No Content <br>
 400 Bad Request <br>
 200 OK <br>
@@ -49,10 +49,7 @@ Returns array of note structures of type text/json. <br>
       "tags": [
          {
             "tagId": "string",
-            "name": "string",
-            "associations": [
-               "string"
-            ]
+            "name": "string"
          }
       ]
    }
@@ -64,14 +61,14 @@ Returns array of note structures of type text/json. <br>
 ### Request
 
 ```console
-GET localhost:9066/api/v0/notes/{noteId}
+GET localhost:9066/api/v1/notes/{noteId}
 ```
 List information for a note. <br><br>
 
 Path parameters: <br>
 _String `noteId` - Identifiers that notes must have to match the filter._
 
-### Reponse
+### Response
 204 No Content <br>
 400 Bad Request <br>
 200 OK <br>
@@ -98,12 +95,12 @@ Returns note structure of type text/json. <br>
 ### Request
 
 ```console
-GET localhost:9066/api/v0/notes/tags
+GET localhost:9066/api/v1/notes/tags
 ```
 Lists all tags created by the user and the asscoicated notes with them.
 
 
-### Reponse
+### Response
 204 No Content <br>
 400 Bad Request <br>
 200 OK <br>
@@ -125,14 +122,14 @@ Returns array of tag structures of type text/json. <br>
 ### Request
 
 ```console
-GET localhost:9066/api/v0/notes/tags/{tagId}
+GET localhost:9066/api/v1/notes/tags/{tagId}
 ```
 List information for a tag.<br>
 
 Path parameters: <br>
 _String `noteId` - Identifiers that tags must have to match the filter._
 
-### Reponse
+### Response
 204 No Content <br>
 400 Bad Request <br>
 200 OK <br>
@@ -147,7 +144,6 @@ Returns tag structure of type text/json. <br>
 }
 ```
 
-
 --- 
 
 ### Request
@@ -155,20 +151,35 @@ Returns tag structure of type text/json. <br>
 ```console
 GET /notes?title={string}&text={string}&tagName={string}
 ```
-Search for notes: _by title_ and/or _by text_ and/or _by tagName <br>
+Search for notes: _by **title**_ and/or _by **text**_ and/or _by **tagName**. <br>
 
 Query params:<br>
 _String `title`    - Filter notes containing this title. This field is optional._<br>
 _String `text`     - Filter notes containing this text sample. This field is optional._<br>
 _String `tagName`  - Filter notes associated with this tag name. This field is optional._<br>
 
-### Reponse
+### Response
 204 No Content <br>
 400 Bad Request <br>
 200 OK <br>
-Returns Array of notes of type text/json. <br>
+Returns Array of filtered note structures of type text/json. <br>
 ```json
-`__**TODO**__` PASTE JSON RESPONSE
+[
+   {
+      "noteId": "string",
+      "title": "string",
+      "text": "string",
+      "tags": [
+         {
+            "tagId": "string",
+            "name": "string",
+            "associations": [
+               "string"
+            ]
+         }
+      ]
+   }
+]
 ```
 
 --- 
@@ -176,19 +187,38 @@ Returns Array of notes of type text/json. <br>
 ### Request
 
 ```console
-POST localhost:9066/api/v0/notes
+POST localhost:9066/api/v1/notes
 ```
 Add/Create new notes. <br>
-_TODO Add Request body_ <br>
 
-### Reponse
+Request body: <br>
+_String `title` - Note's title name._<br>
+_String `text`  - Note's text content.This field can be empty_<br>
+_Array  `tags`  - Tags attached to this note. Must provide existing tag identifiers. This field can be empty._<br>
+```json
+[
+   {
+      "title": "string",
+      "text": "string",
+      "tags": [
+	     "string"
+        ]
+   }
+]
+```
+
+### Response
 204 No Content <br>
 400 Bad Request <br>
 201 Created <br>
-Returns identifiers of the created notes of type text/json. <br>
+Returns array of note identifiers of type text/json. <br>
 
 ```json
-`__**TODO**__` PASTE JSON RESPONSE
+{
+   "noteId": [
+      "string"
+   ]
+}
 ```
 
 ---
@@ -196,37 +226,71 @@ Returns identifiers of the created notes of type text/json. <br>
 ### Request
 
 ```console
-PUT localhost:9066/api/v0/notes
+PUT localhost:9066/api/v1/notes
 ```
 Edit existing notes. <br>
-_TODO Add Request body - JSON Array of obj_ <br>
 
-### Reponse
-204 No Content <br>
-Operation does not return any data structure. Updated successfully. <br> 
-400 Bad Request <br>
+Request body:<br>
+_String `noteId` - Note identifier._<br>
+_String `title`  - Note's title name. This field if optional._<br>
+_String `text`   - Note's text content. This field if optional._<br>
+_Array  `tagId`  - Tags attached to this note. Must provide existing tag identifiers. This field if optional._<br>
 
 ```json
-`__**TODO**__` PASTE JSON RESPONSE
+[
+   {
+      "noteId": "string",
+      "title": "string",
+      "text": "string",
+      "tagId": [
+         "string"
+      ]
+   }
+]
 ```
+
+### Response
+400 Bad Request <br>
+204 No Content <br>
+Operation does not return any data structure. Updated successfully. <br> 
 
 ---
 
 ### Request
 
 ```console
-POST localhost:9066/api/v0/notes/tags
+POST localhost:9066/api/v1/notes/tags
 ```
 Add new tags. <br>
-_TODO Add Request body - JSON Array of obj_ <br>
 
-### Reponse
-400 Bad Request <br>
-201 Created <br>
-Returns identifiers of the created tags of type text/json. <br>
+Request body:<br>
+_String `name`        - Tag name. Must be unique._<br>
+_Array `associations` - Consists of note identifiers to which this tag is attached. This field can be empty._<br>
+
 
 ```json
-`__**TODO**__` PASTE JSON RESPONSE
+[
+   {   
+      "name": "string",
+      "associations": [
+         "string"
+      ]
+   }
+]
+```
+
+### Response
+400 Bad Request <br>
+403 Already exists. <br>
+201 Created <br>
+Returns array of tag identifiers of type text/json. <br>
+
+```json
+{
+   "tagId": [
+      "string"
+   ]
+}
 ```
 
 ---
@@ -234,34 +298,30 @@ Returns identifiers of the created tags of type text/json. <br>
 ### Request
 
 ```console
-PUT localhost:9066/api/v0/notes/tags
+PUT localhost:9066/api/v1/notes/tags
 ```
 Edit existing tags. <br>
-_TODO Add Request body - JSON Array of obj. Example tagId-> Tagname, TagAssociation_ <br>
 
-### Reponse
-400 Bad Request <br>
-_TODO_ already exists status code
-204 No Content <br>
-Operation does not return any data structure. Updated successfully. <br> 
+Request body:<br>
+_String `tagId`       - The tag identifier._<br>
+_String `name`        - Tag name. Must be unique. This field is optional._<br>
+_Array `associations` - Consists of notes to which this tag is attached. Must provide existing note identifiers. This field is optional._<br>
 
 ```json
-`__**TODO**__` PASTE JSON RESPONSE
+[
+   {
+      "tagId": "string",
+      "name": "string",
+      "associations": [
+         "string"
+      ]
+   }
+]
 ```
 
----
-
-### Request
-
-```console
-DELETE localhost:9066/api/v0/notes/{noteId}
-```
-Delete existing note. <br>
-_TODO Add path params <br>
-
-### Reponse
+### Response
 400 Bad Request <br>
-404 Not Found
+403 Already exists. <br>
 204 No Content <br>
 Operation does not return any data structure. Updated successfully. <br> 
 
@@ -270,14 +330,34 @@ Operation does not return any data structure. Updated successfully. <br>
 ### Request
 
 ```console
-DELETE localhsot:9066/api/v0/notes/tags/{tagId}
+DELETE localhost:9066/api/v1/notes/{noteId}
 ```
-Delete existing tags. <br>
-_TODO Add path param <br>
+Delete existing note. <br>
 
-### Reponse
+Path param:<br>
+_String `noteId` - Identifiers that notes must have to match the filter._<br>
+
+### Response
 400 Bad Request <br>
-404 Not Found
+404 Not Found <br>
+204 No Content <br>
+Operation does not return any data structure. Updated successfully. <br> 
+
+---
+
+### Request
+
+```console
+DELETE localhsot:9066/api/v1/notes/tags/{tagId}
+```
+Delete existing tag. <br>
+
+Path param: <br>
+_String `tagId` - Identifiers that tags must have to match the filter._<br>
+
+### Response
+400 Bad Request <br>
+404 Not Found <br>
 204 No Content <br>
 Operation does not return any data structure. Updated successfully. <br> 
 
