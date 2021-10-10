@@ -1,6 +1,6 @@
 # Sticky-notes REST API documentation
 
-This is Sticky-notes' REST API Reference. It provides API documentation, request/response samples, and usage description.
+This is the Sticky-notes REST API Reference. It provides API documentation, request/response samples, and usage description.
 
 Based on [Define Note's REST API task](https://github.com/aivaraleksiev/Sticky-notes.com/issues/4)
 
