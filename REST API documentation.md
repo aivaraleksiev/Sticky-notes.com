@@ -24,7 +24,7 @@ Based on [Define Note's REST API task](https://github.com/aivaraleksiev/Sticky-n
 | [POST](#Request-7)    | [/notes/tags](#Request-7)           | Add new tags.  |
 | [PUT](#Request-8)     | [/notes/tags/](#Request-8)          | Edit existing tags. |
 | [DELETE](#Request-9)  | [/notes/{noteId}](#Request-9)       | Delete existing note. |
-| [DELETE](#Request-10) | [/notes/tags/{tagId}](#Request-10)  | Delete existing tags.  |
+| [DELETE](#Request-10) | [/notes/tags/{tagId}](#Request-10)  | Delete existing tag.  |
 
 
 
