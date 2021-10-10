@@ -28,7 +28,6 @@ Based on [Define Note's REST API task](https://github.com/aivaraleksiev/Sticky-n
 Questions:
 `_*TODO*_` Maybe add method to delete all notes/tags with one call.
 
-## REST API another layout
 
 
 ### Request
