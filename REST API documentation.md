@@ -19,7 +19,7 @@ Based on [Define Note's REST API task](https://github.com/aivaraleksiev/Sticky-n
 | [GET](#Request-2)     | [/notes/tags](#Request-2)           | Lists all tags created by the user and the asscoicated notes with them. |
 | [GET](#Request-3)     | [/notes/tags/{tagId}](#Request-3)   | List information for a tag. |
 | [GET](#Request-4)     | [/notes?title={string}&text={string}&tag={string}](#Request-4) | Filter notes: _by title_ and/or _by text_ and/or _by tag._ |
-| [POST](#Request-5)    | [/notes](#Request-5)                | Add/Create new notes. |
+| [POST](#Request-5)    | [/notes](#Request-5)                | Add new notes. |
 | [PUT](#Request-6)     | [/notes](#Request-6)                | Edit existing notes. |
 | [POST](#Request-7)    | [/notes/tags](#Request-7)           | Add new tags.  |
 | [PUT](#Request-8)     | [/notes/tags/](#Request-8)          | Edit existing tags. |
