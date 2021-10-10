@@ -39,7 +39,7 @@ Lists all notes created by the user.
 204 No Content <br>
 400 Bad Request <br>
 200 OK <br>
-Returns Array of notes of type text/json. <br>
+Returns array of note structures of type text/json. <br>
 ```json
 [
    {
@@ -74,9 +74,22 @@ _String `noteId` - Identifiers that notes must have to match the filter._
 204 No Content <br>
 400 Bad Request <br>
 200 OK <br>
-Returns string of type text/json. <br>
+Returns note structure of type text/json. <br>
 ```json
-`__**TODO**__` PASTE JSON RESPONSE
+{
+      "noteId": "string",
+      "title": "string",
+      "text": "string",
+      "tags": [
+         {
+            "tagId": "string",
+            "name": "string",
+            "associations": [
+               "string"
+            ]
+         }
+      ]
+   }
 ```
 
 ---
