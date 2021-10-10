@@ -12,18 +12,19 @@ Based on [Define Note's REST API task](https://github.com/aivaraleksiev/Sticky-n
 
 ## REST API
 
-| Method               | Endpoint                           | description  |                             
-| :------:             | ------                             | ------       |                               
-| [GET](#Request)      | [/notes](#Request)                 | Lists all notes created by the user. |     
-| [GET](#Request-1)    | [/notes/{noteId}](#Request-1)      | List information for a note with 'noteId'. |
-| [GET](#Request-2)    | [/notes/tags](#Request-2)          | Lists all tags created by the user and the asscoicated notes with them. |
-| [GET](#Request-3)    | [/notes?title=string&text=string&tagName=string&tagId=string](#Request-3) | Filter notes: _by title_ and/or _by text_ and/or _by tags_ |
-| [POST](#Request-4)   | [/notes](#Request-4)               | Add/Create new notes. |
-| [PUT](#Request-5)    | [/notes](#Request-5)               | Edit existing notes. |
-| [POST](#Request-6)   | [/notes/tags](#Request-6)          | Add new tags.  |
-| [PUT](#Request-7)    | [/notes/tags/](#Request-7)         | Edit existing tags. |
-| [DELETE](#Request-8) | [/notes/{noteId}](#Request-8)      | Delete existing note. |
-| [DELETE](#Request-9) | [/notes/tags/{tagId}](#Request-9)  | Delete existing tags.  |
+| Method                | Endpoint                            | Description  |                             
+| :------:              | ------                              | ------       |                               
+| [GET](#Request)       | [/notes](#Request)                  | Lists all notes created by the user. |     
+| [GET](#Request-1)     | [/notes/{noteId}](#Request-1)       | List information for a note. |
+| [GET](#Request-2)     | [/notes/tags](#Request-2)           | Lists all tags created by the user and the asscoicated notes with them. |
+| [GET](#Request-3)     | [/notes/tags/{tagId}](#Request-3)   | List information for a tag. |
+| [GET](#Request-4)     | [/notes?title={string}&text={string}&tagName={string}&tagId={tagId}](#Request-4) | Filter notes: _by title_ and/or _by text_ and/or _by tags_ |
+| [POST](#Request-5)    | [/notes](#Request-5)                | Add/Create new notes. |
+| [PUT](#Request-6)     | [/notes](#Request-6)                | Edit existing notes. |
+| [POST](#Request-7)    | [/notes/tags](#Request-7)           | Add new tags.  |
+| [PUT](#Request-8)     | [/notes/tags/](#Request-8)          | Edit existing tags. |
+| [DELETE](#Request-9)  | [/notes/{noteId}](#Request-9)       | Delete existing note. |
+| [DELETE](#Request-10) | [/notes/tags/{tagId}](#Request-10)  | Delete existing tags.  |
 
 
 
@@ -83,15 +84,36 @@ Returns Array of tags of type text/json. <br>
 `__**TODO**__` PASTE JSON RESPONSE
 ```
 
+---
+
+### Request
+
+```console
+GET localhost:9066/api/v0/notes/tags/{tagId}
+```
+List information for a tag.
+
+_TODO Add path param info.
+
+### Reponse
+204 No Content <br>
+400 Bad Request <br>
+200 OK <br>
+Returns Array of tags of type text/json. <br>
+```json
+`__**TODO**__` PASTE JSON RESPONSE
+```
+
+
 --- 
 
 ### Request
 
 ```console
-GET /notes?searchByTtitle=$1&searchByText=$2&searchByTagName=$3&searchByTagId=$4 OR JUST /notes and request body??
+GET /notes?title={string}&text={string}&tagName={string}&tagId={tagId}
 ```
 Search for notes: _by title_ and/or _by text_ and/or _by tagName <br>
-_TODO: QUESTION_ Use query params OR Request body? Should I use both `searchByTagName` and `searchByTagId`  or create `GET .../notes/tags/{tagsId} 
+_TODO: 
 
 
 ### Reponse
