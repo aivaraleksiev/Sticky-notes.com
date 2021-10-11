@@ -27,7 +27,7 @@ A place where you can create, edit and access your notes online. This is current
 ````
 
 - Project must be build with c++ 14, otherwise restinio shows error/warnings during compilation.<br>
-In Project->Properties->Configuration properties tab, the field 'C++ Language Standard' must be 'ISO C++14 Standard (/std:c++14)'.
+In _Project->Properties->Configuration_ properties tab, the field _C++ Language Standard_ must be _ISO C++14 Standard (/std:c++14)_.
 
 - Set _Solution Platform_ in Visual Studio to _x86_.  
 Now you should be able to build and run the project.
