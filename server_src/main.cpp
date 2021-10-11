@@ -1,3 +1,6 @@
+// Copyright 2021
+// Author: Ayvar Aleksiev
+
 #include "NotesEndpoint.h"
 #include "MainEndpoint.h"
 
@@ -10,8 +13,8 @@ int main()
 {	
 	try
 	{
-		NotesEndpoint notesEndpoint;
-		MainEndpoint mainEndpoint;
+		Notes::NotesEndpoint notesEndpoint;
+		Notes::MainEndpoint mainEndpoint;
 
 		using traits_t =
 			restinio::traits_t<

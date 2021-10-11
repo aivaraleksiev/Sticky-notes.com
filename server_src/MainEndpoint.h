@@ -1,18 +1,22 @@
+// Copyright 2021
+// Author: Ayvar Aleksiev
+
 #pragma once
 
 #include "Utils.h"
 
 #include <restinio/all.hpp>
 
+namespace Notes {
 
 class MainEndpoint
 {
-   using router_t = restinio::router::express_router_t<>;
-   using express_router_t = restinio::router::express_router_t<>;
+	using router_t = restinio::router::express_router_t<>;
+	using express_router_t = restinio::router::express_router_t<>;
 
 public:
-   auto createMainEndpointRequestHandler()
-   {
+	auto createMainEndpointRequestHandler()
+	{
 		auto router = std::make_shared<express_router_t>();
 
 		router->http_get(
@@ -24,7 +28,7 @@ public:
 					<< "</html>";
 				std::string strResponse = ostr.str();
 
-				init_response(req->create_response())
+				Utils::init_response(req->create_response())
 					.append_header(restinio::http_field::content_type, "text/html; charset=utf-8")
 					.set_body(ostr.str())
 					.done();
@@ -34,6 +38,8 @@ public:
 
 		return[handler = std::move(router)](const auto& req) {
 			return (*handler)(req);
-		};  
-   }
+		};
+	}
 };
+
+} // namspace Notes

@@ -1,62 +1,57 @@
+// Copyright 2021
+// Author: Ayvar Aleksiev
+
 #pragma once
-// sticky note temporary class
 
 #include <set>
 #include <string>
+#include <shared_mutex>
 
+namespace Notes {
+
+// Synchronized class describing a note.
+// Every note consists of: Title, Text tags attached to it.
 class Note
 {
 public:
-   using Tag = std::string;
-   using Title = std::string;
-   using Text = std::string;
+   // TODO ADD addtional checks and throw exceptions.
+   // Constructor
+   Note() = default;
 
-   Title getTitle() const
-   {
-      return _title;
-   }
+   // Destructor
+   ~Note() = default;
 
-   std::string getText() const
-   {
-      return _title;
-   }
+   // Copy constructor.
+   Note(Note const& other);
 
-   std::set<Tag> getTags() const
-   {
-      return _tags;
-   }
+   // Assignment operator
+   Note& operator=(Note const& other);
 
-   void editTitle(Title title)
-   {
-      _title = title;
-   }
+   // Move constructor
+   Note(Note&& other) noexcept;
 
-   void editText(Text text)
-   {
-      _text = text;
-   }
+   // Move assignment operator
+   Note& operator=(Note&& other) noexcept;
 
-   void addTitle(Title newTitle)
-   {
-      _title = newTitle;
-   }
+   std::string const& getTitle() const;
+   
+   std::string const& getText() const;
 
-   void addTag(Tag newTag)
-   {
-      _tags.insert(newTag);
-   }
+   std::set<std::string> getTags() const;
+   
+   void setTitle(std::string newTitle);
 
-   void removeTag(Tag tag)
-   {
-      _tags.erase(tag);
-   }
+   void setText(std::string newText);   
 
-   void editTag(Tag tag)
-   {
-      //Finds the tag and edits it's name.
-   }
+   void setAttachedTags(std::set<std::string> newTags);
+
 private:
-   Title _title;
-   Text _text;
-   std::set<Tag> _tags;
+   std::string _title;
+   std::string _text;
+   std::set<std::string> _attachedTags; // TODO Think about this structure
+
+   /// Mutex
+   mutable std::shared_mutex  _mutex;
 };
+
+} // namespace Notes

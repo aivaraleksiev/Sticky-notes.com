@@ -1,52 +1,60 @@
+// Copyright 2021
+// Author: Ayvar Aleksiev
+
 #pragma once
+
 
 #include "Note.h"
 #include <string>
-#include <map>
-#include <vector>
-#include <stdexcept>
+#include <unordered_map>
+
+
+namespace Notes {
+
 
 class NoteBoard
 {
 public:
+   // TODO add mutex logic
 
-   void addNote(Note const& note)
-   {
-      _noteBoard.push_back(note);
-   }
+   // TODO Add function methods like setNotes or updateNotes.
+   NoteBoard() = default;
 
-   std::vector<Note> getNotes()
-   {
-      return _noteBoard;
-   }
+   ~NoteBoard() = default;
 
-   // not implemented
-   bool deleteNote(Note const& note)
-   {
-      throw std::logic_error("Function not yet implemented");
-      return false;
-   }
+   NoteBoard(NoteBoard const&) = delete;
 
-   // not implemented
-   Note searchByTitle(Note::Title titleName)
-   {
-      throw std::logic_error("Function not yet implemented");
-      return Note();
-   }
+   NoteBoard& operator=(NoteBoard const&) = delete;
 
-   // not implemented
-   Note searchByText(Note::Text text)
-   {
-      throw std::logic_error("Function not yet implemented");
-      return Note();
-   }
+   void addNotes(std::vector<Note> const& notes);
 
-   // not implemented
-   Note searchByTag(Note::Tag tagName)
-   {
-      throw std::logic_error("Function not yet implemented");
-      return Note();
-   }
+   std::unordered_map<size_t, Note>
+   getNotes() const;
+
+   bool deleteNote(size_t UID);
+
+   void addTags(std::set<std::string> tags);
+
+   void getTags() const;
+
+   void deleteTag(size_t UID);
+
+   Note searchByTitle(std::string titleName) const; // todo return Note const& how?
+   
+   Note searchByText(std::string text) const; // todo return Note const& how?
+   
+   Note searchByTag(std::string tagName) const;
+
 private:
-   std::vector<Note> _noteBoard;
+
+   // [uid -> notes ]
+   std::unordered_map<size_t, Note> _notes;
+   
+   // TODO[ uid -> ]
+   // TODO std::unordered_map<size_t, Tag> _tags;
+
+   /// Mutex
+   mutable std::shared_mutex  _mutex;
 };
+
+} // namespace Notes

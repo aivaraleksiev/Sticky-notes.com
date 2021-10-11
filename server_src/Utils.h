@@ -1,6 +1,12 @@
+// Copyright 2021
+// Author: Ayvar Aleksiev
+
 #pragma once
 
 #include <restinio/all.hpp>
+
+namespace Notes {
+namespace Utils {
 
 // helper func
 template < typename RESP >
@@ -12,3 +18,12 @@ init_response(RESP resp)
 
    return resp;
 }
+
+class UIDGenerator
+{
+public:
+   static size_t generateUID();
+};
+
+} // namespace Utils
+} // namespace Notes
