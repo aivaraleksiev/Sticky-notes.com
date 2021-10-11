@@ -18,6 +18,14 @@ NoteBoard::addNotes(std::vector<Note> const& notes)
    }
 }
 
+void
+NoteBoard::updateNotes(std::unordered_map<size_t, Note> const& notes)
+{
+ // TODO IT MAY BE TRICKY WITH WHIS OPTIONAL FIELDS. Look at REST API DOC
+// Can you make some params optional. Not so trivial though.
+   //// Maybe add function args for every field/value that can be updated.
+}
+
 std::unordered_map<size_t, Note>
 NoteBoard::getNotes() const
 {
@@ -29,28 +37,8 @@ bool
 NoteBoard::deleteNote(size_t UID)
 {
    std::lock_guard<std::shared_mutex> writeLock(_mutex);
+   // TODO must update tags info TagManager::updateTags when note is deleted if necessary.
    return _notes.erase(UID);
-}
-
-void
-NoteBoard::addTags(std::set<std::string> tags)
-{
-   std::lock_guard<std::shared_mutex> writeLock(_mutex);
-   throw std::logic_error("TODO Function not yet implemented");
-}
-
-void
-NoteBoard::getTags() const
-{
-   std::shared_lock<std::shared_mutex> readLock(_mutex);
-   throw std::logic_error("TODO Function not yet implemented");
-}
-
-void
-NoteBoard::deleteTag(size_t UID)
-{
-   std::lock_guard<std::shared_mutex> writeLock(_mutex);
-   throw std::logic_error("TODO Function not yet implemented");
 }
 
 Note

@@ -63,7 +63,7 @@ Returns array of note structures of type text/json. <br>
 ```console
 GET localhost:9066/api/v1/notes/{noteId}
 ```
-List information for a note. <br><br>
+List information for a note. <br>
 
 Path parameters: <br>
 _String `noteId` - Identifiers that notes must have to match the filter._
@@ -81,10 +81,7 @@ Returns note structure of type text/json. <br>
    "tags": [
       {
          "tagId": "string",
-         "name": "string",
-         "associations": [
-            "string"
-         ]
+         "name": "string"
       }
    ]
 }
@@ -232,9 +229,9 @@ Edit existing notes. <br>
 
 Request body:<br>
 _String `noteId` - Note identifier._<br>
-_String `title`  - Note's title name. This field if optional._<br>
-_String `text`   - Note's text content. This field if optional._<br>
-_Array  `tagId`  - Tags attached to this note. Must provide existing tag identifiers. This field if optional._<br>
+_String `title`  - Note's title name. This field is optional._<br>
+_String `text`   - Note's text content. This field is optional._<br>
+_Array  `tagId`  - Tags attached to this note. Must provide existing tag identifiers. This field is optional._<br>
 
 ```json
 [

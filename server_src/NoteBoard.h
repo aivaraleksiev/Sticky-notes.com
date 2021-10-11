@@ -5,8 +5,10 @@
 
 
 #include "Note.h"
+#include "TagManager.h"
 #include <string>
 #include <unordered_map>
+#include <vector>
 
 
 namespace Notes {
@@ -17,7 +19,6 @@ class NoteBoard
 public:
    // TODO add mutex logic
 
-   // TODO Add function methods like setNotes or updateNotes.
    NoteBoard() = default;
 
    ~NoteBoard() = default;
@@ -28,30 +29,26 @@ public:
 
    void addNotes(std::vector<Note> const& notes);
 
-   std::unordered_map<size_t, Note>
-   getNotes() const;
+   void updateNotes(std::unordered_map<size_t, Note> const& notes);
 
+   std::unordered_map<size_t, Note>
+      getNotes() const;
+
+   // TODO must update tags info TagManager::updateTags when note is deleted if necessary.
    bool deleteNote(size_t UID);
 
-   void addTags(std::set<std::string> tags);
-
-   void getTags() const;
-
-   void deleteTag(size_t UID);
-
    Note searchByTitle(std::string titleName) const; // todo return Note const& how?
-   
+
    Note searchByText(std::string text) const; // todo return Note const& how?
-   
+
    Note searchByTag(std::string tagName) const;
 
 private:
 
-   // [uid -> notes ]
+   // [note uid -> notes ]
    std::unordered_map<size_t, Note> _notes;
-   
-   // TODO[ uid -> ]
-   // TODO std::unordered_map<size_t, Tag> _tags;
+
+   TagManager _tagManager;
 
    /// Mutex
    mutable std::shared_mutex  _mutex;

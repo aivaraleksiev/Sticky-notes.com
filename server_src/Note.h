@@ -9,12 +9,13 @@
 
 namespace Notes {
 
+// TODO ADD addtional checks and throw exceptions.
+
 // Synchronized class describing a note.
 // Every note consists of: Title, Text tags attached to it.
 class Note
 {
 public:
-   // TODO ADD addtional checks and throw exceptions.
    // Constructor
    Note() = default;
 
