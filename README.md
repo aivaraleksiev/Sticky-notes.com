@@ -26,7 +26,7 @@ A place where you can create, edit and access your notes online. This is current
     vcpkg integrate install
 ````
 
-- Project must be build with c++ 14, otherwise restinio shows error/warnings during compilation.
+- Project must be build with c++ 14, otherwise restinio shows error/warnings during compilation.<br>
 In Project->Properties->Configuration properties tab, the field 'C++ Language Standard' must be 'ISO C++14 Standard (/std:c++14)'.
 
 - Set _Solution Platform_ in Visual Studio to _x86_.  
