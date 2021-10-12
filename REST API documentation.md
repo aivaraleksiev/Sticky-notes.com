@@ -5,9 +5,9 @@ This is the Sticky-notes REST API Reference. It provides API documentation, requ
 Based on [Define Note's REST API task](https://github.com/aivaraleksiev/Sticky-notes.com/issues/4)
 
 > The user must be able to
-> - create notes with title, text and tags
+> - create notes with title, text and color.
 > - edit/delete notes 
-> - search for Notes: by title / by text / by tag
+> - search for Notes: by title / by text / by color
 
 ## REST API
 
