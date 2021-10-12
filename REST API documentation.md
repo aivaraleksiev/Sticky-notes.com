@@ -78,7 +78,7 @@ Returns note structure of type text/json. <br>
 ```console
 GET /notes?title={string}&text={string}&color={string}
 ```
-Search for notes: _by **title**_ and/or _by **text**_ and/or _by **tagName**. <br>
+Search for notes: _by **title**_ and/or _by **text**_ and/or _by **color**. <br>
 
 Query params:<br>
 _String `title` - Filter notes containing this title. This field is optional._<br>
@@ -96,7 +96,7 @@ Returns Array of filtered note structures of type text/json. <br>
       "noteId": "string",
       "title": "string",
       "text": "string",
-	  "color": "string"
+      "color": "string"
    }
 ]
 ```
