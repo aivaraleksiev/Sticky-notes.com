@@ -20,10 +20,10 @@ class Note
 {
 public:
    
-   enum Color {
+   enum class Color {
       yellow = 0,
-      green,
-      red
+      green = 1,
+      red = 2
    };
 
    // Constructor
