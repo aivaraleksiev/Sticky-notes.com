@@ -159,7 +159,7 @@ _Array  `color`  - Note's color. Used to group notes by priority. Valid colors a
       "noteId": "string",
       "title": "string",
       "text": "string",
-      "color: "string"
+      "color": "string"
    }
 ]
 ```

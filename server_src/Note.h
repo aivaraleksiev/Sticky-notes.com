@@ -57,6 +57,7 @@ public:
    void setColor(Note::Color noteColor);
 
 private:
+
    std::string _title;
    
    std::string _text;
