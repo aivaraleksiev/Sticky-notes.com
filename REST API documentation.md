@@ -96,7 +96,7 @@ Returns Array of filtered note structures of type text/json. <br>
       "noteId": "string",
       "title": "string",
       "text": "string",
-	  "color: "string"
+	  "color": "string"
    }
 ]
 ```
@@ -119,7 +119,7 @@ _Array  `color` - Note's color. Used to group notes by priority. Valid colors ar
    {
       "title": "string",
       "text": "string",
-      "color: "string"
+      "color": "string"
    }
 ]
 ```
