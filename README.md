@@ -19,16 +19,13 @@ A place where you can create, edit and access your notes online. This is current
 ## Build project
 
 - Have Visual Studio 2019 to open the project in `vs2019` directory.
-- Install [vcpkg](https://github.com/Microsoft/vcpkg) to add _restinio_, _nlohmann-json_, _boost_ packages. Run the following commands:
+- Install [vcpkg](https://github.com/Microsoft/vcpkg) to add _restinio_, _nlohmann-json_ packages. Run the following commands:
 ````sh
     vcpkg install restinio
 	vcpkg install nlohmann-json
 	vcpkg install restinio
     vcpkg integrate install
 ````
-
-- Project must be build with c++ 14, otherwise restinio shows error/warnings during compilation.<br>
-In _Project->Properties->Configuration Properties->General_ section, the field _C++ Language Standard_ must be _ISO C++14 Standard (/std:c++14)_.
 
 - Set _Solution Platform_ in Visual Studio to _x86_.  
 Now you should be able to build and run the project.
