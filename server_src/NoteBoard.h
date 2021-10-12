@@ -27,8 +27,6 @@ struct NoteContext
 class NoteBoard
 {
 public:
-   // TODO add mutex logic
-
    NoteBoard() = default;
    ~NoteBoard() = default;
    NoteBoard(NoteBoard const&) = delete;
