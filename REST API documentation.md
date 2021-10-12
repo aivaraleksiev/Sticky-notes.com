@@ -7,7 +7,6 @@ Based on [Define Note's REST API task](https://github.com/aivaraleksiev/Sticky-n
 > The user must be able to
 > - create notes with title, text and tags
 > - edit/delete notes 
-> - create/edit/delete tags
 > - search for Notes: by title / by text / by tag
 
 ## REST API
