@@ -78,7 +78,7 @@ public:
             restinio::string_view_t view = params["title"];
             std::string titleName(view.data(), view.size());
             newNote.setTitle(titleName);
-            localBoard->addNotes({ newNote });
+            localBoard->createNote(newNote);
 
             std::string json = fmt::format("{{ \"Note title\": \"{}\" }}", newNote.getTitle());
 

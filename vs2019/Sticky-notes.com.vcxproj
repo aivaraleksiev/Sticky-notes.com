@@ -22,7 +22,6 @@
     <ClCompile Include="..\server_src\main.cpp" />
     <ClCompile Include="..\server_src\Note.cpp" />
     <ClCompile Include="..\server_src\NoteBoard.cpp" />
-    <ClCompile Include="..\server_src\TagManager.cpp" />
     <ClCompile Include="..\server_src\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -30,7 +29,6 @@
     <ClInclude Include="..\server_src\Note.h" />
     <ClInclude Include="..\server_src\NoteBoard.h" />
     <ClInclude Include="..\server_src\NotesEndpoint.h" />
-    <ClInclude Include="..\server_src\TagManager.h" />
     <ClInclude Include="..\server_src\Utils.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

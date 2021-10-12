@@ -2,31 +2,39 @@
 // Author: Ayvar Aleksiev
 
 #include "NoteBoard.h"
-#include "Utils.h"
 #include <stdexcept>
 
 namespace Notes {
 
 void
-NoteBoard::addNotes(std::vector<Note> const& notes)
+NoteBoard::createNote(Note const& note)
 {
    std::lock_guard<std::shared_mutex> writeLock(_mutex);
-   // TODO Is there a std algorithm doing this.
-   for (auto&& note : notes)
-   {
-      _notes.emplace(Utils::UIDGenerator::generateUID(), note);
-   }
+   _notes.emplace(Utils::UIDGenerator::generateUID(), note);  
 }
 
 void
-NoteBoard::updateNotes(std::unordered_map<size_t, Note> const& notes)
+NoteBoard::updateNote(NoteContext const& note)
 {
- // TODO IT MAY BE TRICKY WITH WHIS OPTIONAL FIELDS. Look at REST API DOC
-// Can you make some params optional. Not so trivial though.
-   //// Maybe add function args for every field/value that can be updated.
+   std::lock_guard<std::shared_mutex> writeLock(_mutex);
+   auto it = _notes.find(note.id);
+   if (it != _notes.end()) {
+      auto& editNote = it->second;
+      
+      if (note._title) {
+         editNote.setTitle(*note._title);
+      }
+      if (note._text) {
+         editNote.setText(*note._text);
+      }
+      if (note._noteColor) {
+         editNote.setColor(*note._noteColor);
+      }
+   }
+   // todo add exception logic
 }
 
-std::unordered_map<size_t, Note>
+std::unordered_map<UID, Note>
 NoteBoard::getNotes() const
 {
    std::shared_lock<std::shared_mutex> readLock(_mutex);
@@ -34,11 +42,10 @@ NoteBoard::getNotes() const
 }
 
 bool
-NoteBoard::deleteNote(size_t UID)
+NoteBoard::deleteNote(UID id)
 {
-   std::lock_guard<std::shared_mutex> writeLock(_mutex);
-   // TODO must update tags info TagManager::updateTags when note is deleted if necessary.
-   return _notes.erase(UID);
+   std::lock_guard<std::shared_mutex> writeLock(_mutex);   
+   return _notes.erase(id);
 }
 
 Note
@@ -79,11 +86,21 @@ NoteBoard::searchByText(std::string text) const
 }
 
 Note
-NoteBoard::searchByTag(std::string tagName) const
+NoteBoard::searchByColor(Note::Color color) const
 {
    std::shared_lock<std::shared_mutex> readLock(_mutex);
-   throw std::logic_error("TODO Function not yet implemented");
-   return Note();
+   auto result = std::find_if(
+      _notes.begin(),
+      _notes.end(),
+      [&color](auto const& val) {
+         auto const& note = val.second;
+         return note.getColor() == color;
+      });
+   if (result != _notes.end()) {
+      return result->second;
+   }
+   // TODO throw exception. This may throw warning/error. Not all return paths are covered.
+   return Note();;
 }
 
 } // namespace Notes

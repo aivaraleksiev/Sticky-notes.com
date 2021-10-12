@@ -5,14 +5,24 @@
 
 
 #include "Note.h"
-#include "TagManager.h"
+#include "Utils.h"
+#include <boost/optional.hpp>
 #include <string>
 #include <unordered_map>
 #include <vector>
 
-
 namespace Notes {
 
+using Utils::UID;
+
+// helper structure mainly used for update note operation.
+struct NoteContext
+{
+   UID id;
+   boost::optional<std::string> _title;
+   boost::optional<std::string> _text;
+   boost::optional<Note::Color> _noteColor;
+};
 
 class NoteBoard
 {
@@ -20,35 +30,29 @@ public:
    // TODO add mutex logic
 
    NoteBoard() = default;
-
    ~NoteBoard() = default;
-
    NoteBoard(NoteBoard const&) = delete;
-
    NoteBoard& operator=(NoteBoard const&) = delete;
 
-   void addNotes(std::vector<Note> const& notes);
+   void createNote(Note const& note);
 
-   void updateNotes(std::unordered_map<size_t, Note> const& notes);
+   void updateNote(NoteContext const& note);
 
    std::unordered_map<size_t, Note>
       getNotes() const;
 
-   // TODO must update tags info TagManager::updateTags when note is deleted if necessary.
-   bool deleteNote(size_t UID);
+   bool deleteNote(UID id);
 
    Note searchByTitle(std::string titleName) const; // todo return Note const& how?
 
-   Note searchByText(std::string text) const; // todo return Note const& how?
+   Note searchByText(std::string text) const;
 
-   Note searchByTag(std::string tagName) const;
+   Note searchByColor(Note::Color color) const;
 
 private:
 
    // [note uid -> notes ]
-   std::unordered_map<size_t, Note> _notes;
-
-   TagManager _tagManager;
+   std::unordered_map<UID, Note> _notes;
 
    /// Mutex
    mutable std::shared_mutex  _mutex;

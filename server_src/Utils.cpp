@@ -5,7 +5,7 @@
 
 
 namespace {
- std::atomic<size_t> uid{ 0 };
+ std::atomic<size_t> uid { 0 };
 }
 
 namespace Notes {

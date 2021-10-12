@@ -11,7 +11,7 @@ Note::Note(Note const& other)
    std::shared_lock<std::shared_mutex> readLock(other._mutex);
    _title = other._title;
    _text = other._text;
-   _attachedTags = other._attachedTags;
+   _noteColor = other._noteColor;
 }
 
 Note&
@@ -23,7 +23,7 @@ Note::operator=(Note const& other)
    if (this != &other) {
       _title = other._title;
       _text = other._text;
-      _attachedTags = other._attachedTags;
+      _noteColor = other._noteColor;
    }
    return *this;
 }
@@ -33,7 +33,7 @@ Note::Note(Note&& other) noexcept
    std::shared_lock<std::shared_mutex> readLock(other._mutex);
    _title = std::move(other._title);
    _text = std::move(other._text);
-   _attachedTags = std::move(other._attachedTags);
+   _noteColor = other._noteColor;
 }
 
 Note&
@@ -46,7 +46,7 @@ Note::operator=(Note&& other) noexcept
    if (this != &other) {
       _title = std::move(other._title);
       _text = std::move(other._text);
-      _attachedTags = std::move(other._attachedTags);
+      _noteColor = other._noteColor;
    }
    return *this;
 }
@@ -65,11 +65,11 @@ Note::getText() const
    return _text;
 }
 
-std::set<std::string>
-Note::getTags() const
+Note::Color
+Note::getColor() const
 {
    std::shared_lock<std::shared_mutex> readLock(_mutex);
-   return _attachedTags;
+   return _noteColor;
 }
 
 void
@@ -77,23 +77,20 @@ Note::setTitle(std::string newTitle)
 {
    _mutex.lock(); //writeLock
    _title = newTitle;
-   _mutex.unlock();
 }
 
 void
 Note::setText(std::string newText)
 {
-   _mutex.lock(); //writeLock
+   std::lock_guard<std::shared_mutex> writeLock(_mutex);
    _text = newText;
-   _mutex.unlock();
 }
 
 void
-Note::setAttachedTags(std::set<std::string> newTags)
+Note::setColor(Note::Color noteColor)
 {
-   _mutex.lock(); //writeLock
-   _attachedTags = newTags;
-   _mutex.unlock();
+   std::lock_guard<std::shared_mutex> writeLock(_mutex);
+   _noteColor = noteColor;
 }
 
 }  // namespace N

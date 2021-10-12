@@ -3,19 +3,29 @@
 
 #pragma once
 
-#include <set>
+#include "Utils.h"
+#include <unordered_set>
 #include <string>
 #include <shared_mutex>
 
 namespace Notes {
 
+using Utils::UID;
+
 // TODO ADD addtional checks and throw exceptions.
 
 // Synchronized class describing a note.
-// Every note consists of: Title, Text tags attached to it.
+// Every note consists of: Title, Text, and note Color.
 class Note
 {
 public:
+   
+   enum Color {
+      yellow = 0,
+      green,
+      red
+   };
+
    // Constructor
    Note() = default;
 
@@ -36,20 +46,22 @@ public:
 
    std::string const& getTitle() const;
    
-   std::string const& getText() const;
+   std::string const& getText() const;  
 
-   std::set<std::string> getTags() const;
-   
+   Note::Color getColor() const;
+
    void setTitle(std::string newTitle);
 
-   void setText(std::string newText);   
+   void setText(std::string newText);    
 
-   void setAttachedTags(std::set<std::string> newTags);
+   void setColor(Note::Color noteColor);
 
 private:
    std::string _title;
+   
    std::string _text;
-   std::set<std::string> _attachedTags; // TODO Think about this structure
+
+   Color _noteColor { Color::yellow };
 
    /// Mutex
    mutable std::shared_mutex  _mutex;

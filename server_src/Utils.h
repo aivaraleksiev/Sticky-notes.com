@@ -8,6 +8,8 @@
 namespace Notes {
 namespace Utils {
 
+using UID = size_t;
+
 // helper func
 template < typename RESP >
 RESP
@@ -19,6 +21,7 @@ init_response(RESP resp)
    return resp;
 }
 
+// Unique identifier Generator
 class UIDGenerator
 {
 public:
