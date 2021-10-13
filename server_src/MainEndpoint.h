@@ -15,6 +15,10 @@ public:
 	auto createMainEndpointRequestHandler();
 };
 
+//
+// MainEndpoint class definition.
+//
+
 auto
 MainEndpoint::createMainEndpointRequestHandler()
 {

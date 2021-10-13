@@ -4,28 +4,34 @@
 #pragma once
 
 #include "Utils.h"
-#include <unordered_set>
-#include <string>
+
+#include <nlohmann/json.hpp>
 #include <shared_mutex>
+#include <string>
 
 namespace Notes {
 
 using Utils::UID;
 
-// TODO ADD addtional checks and throw exceptions.
 
+// TODO ADD addtional checks and throw exceptions.
 // Synchronized class describing a note.
 // Every note consists of: Title, Text, and note Color.
 class Note
 {
 public:
-   
    enum class Color {
       yellow = 0,
       green = 1,
       red = 2
    };
-
+   // map Color values to JSON as strings
+   NLOHMANN_JSON_SERIALIZE_ENUM(Color, {
+       {Color::yellow, "yellow"},
+       {Color::green, "green"},
+       {Color::red, "red"}
+      })
+   NLOHMANN_DEFINE_TYPE_INTRUSIVE(Note, _id, _title, _text, _noteColor)
    // Constructor
    Note() = default;
 
@@ -44,6 +50,14 @@ public:
    // Move assignment operator
    Note& operator=(Note&& other) noexcept;
 
+   void setUID(UID newId) {
+      _id = newId;
+   }
+
+   UID getUID() const {
+      return _id;
+   }
+
    std::string const& getTitle() const;
    
    std::string const& getText() const;  
@@ -58,11 +72,13 @@ public:
 
 private:
 
+   UID _id{0};
+
    std::string _title;
    
    std::string _text;
 
-   Color _noteColor { Color::yellow };
+   Note::Color _noteColor { Note::Color::yellow };
 
    /// Mutex
    mutable std::shared_mutex  _mutex;

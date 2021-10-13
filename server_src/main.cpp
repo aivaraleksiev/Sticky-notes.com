@@ -12,7 +12,8 @@
 int main()
 {	
 	try
-	{
+	{		
+
 		Notes::NotesEndpoint notesEndpoint;
 		Notes::MainEndpoint mainEndpoint;
 

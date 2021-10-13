@@ -19,7 +19,11 @@ RESTinio -> in progress
 
 use nlohmann json for creating responses in json format:
 	https://github.com/nlohmann/json -> Arbitrary types conversions
+	https://github.com/nlohmann/json#arbitrary-types-conversions
+	https://github.com/nlohmann/json#stl-like-access  -> stl-like access
 	https://github.com/nlohmann/json/blob/develop/doc/examples/push_back.cpp
+	https://json.nlohmann.me/features/enum_conversion/
+	https://github.com/nlohmann/json#serialization--deserialization
 
 - library for logging:
     Check awesome-cpp repo for logging libraries. If we use gtest, maybe we can use glog. Also it should be available in vcpkg

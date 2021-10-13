@@ -9,6 +9,7 @@ namespace Notes {
 namespace Utils {
 
 using UID = size_t;
+#define INVALID_UID UID(0)
 
 // helper func
 template < typename RESP >
@@ -21,10 +22,11 @@ init_response(RESP resp)
 }
 
 // Unique identifier Generator
+// invalid uid == 0.
 class UIDGenerator
 {
 public:
-   static size_t generateUID();
+   static UID generateUID();
 };
 
 } // namespace Utils

@@ -6,94 +6,149 @@
 #include "NoteBoard.h"
 #include "Utils.h"
 
+#include <nlohmann/json.hpp>
 #include <restinio/all.hpp>
 
-// Currently the API is not fully implemented.
-// 
-// Use case scenario for testing:
-// TODO remove verbs from requests.
-// GET /api/v1/notes
-// POST /api/v1/notes/addNote/TitleName
-// GET /api/v1/notes
+using nlohmann::json;
 
 namespace Notes {
 
 class NotesEndpoint
 {
-
 public:
+   NotesEndpoint();
+   // Handle GET requests:
+   // GET	/notes
+   // GET  /notes/{noteId}
+   // GET	/notes?title={string}&text={string}&color={string}
+   void handleGetRequests();
+   // todo optional values https://bestofcpp.com/repo/Stiffstream-restinio-cpp-network for POST
+   void handlePostRequests();
+   // todo optional values https://bestofcpp.com/repo/Stiffstream-restinio-cpp-network for PUT
+   void handlePutRequests() {};
+   void handleInvalidRequests();
    auto createNoteEndpointRequestHandler();
+
+private:
+
+   std::shared_ptr<NoteBoard> _noteBoard;
+
+   using express_router_t = restinio::router::express_router_t<>;
+
+   std::shared_ptr<express_router_t> _router;
 };
 
+//
+// NotesEndpoint class definition.
+//
+
+NotesEndpoint::NotesEndpoint()
+{
+   _noteBoard = std::make_shared<NoteBoard>();
+   _router = std::make_shared<express_router_t>();
+}
+
+void
+NotesEndpoint::handleGetRequests()
+{
+   // Return all notes.
+   _router->http_get(
+      "/api/v1/notes",
+      [this](auto req, auto) mutable {
+         restinio::http_status_line_t status_line = restinio::status_ok();
+         auto notesMap = _noteBoard->getNotes();
+         json outputArray;
+         for (auto const& [id, noteValue] : notesMap) {
+            outputArray.push_back(noteValue);
+         }
+         if (outputArray.is_null()) {
+            // status code: 204
+            status_line = restinio::status_no_content();
+         }
+         Utils::init_response(req->create_response(status_line))
+            .append_header(restinio::http_field::content_type, "text/json; charset=utf-8")            
+            .set_body(outputArray.dump(3))
+            .done();
+
+         return restinio::request_accepted();
+      });
+
+   // Return note with specified id.
+   _router->http_get(
+      R"(/api/v1/notes/:noteId(\d+))",
+      [this](auto req, auto params) mutable { 
+         restinio::http_status_line_t status_line = restinio::status_ok();
+         auto noteId = restinio::cast_to<UID>(params["noteId"]);
+         auto note = _noteBoard->getNote(noteId);
+         json outputObj;
+         if (note.getUID() != INVALID_UID) {
+            to_json(outputObj, note);
+         }
+         if (outputObj.is_null()) {
+            // status code: 204
+            status_line = restinio::status_no_content();
+         }
+         Utils::init_response(req->create_response(status_line))
+            .append_header(restinio::http_field::content_type, "text/json; charset=utf-8")            
+            .set_body(outputObj.dump(3))
+            .done();
+
+         return restinio::request_accepted();
+      });
+
+      // todo https://bestofcpp.com/repo/Stiffstream-restinio-cpp-network
+      // todo https://github.com/nlohmann/json#json-pointer-and-json-patch
+      _router->http_get(
+         "/api/v1/notes?title={string}&text={string}&color={string}", // return note with note Id
+         [this](auto req, auto params) mutable {
+            restinio::http_status_line_t status_line = restinio::status_ok();
+            const auto qp = restinio::parse_query(req->header().query());
+            //auto noteId = restinio::cast_to<UID>(params["noteId"]);
+            //auto note = _noteBoard->getNote(noteId);
+            json outputObj;
+            //to_json(outputObj, note);
+      
+            Utils::init_response(req->create_response())
+               .append_header(restinio::http_field::content_type, "text/json; charset=utf-8")
+               .set_body(outputObj.dump(3))
+               .done();
+      
+            return restinio::request_accepted();
+         });
+}
+
+void
+NotesEndpoint::handlePostRequests()
+{
+   _router->http_post( // ayvar comment: remove verb. Use only nouns
+      "/api/v1/notes",
+      [this](auto req, auto params) mutable {
+
+         json output;
+
+         Utils::init_response(req->create_response())
+            .append_header(restinio::http_field::content_type, "text/json; charset=utf-8")
+            .set_body(output.dump(3))
+            .done();
+
+         return restinio::request_accepted();
+      });
+}
+
+void
+NotesEndpoint::handleInvalidRequests()
+{
+   _router->non_matched_request_handler(
+      [](auto req) {
+         return req->create_response(restinio::status_not_found()).connection_close().done();
+      });
+}
 auto
 NotesEndpoint::createNoteEndpointRequestHandler()
 {
-   using express_router_t = restinio::router::express_router_t<>;
-   auto router = std::make_shared<express_router_t>();
-   // temporary place
-   std::shared_ptr<NoteBoard> localBoard = std::make_shared<NoteBoard>();
-
-   router->http_get( // todo we can send them the api documentation file. or pointtoa link
-      "/api/v1/usage",
-      [](auto req, auto) {
-         std::stringstream ostr;
-         ostr << "<html>"
-            << "<body><h1>Here will be the API usage webpage.</h1></body>"
-            << "</html>";
-         std::string strResponse = ostr.str();
-         Utils::init_response(req->create_response())
-            .append_header(restinio::http_field::content_type, "text/html; charset=utf-8")
-            .set_body(ostr.str())
-            .done();
-
-         return restinio::request_accepted();
-      });
-
-   router->http_get(
-      "/api/v1/notes", // return all notes
-      [localBoard](auto req, auto) mutable {
-
-         // ayvar
-         //restinio::request_handle_t req2 = req;
-         //auto requestBody = req2->body();
-         //restinio::http_request_header_t header = req->header();
-         // ayvar end
-
-         std::string noteTitle("empty");
-         if (!localBoard->getNotes().empty()) {
-            noteTitle = localBoard->getNotes().begin()->second.getTitle();
-         }
-         std::string json = fmt::format("{{ \"Note title\": \"{}\" }}", noteTitle);
-
-         Utils::init_response(req->create_response())
-            .append_header(restinio::http_field::content_type, "text/json; charset=utf-8")
-            .set_body(json)
-            .done();
-
-         return restinio::request_accepted();
-      });
-
-   router->http_post( // ayvar comment: remove verb. Use only nouns
-      "/api/v1/notes/addNote/:title",
-      [localBoard](auto req, auto params) mutable {
-
-         Note newNote;
-         restinio::string_view_t view = params["title"];
-         std::string titleName(view.data(), view.size());
-         newNote.setTitle(titleName);
-         localBoard->createNote(newNote);
-
-         std::string json = fmt::format("{{ \"Note title\": \"{}\" }}", newNote.getTitle());
-
-         Utils::init_response(req->create_response())
-            .append_header(restinio::http_field::content_type, "text/json; charset=utf-8")
-            .set_body(json)
-            .done();
-
-         return restinio::request_accepted();
-      });
-
-   return[handler = std::move(router)](const auto& req) {
+   handleGetRequests();
+   handleInvalidRequests();
+   return[handler = std::move(_router)](const auto& req) {
       return (*handler)(req);
    };
 }

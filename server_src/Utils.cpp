@@ -11,7 +11,7 @@ namespace {
 namespace Notes {
 namespace Utils {
 
-size_t
+UID
 UIDGenerator::generateUID()
 {
    return ++uid;

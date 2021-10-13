@@ -7,16 +7,20 @@
 namespace Notes {
 
 void
-NoteBoard::createNote(Note const& note)
+NoteBoard::createNote(Note& note)
 {
-   std::lock_guard<std::shared_mutex> writeLock(_mutex);
-   _notes.emplace(Utils::UIDGenerator::generateUID(), note);  
+   std::scoped_lock writeLock(_mutex);
+   if (note.getUID() == INVALID_UID) {
+      auto id = Utils::UIDGenerator::generateUID();
+      note.setUID(id);
+   }
+   _notes.emplace(note.getUID(), note);
 }
 
 void
 NoteBoard::updateNote(NoteContext const& note)
-{
-   std::lock_guard<std::shared_mutex> writeLock(_mutex);
+{ // todo think about this method how it will be read from json. do we need std::optional vars.
+   std::scoped_lock writeLock(_mutex);
    auto it = _notes.find(note.id);
    if (it != _notes.end()) {
       auto& editNote = it->second;
@@ -41,10 +45,22 @@ NoteBoard::getNotes() const
    return _notes;
 }
 
+Note
+NoteBoard::getNote(UID id) const
+{
+   std::shared_lock<std::shared_mutex> readLock(_mutex);
+   auto noteIt = _notes.find(id);
+   if (noteIt != _notes.end()) {
+      return noteIt->second;
+   }
+   return Note();
+   // todo add excetion or return empty note with invalid uid.
+}
+
 bool
 NoteBoard::deleteNote(UID id)
 {
-   std::lock_guard<std::shared_mutex> writeLock(_mutex);   
+   std::scoped_lock writeLock(_mutex);
    return _notes.erase(id);
 }
 

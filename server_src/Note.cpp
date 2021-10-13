@@ -12,6 +12,7 @@ Note::Note(Note const& other)
    _title = other._title;
    _text = other._text;
    _noteColor = other._noteColor;
+   _id = other._id;
 }
 
 Note&
@@ -24,6 +25,7 @@ Note::operator=(Note const& other)
       _title = other._title;
       _text = other._text;
       _noteColor = other._noteColor;
+      _id = other._id;
    }
    return *this;
 }
@@ -34,6 +36,7 @@ Note::Note(Note&& other) noexcept
    _title = std::move(other._title);
    _text = std::move(other._text);
    _noteColor = other._noteColor;
+   _id = other._id;
 }
 
 Note&
@@ -47,6 +50,7 @@ Note::operator=(Note&& other) noexcept
       _title = std::move(other._title);
       _text = std::move(other._text);
       _noteColor = other._noteColor;
+      _id = other._id;
    }
    return *this;
 }
@@ -75,21 +79,21 @@ Note::getColor() const
 void
 Note::setTitle(std::string newTitle)
 {
-   _mutex.lock(); //writeLock
+   std::scoped_lock writeLock(_mutex);
    _title = newTitle;
 }
 
 void
 Note::setText(std::string newText)
 {
-   std::lock_guard<std::shared_mutex> writeLock(_mutex);
+   std::scoped_lock writeLock(_mutex);
    _text = newText;
 }
 
 void
 Note::setColor(Note::Color noteColor)
 {
-   std::lock_guard<std::shared_mutex> writeLock(_mutex);
+   std::scoped_lock writeLock(_mutex);
    _noteColor = noteColor;
 }
 
