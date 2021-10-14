@@ -112,7 +112,7 @@ Add/Create new notes. <br>
 
 Request body: <br>
 _String `title` - Note's title name._<br>
-_String `text`  - Note's text content.This field can be empty_<br>
+_String `text`  - Note's text content._<br>
 _Array  `color` - Note's color. Used to group notes by priority. Valid colors are "yellow", "green", "red".  Default color is "yellow"._<br>
 ```json
 [

@@ -6,6 +6,20 @@
 
 namespace Notes {
 
+Color toColor(std::string val)
+{
+   if (val == "yellow") {
+      return Color::yellow;
+   }
+   else if (val == "green") {
+      return Color::green;
+   }
+   else if (val == "red") {
+      return Color::red;
+   }
+   return Color::invalid;
+}
+
 Note::Note(Note const& other)
 {
    std::shared_lock<std::shared_mutex> readLock(other._mutex);
@@ -69,7 +83,7 @@ Note::getText() const
    return _text;
 }
 
-Note::Color
+Color
 Note::getColor() const
 {
    std::shared_lock<std::shared_mutex> readLock(_mutex);
@@ -91,7 +105,7 @@ Note::setText(std::string newText)
 }
 
 void
-Note::setColor(Note::Color noteColor)
+Note::setColor(Color noteColor)
 {
    std::scoped_lock writeLock(_mutex);
    _noteColor = noteColor;

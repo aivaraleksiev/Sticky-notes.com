@@ -25,7 +25,7 @@ public:
    // todo optional values https://bestofcpp.com/repo/Stiffstream-restinio-cpp-network for POST
    void handlePostRequests();
    // todo optional values https://bestofcpp.com/repo/Stiffstream-restinio-cpp-network for PUT
-   void handlePutRequests() {};
+   void handlePutRequests();
    void handleInvalidRequests();
    auto createNoteEndpointRequestHandler();
 
@@ -56,11 +56,64 @@ NotesEndpoint::handleGetRequests()
       "/api/v1/notes",
       [this](auto req, auto) mutable {
          restinio::http_status_line_t status_line = restinio::status_ok();
-         auto notesMap = _noteBoard->getNotes();
          json outputArray;
-         for (auto const& [id, noteValue] : notesMap) {
-            outputArray.push_back(noteValue);
+         const auto queryParams = restinio::parse_query(req->header().query());
+         std::vector<Note> result;
+         if (!queryParams.empty()) {
+            // Handle search query.
+            // example: /notes?title={string}&text={string}&color={string}
+            auto const titleQueryParam = restinio::opt_value<std::string>(queryParams, "title");
+            auto const textQueryParam = restinio::opt_value<std::string>(queryParams, "text");
+            auto const colorQueryParam = restinio::opt_value<std::string>(queryParams, "color");
+
+            if (titleQueryParam) {
+               result = _noteBoard->searchByTitle(*titleQueryParam);
+            }
+            if (textQueryParam) {
+               auto searchResult = _noteBoard->searchByText(*textQueryParam);
+               result.reserve(result.size() + searchResult.size());
+               result.insert(
+                  result.end(),
+                  std::make_move_iterator(searchResult.begin()),
+                  std::make_move_iterator(searchResult.end())
+               );
+            }
+            if (colorQueryParam) {
+               Color color = toColor(*colorQueryParam);
+               auto searchResult = _noteBoard->searchByColor(color);
+               result.reserve(result.size() + searchResult.size());
+               result.insert(
+                  result.end(),
+                  std::make_move_iterator(searchResult.begin()),
+                  std::make_move_iterator(searchResult.end())
+               );
+            }
+            auto removeDuplicates = [&result]() {
+               auto cmpLess =
+                  [](auto const& lhsNote, auto const& rhsNote) {
+                  return lhsNote.getUID() < rhsNote.getUID();
+               };
+               std::sort(result.begin(), result.end(), cmpLess);
+               auto predicate =
+                  [](auto const& lhsNote, auto const& rhsNote) {
+                     return lhsNote.getUID() == rhsNote.getUID();
+               };
+               auto last = std::unique(result.begin(), result.end(), predicate);
+               result.erase(last, result.end());
+            };
+            removeDuplicates();
          }
+         else {
+            auto notesMap = _noteBoard->getNotes();
+            for (auto const& [id, noteValue] : notesMap) {
+               result.push_back(noteValue);
+            }
+         }
+
+         for (auto const& note : result) {
+            outputArray.push_back(note);
+         }
+
          if (outputArray.is_null()) {
             // status code: 204
             status_line = restinio::status_no_content();
@@ -95,32 +148,15 @@ NotesEndpoint::handleGetRequests()
 
          return restinio::request_accepted();
       });
-
-      // todo https://bestofcpp.com/repo/Stiffstream-restinio-cpp-network
-      // todo https://github.com/nlohmann/json#json-pointer-and-json-patch
-      _router->http_get(
-         "/api/v1/notes?title={string}&text={string}&color={string}", // return note with note Id
-         [this](auto req, auto params) mutable {
-            restinio::http_status_line_t status_line = restinio::status_ok();
-            const auto qp = restinio::parse_query(req->header().query());
-            //auto noteId = restinio::cast_to<UID>(params["noteId"]);
-            //auto note = _noteBoard->getNote(noteId);
-            json outputObj;
-            //to_json(outputObj, note);
-      
-            Utils::init_response(req->create_response())
-               .append_header(restinio::http_field::content_type, "text/json; charset=utf-8")
-               .set_body(outputObj.dump(3))
-               .done();
-      
-            return restinio::request_accepted();
-         });
 }
 
 void
 NotesEndpoint::handlePostRequests()
 {
-   _router->http_post( // ayvar comment: remove verb. Use only nouns
+
+   // TODO https://bestofcpp.com/repo/Stiffstream-restinio-cpp-network
+   // nlohmann::json::parse(req->body())
+   _router->http_post(
       "/api/v1/notes",
       [this](auto req, auto params) mutable {
 
@@ -136,11 +172,23 @@ NotesEndpoint::handlePostRequests()
 }
 
 void
+NotesEndpoint::handlePutRequests()
+{
+
+   // TODO https://bestofcpp.com/repo/Stiffstream-restinio-cpp-network
+}
+
+void
 NotesEndpoint::handleInvalidRequests()
 {
    _router->non_matched_request_handler(
       [](auto req) {
-         return req->create_response(restinio::status_not_found()).connection_close().done();
+         restinio::http_status_line_t status_line = restinio::status_bad_request();
+
+         return
+            Utils::init_response(req->create_response(status_line))
+               .append_header(restinio::http_field::content_type, "text/json; charset=utf-8")
+               .done();
       });
 }
 auto

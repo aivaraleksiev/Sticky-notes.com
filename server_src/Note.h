@@ -9,9 +9,26 @@
 #include <shared_mutex>
 #include <string>
 
+using nlohmann::json;
+using Notes::Utils::UID;
+
 namespace Notes {
 
-using Utils::UID;
+enum class Color {
+   invalid = -1,
+   yellow = 0,
+   green = 1,
+   red = 2
+};
+// map Color values to JSON as strings
+NLOHMANN_JSON_SERIALIZE_ENUM(Color, {
+    {Color::invalid, "invalid"},
+    {Color::yellow, "yellow"},
+    {Color::green, "green"},
+    {Color::red, "red"}
+   })
+
+Color toColor(std::string val);
 
 
 // TODO ADD addtional checks and throw exceptions.
@@ -20,18 +37,7 @@ using Utils::UID;
 class Note
 {
 public:
-   enum class Color {
-      yellow = 0,
-      green = 1,
-      red = 2
-   };
-   // map Color values to JSON as strings
-   NLOHMANN_JSON_SERIALIZE_ENUM(Color, {
-       {Color::yellow, "yellow"},
-       {Color::green, "green"},
-       {Color::red, "red"}
-      })
-   NLOHMANN_DEFINE_TYPE_INTRUSIVE(Note, _id, _title, _text, _noteColor)
+   
    // Constructor
    Note() = default;
 
@@ -62,13 +68,23 @@ public:
    
    std::string const& getText() const;  
 
-   Note::Color getColor() const;
+   Color getColor() const;
 
    void setTitle(std::string newTitle);
 
    void setText(std::string newText);    
 
-   void setColor(Note::Color noteColor);
+   void setColor(Color noteColor);
+
+   friend void to_json(json& j, Note const& obj) {
+    j = json{ {"title", obj._title}, {"text", obj._text}, {"color", obj._noteColor} };
+   }
+   
+   friend void from_json(json const& j, Note& obj) {
+      j.at("title").get_to(obj._title);
+      j.at("text").get_to(obj._text);
+      j.at("color").get_to<Color>(obj._noteColor);
+   }
 
 private:
 
@@ -78,7 +94,7 @@ private:
    
    std::string _text;
 
-   Note::Color _noteColor { Note::Color::yellow };
+   Color _noteColor { Color::yellow };
 
    /// Mutex
    mutable std::shared_mutex  _mutex;

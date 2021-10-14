@@ -64,59 +64,50 @@ NoteBoard::deleteNote(UID id)
    return _notes.erase(id);
 }
 
-Note
+std::vector<Note>
 NoteBoard::searchByTitle(std::string titleName) const
 {
    std::shared_lock<std::shared_mutex> readLock(_mutex);
-   auto result = std::find_if(
-      _notes.begin(),
-      _notes.end(),
-      [&titleName](auto const& val) {
-         auto const& note = val.second;
-         return note.getTitle() == titleName;
-      });
-   if (result != _notes.end()) {
-      return result->second;
+   std::vector<Note> result;
+   if (titleName == "") {
+      return result;
    }
-   // TODO throw exception. This may throw warning/error. Not all return paths are covered.
-   return Note();;
+   for (auto const& [key, note] : _notes) {
+      if (note.getTitle() == titleName) {
+         result.push_back(note);
+      }
+   }
+   return result;
 }
 
-Note
+std::vector<Note>
 NoteBoard::searchByText(std::string text) const
 {
    std::shared_lock<std::shared_mutex> readLock(_mutex);
-   auto result = std::find_if(
-      _notes.begin(),
-      _notes.end(),
-      [&text](auto const& val) {
-         auto const& note = val.second;
-         auto findResult = note.getText().find(text);
-         return findResult != std::string::npos;
-      });
-   if (result != _notes.end()) {
-      return result->second;
+   std::vector<Note> result;
+   for (auto const& [key, note] : _notes) {
+      if (note.getText() == text) {
+         result.push_back(note);
+      }
    }
-   // TODO throw exception. This may throw warning/error. Not all return paths are covered.
-   return Note();
+   return result;
 }
 
-Note
-NoteBoard::searchByColor(Note::Color color) const
+std::vector<Note>
+NoteBoard::searchByColor(Color color) const
 {
    std::shared_lock<std::shared_mutex> readLock(_mutex);
-   auto result = std::find_if(
-      _notes.begin(),
-      _notes.end(),
-      [&color](auto const& val) {
-         auto const& note = val.second;
-         return note.getColor() == color;
-      });
-   if (result != _notes.end()) {
-      return result->second;
+   // TODO use ranges, once the compiler supports them.
+   std::vector<Note> result;
+   if (color == Color::invalid) {
+      return result;
    }
-   // TODO throw exception. This may throw warning/error. Not all return paths are covered.
-   return Note();;
+   for (auto const& [key, value] : _notes) {
+      if (value.getColor() == color) {
+         result.push_back(value);
+      }
+   }
+   return result;
 }
 
 } // namespace Notes

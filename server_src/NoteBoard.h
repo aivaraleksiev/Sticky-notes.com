@@ -21,7 +21,7 @@ struct NoteContext
    UID id;
    std::optional<std::string> _title;
    std::optional<std::string> _text;
-   std::optional<Note::Color> _noteColor;
+   std::optional<Color> _noteColor;
 };
 
 class NoteBoard
@@ -43,11 +43,11 @@ public:
 
    bool deleteNote(UID id);
 
-   Note searchByTitle(std::string titleName) const; // todo return Note const& how?
+   std::vector<Note> searchByTitle(std::string titleName) const; // todo return Note const& how?
 
-   Note searchByText(std::string text) const;
+   std::vector<Note> searchByText(std::string text) const;
 
-   Note searchByColor(Note::Color color) const;
+   std::vector<Note> searchByColor(Color color) const;
 
 private:
 
