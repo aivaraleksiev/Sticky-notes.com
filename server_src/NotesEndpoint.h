@@ -26,6 +26,7 @@ public:
    void handlePostRequests();
    // todo optional values https://bestofcpp.com/repo/Stiffstream-restinio-cpp-network for PUT
    void handlePutRequests();
+   void handleDeleteRequests();
    void handleInvalidRequests();
    auto createNoteEndpointRequestHandler();
 
@@ -176,6 +177,12 @@ NotesEndpoint::handlePutRequests()
 {
 
    // TODO https://bestofcpp.com/repo/Stiffstream-restinio-cpp-network
+}
+
+void
+NotesEndpoint::handleDeleteRequests()
+{
+   // TODO
 }
 
 void
