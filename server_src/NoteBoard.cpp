@@ -6,7 +6,7 @@
 
 namespace Notes {
 
-void
+UID
 NoteBoard::createNote(Note& note)
 {
    std::scoped_lock writeLock(_mutex);
@@ -15,6 +15,7 @@ NoteBoard::createNote(Note& note)
       note.setUID(id);
    }
    _notes.emplace(note.getUID(), note);
+   return note.getUID();
 }
 
 void

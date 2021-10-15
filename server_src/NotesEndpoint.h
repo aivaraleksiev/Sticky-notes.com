@@ -154,16 +154,20 @@ NotesEndpoint::handleGetRequests()
 void
 NotesEndpoint::handlePostRequests()
 {
-
-   // TODO https://bestofcpp.com/repo/Stiffstream-restinio-cpp-network
-   // nlohmann::json::parse(req->body())
    _router->http_post(
       "/api/v1/notes",
       [this](auto req, auto params) mutable {
-
+         restinio::http_status_line_t status_line = restinio::status_ok();
          json output;
-
-         Utils::init_response(req->create_response())
+         json jArray;
+         json inputArray = json::parse(req->body());
+         for (auto const& obj : inputArray) {
+            auto newNote = obj.get<Note>();
+            jArray.push_back(_noteBoard->createNote(newNote));
+         }
+         output["noteId"] = jArray;
+         status_line = restinio::status_created();
+         Utils::init_response(req->create_response(status_line))
             .append_header(restinio::http_field::content_type, "text/json; charset=utf-8")
             .set_body(output.dump(3))
             .done();
@@ -202,6 +206,7 @@ auto
 NotesEndpoint::createNoteEndpointRequestHandler()
 {
    handleGetRequests();
+   handlePostRequests();
    handleInvalidRequests();
    return[handler = std::move(_router)](const auto& req) {
       return (*handler)(req);

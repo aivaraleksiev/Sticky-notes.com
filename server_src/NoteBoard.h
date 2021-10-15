@@ -32,7 +32,7 @@ public:
    NoteBoard(NoteBoard const&) = delete;
    NoteBoard& operator=(NoteBoard const&) = delete;
 
-   void createNote(Note& note);
+   UID createNote(Note& note);
    
    // todo think about this method how it will be read from json. do we need std::optional vars.
    void updateNote(NoteContext const& note);
