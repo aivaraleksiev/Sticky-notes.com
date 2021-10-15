@@ -77,10 +77,11 @@ public:
    void setColor(Color noteColor);
 
    friend void to_json(json& j, Note const& obj) {
-    j = json{ {"title", obj._title}, {"text", obj._text}, {"color", obj._noteColor} };
+    j = json{ {"id", obj._id}, {"title", obj._title}, {"text", obj._text}, {"color", obj._noteColor} };
    }
    
    friend void from_json(json const& j, Note& obj) {
+      j.at("id").get_to<UID>(obj._id); // TODO WILL THIS WORK ?
       j.at("title").get_to(obj._title);
       j.at("text").get_to(obj._text);
       j.at("color").get_to<Color>(obj._noteColor);

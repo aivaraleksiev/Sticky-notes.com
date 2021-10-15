@@ -162,7 +162,17 @@ NotesEndpoint::handlePostRequests()
          json jArray;
          json inputArray = json::parse(req->body());
          for (auto const& obj : inputArray) {
-            auto newNote = obj.get<Note>();
+            Note newNote;
+            std::string readInput;
+            obj.at("title").get_to(readInput);
+            newNote.setTitle(readInput);
+            obj.at("text").get_to(readInput);
+            newNote.setText(readInput);
+            Color readColor;
+            obj.at("color").get_to<Color>(readColor);
+            if (readColor != Color::invalid) {
+               newNote.setColor(readColor);
+            }
             jArray.push_back(_noteBoard->createNote(newNote));
          }
          output["noteId"] = jArray;
@@ -186,7 +196,20 @@ NotesEndpoint::handlePutRequests()
 void
 NotesEndpoint::handleDeleteRequests()
 {
-   // TODO
+   _router->http_get(
+      R"(/api/v1/notes/:noteId(\d+))",
+      [this](auto req, auto params) mutable {
+         restinio::http_status_line_t status_line = restinio::status_no_content();
+         auto noteId = restinio::cast_to<UID>(params["noteId"]);
+         auto note = _noteBoard->deleteNote(noteId);
+         json outputObj;
+         Utils::init_response(req->create_response(status_line))
+            .append_header(restinio::http_field::content_type, "text/json; charset=utf-8")
+            .set_body(outputObj.dump(3))
+            .done();
+
+         return restinio::request_accepted();
+      });
 }
 
 void
@@ -207,6 +230,7 @@ NotesEndpoint::createNoteEndpointRequestHandler()
 {
    handleGetRequests();
    handlePostRequests();
+   handleDeleteRequests();
    handleInvalidRequests();
    return[handler = std::move(_router)](const auto& req) {
       return (*handler)(req);
