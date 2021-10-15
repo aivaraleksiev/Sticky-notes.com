@@ -196,7 +196,7 @@ NotesEndpoint::handlePutRequests()
 void
 NotesEndpoint::handleDeleteRequests()
 {
-   _router->http_get(
+   _router->http_delete(
       R"(/api/v1/notes/:noteId(\d+))",
       [this](auto req, auto params) mutable {
          restinio::http_status_line_t status_line = restinio::status_no_content();
