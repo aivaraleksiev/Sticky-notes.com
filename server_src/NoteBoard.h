@@ -18,7 +18,7 @@ using Utils::UID;
 // helper structure mainly used for update note operation.
 struct NoteContext
 { // todo optional values https://bestofcpp.com/repo/Stiffstream-restinio-cpp-network for POST
-   UID id;
+   UID _id;
    std::optional<std::string> _title;
    std::optional<std::string> _text;
    std::optional<Color> _noteColor;

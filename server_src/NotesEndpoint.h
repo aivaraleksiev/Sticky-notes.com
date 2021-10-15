@@ -190,7 +190,48 @@ void
 NotesEndpoint::handlePutRequests()
 {
 
-   // TODO https://bestofcpp.com/repo/Stiffstream-restinio-cpp-network
+   _router->http_put(
+      "/api/v1/notes",
+      [this](auto req, auto params) mutable {
+         restinio::http_status_line_t status_line = restinio::status_no_content();
+         // todo 1
+         // Maybe cast UID to json as ints. "id" : intValue. Look how to do it.
+         // todo 2
+         // put this in try catch clause and and status bad request on exception thrown.
+         // add try catch in all paces that this is used.
+         json inputArray = json::parse(req->body());
+         for (auto const& obj : inputArray) {
+            NoteContext updateNote;
+            if (obj.contains("id")) {
+               std::string temp;
+               obj.at("id").get_to(temp);
+               updateNote._id = restinio::cast_to<UID>(temp);
+            }
+            if (obj.contains("title")) {
+               std::string temp;
+               obj.at("title").get_to(temp);
+               updateNote._title = std::move(temp);
+            }
+            if (obj.contains("text")) {
+               std::string temp;
+               obj.at("text").get_to(temp);
+               updateNote._text = std::move(temp);
+            }
+            if (obj.contains("color")) {
+               std::string temp;
+               obj.at("color").get_to(temp);
+               updateNote._noteColor = toColor(std::move(temp));
+            }
+            _noteBoard->updateNote(updateNote);
+         }
+         json noContentOutput;
+         Utils::init_response(req->create_response(status_line))
+            .append_header(restinio::http_field::content_type, "text/json; charset=utf-8")
+            .set_body(noContentOutput.dump(3))
+            .done();
+
+         return restinio::request_accepted();
+      });
 }
 
 void
@@ -202,10 +243,10 @@ NotesEndpoint::handleDeleteRequests()
          restinio::http_status_line_t status_line = restinio::status_no_content();
          auto noteId = restinio::cast_to<UID>(params["noteId"]);
          auto note = _noteBoard->deleteNote(noteId);
-         json outputObj;
+         json noContentOutput;
          Utils::init_response(req->create_response(status_line))
             .append_header(restinio::http_field::content_type, "text/json; charset=utf-8")
-            .set_body(outputObj.dump(3))
+            .set_body(noContentOutput.dump(3))
             .done();
 
          return restinio::request_accepted();
@@ -230,6 +271,7 @@ NotesEndpoint::createNoteEndpointRequestHandler()
 {
    handleGetRequests();
    handlePostRequests();
+   handlePutRequests();
    handleDeleteRequests();
    handleInvalidRequests();
    return[handler = std::move(_router)](const auto& req) {

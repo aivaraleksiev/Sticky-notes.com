@@ -22,7 +22,7 @@ void
 NoteBoard::updateNote(NoteContext const& note)
 { // todo think about this method how it will be read from json. do we need std::optional vars.
    std::scoped_lock writeLock(_mutex);
-   auto it = _notes.find(note.id);
+   auto it = _notes.find(note._id);
    if (it != _notes.end()) {
       auto& editNote = it->second;
       

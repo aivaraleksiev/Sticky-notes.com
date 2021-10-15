@@ -6,7 +6,7 @@
 
 namespace Notes {
 
-Color toColor(std::string val)
+Color toColor(std::string const& val)
 {
    if (val == "yellow") {
       return Color::yellow;

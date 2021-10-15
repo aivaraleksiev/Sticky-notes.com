@@ -28,7 +28,7 @@ NLOHMANN_JSON_SERIALIZE_ENUM(Color, {
     {Color::red, "red"}
    })
 
-Color toColor(std::string val);
+Color toColor(std::string const& val);
 
 
 // TODO ADD addtional checks and throw exceptions.
