@@ -4,7 +4,7 @@
 #pragma once
 
 #include "NoteBoard.h"
-#include "Utils.h"
+#include "utils/Utils.h"
 
 #include <nlohmann/json.hpp>
 #include <restinio/all.hpp>
@@ -195,7 +195,8 @@ NotesEndpoint::handlePutRequests()
       [this](auto req, auto params) mutable {
          restinio::http_status_line_t status_line = restinio::status_no_content();
          // todo 1
-         // Maybe cast UID to json as ints. "id" : intValue. Look how to do it.
+         // Maybe cast UID to json as ints, example:
+         //  { "id" : intValue, "title": "string", ....} Look how to do it.
          // todo 2
          // put this in try catch clause and and status bad request on exception thrown.
          // add try catch in all paces that this is used.

@@ -22,14 +22,17 @@
     <ClCompile Include="..\server_src\main.cpp" />
     <ClCompile Include="..\server_src\Note.cpp" />
     <ClCompile Include="..\server_src\NoteBoard.cpp" />
-    <ClCompile Include="..\server_src\Utils.cpp" />
+    <ClCompile Include="..\server_src\utils\Logger.cpp" />
+    <ClCompile Include="..\server_src\utils\Utils.cpp" />
+    <ClCompile Include="Logger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\server_src\MainEndpoint.h" />
     <ClInclude Include="..\server_src\Note.h" />
     <ClInclude Include="..\server_src\NoteBoard.h" />
     <ClInclude Include="..\server_src\NotesEndpoint.h" />
-    <ClInclude Include="..\server_src\Utils.h" />
+    <ClInclude Include="..\server_src\utils\Logger.h" />
+    <ClInclude Include="..\server_src\utils\Utils.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

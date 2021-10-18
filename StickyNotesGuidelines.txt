@@ -17,6 +17,15 @@ RESTinio -> in progress
    https://github.com/Stiffstream/restinio/issues/52
    https://github.com/Stiffstream/restinio/issues/27 -> https://habr-com.translate.goog/ru/post/417527/?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=nui
 
+How much C ++ code needs to be written to parse the Authorization HTTP header using easy_parser from RESTinio?
+   https://geek-week.imtqy.com/articles/en501498/index.html
+   
+example application: 
+HTTP-server implemented with Restinio
+Request proccesing implemented usin Sobjectizer
+https://github.com/Stiffstream/shrimp-demo
+https://www.slideshare.net/YauheniAkhotnikau/shrimp-a-rather-practical-example-of-application-development-with-restinio-and-sobjectizer
+
 use nlohmann json for creating responses in json format:
 	https://github.com/nlohmann/json -> Arbitrary types conversions
 	https://github.com/nlohmann/json#arbitrary-types-conversions

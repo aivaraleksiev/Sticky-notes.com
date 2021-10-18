@@ -3,6 +3,7 @@
 
 #include "NotesEndpoint.h"
 #include "MainEndpoint.h"
+#include "utils/Logger.h"
 
 #include <restinio/all.hpp>
 #include <restinio/sync_chain/fixed_size.hpp>
@@ -13,20 +14,21 @@ int main()
 {	
 	try
 	{		
-
 		Notes::NotesEndpoint notesEndpoint;
 		Notes::MainEndpoint mainEndpoint;
+		auto restinioLogger = Notes::Utils::createLogger("restinio");
 
 		using traits_t =
 			restinio::traits_t<
 			restinio::asio_timer_manager_t,
-			restinio::single_threaded_ostream_logger_t,
+			Notes::Utils::Logger,
 			restinio::sync_chain::fixed_size_chain_t<2> >;
 
 		restinio::run(
 			restinio::on_this_thread<traits_t>()
 			.port(9066)
 			.address("localhost")
+			.logger(std::move(restinioLogger))
 			.request_handler(notesEndpoint.createNoteEndpointRequestHandler(),
 				              mainEndpoint.createMainEndpointRequestHandler()));
 	}

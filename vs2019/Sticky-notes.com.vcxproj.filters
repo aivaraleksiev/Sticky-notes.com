@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
+    <Filter Include="Header Files\utils">
+      <UniqueIdentifier>{9588e13f-3b0b-4dac-ba07-abe0b7eefcd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\utils">
+      <UniqueIdentifier>{4dc5e98c-4600-4703-8cff-d585f85c367e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\server_src\main.cpp">
@@ -24,8 +30,14 @@
     <ClCompile Include="..\server_src\NoteBoard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\server_src\Utils.cpp">
+    <ClCompile Include="..\server_src\utils\Utils.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Logger.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\server_src\utils\Logger.cpp">
+      <Filter>Source Files\utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -41,8 +53,11 @@
     <ClInclude Include="..\server_src\MainEndpoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\server_src\Utils.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\server_src\utils\Utils.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\server_src\utils\Logger.h">
+      <Filter>Header Files\utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
