@@ -257,15 +257,18 @@ NotesEndpoint::handleDeleteRequests()
 void
 NotesEndpoint::handleInvalidRequests()
 {
-   _router->non_matched_request_handler(
-      [](auto req) {
-         restinio::http_status_line_t status_line = restinio::status_bad_request();
-
-         return
-            Utils::init_response(req->create_response(status_line))
-               .append_header(restinio::http_field::content_type, "text/json; charset=utf-8")
-               .done();
-      });
+   // TODO when this code is applied it blocks the toher endpoint like mainendpoint and loginendpoint
+   // Results in a ba dresuest for the other endpoiints. Otherwise when the code is removed, it is not implmemented.
+   // Figure out what's wrong
+   //_router->non_matched_request_handler(
+   //   [](auto req) {
+   //      restinio::http_status_line_t status_line = restinio::status_bad_request();
+   //
+   //      return
+   //         Utils::init_response(req->create_response(status_line))
+   //            .append_header(restinio::http_field::content_type, "text/json; charset=utf-8")
+   //            .done();
+   //   });
 }
 auto
 NotesEndpoint::createNoteEndpointRequestHandler()

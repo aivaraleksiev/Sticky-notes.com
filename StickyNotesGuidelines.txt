@@ -20,6 +20,11 @@ RESTinio -> in progress
 How much C ++ code needs to be written to parse the Authorization HTTP header using easy_parser from RESTinio?
    https://geek-week.imtqy.com/articles/en501498/index.html
    
+Authentication:
+look at you bookmarks -> Network -> Authentication
+Look at restinio basec_auth for a start.
+look at postman authorization learning materials
+   
 example application: 
 HTTP-server implemented with Restinio
 Request proccesing implemented usin Sobjectizer
@@ -33,12 +38,6 @@ use nlohmann json for creating responses in json format:
 	https://github.com/nlohmann/json/blob/develop/doc/examples/push_back.cpp
 	https://json.nlohmann.me/features/enum_conversion/
 	https://github.com/nlohmann/json#serialization--deserialization
-
-- library for logging:
-    Check awesome-cpp repo for logging libraries. If we use gtest, maybe we can use glog. Also it should be available in vcpkg
-
-- library for test:
-gtest
 
 -REST API design
 https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/

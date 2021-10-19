@@ -27,6 +27,7 @@
     <ClCompile Include="Logger.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\server_src\LoginEndPoint.h" />
     <ClInclude Include="..\server_src\MainEndpoint.h" />
     <ClInclude Include="..\server_src\Note.h" />
     <ClInclude Include="..\server_src\NoteBoard.h" />

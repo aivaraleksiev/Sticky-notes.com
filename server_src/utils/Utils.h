@@ -26,6 +26,8 @@ init_response(RESP resp)
 class UIDGenerator
 {
 public:
+   // todo make the value unique to tackle the problem when you have a DB and need to restart the server.
+   // Currently the IDs will start again from zero.
    static UID generateUID();
 };
 
