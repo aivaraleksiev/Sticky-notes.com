@@ -24,6 +24,7 @@ Authentication:
 look at you bookmarks -> Network -> Authentication
 Look at restinio basec_auth for a start.
 look at postman authorization learning materials
+https://www.codeproject.com/Articles/704865/Salted-Password-Hashing-Doing-it-Right
    
 example application: 
 HTTP-server implemented with Restinio

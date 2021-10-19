@@ -24,7 +24,7 @@ int main()
 			restinio::traits_t<
 			restinio::asio_timer_manager_t,
 			Notes::Utils::Logger,
-			restinio::sync_chain::fixed_size_chain_t<3>>;
+			restinio::sync_chain::fixed_size_chain_t<3>>; //todo  try with growable_size_chain_t
 
 		restinio::run(
 			restinio::on_this_thread<traits_t>()
