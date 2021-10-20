@@ -5,8 +5,8 @@
 
 
 namespace {
- std::atomic<size_t> uid { 0 };
-}
+   std::atomic<size_t> sUid { 0 };
+} // anonymous namepspace 
 
 namespace Notes {
 namespace Utils {
@@ -14,7 +14,7 @@ namespace Utils {
 UID
 UIDGenerator::generateUID()
 {
-   return ++uid;
+   return ++sUid;
 }
 
 } // namespace Note
