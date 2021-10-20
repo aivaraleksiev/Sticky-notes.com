@@ -5,10 +5,10 @@
 
 
 #include "Note.h"
-#include "utils/Utils.h"
+#include "../utils/Utils.h" // todo change this. Maybe create separate libraries
 #include <optional>
 #include <string>
-#include <unordered_map> // rodo remove
+#include <unordered_map> // todo remove
 #include <unordered_set>
 
 namespace Notes {

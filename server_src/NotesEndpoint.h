@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "NoteBoard.h"
+#include "engine/NoteBoard.h"
 #include "utils/Utils.h"
 
 #include <nlohmann/json.hpp>

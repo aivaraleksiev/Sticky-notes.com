@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "utils/Utils.h"
+#include "../utils/Utils.h" // todo change this. Maybe create separate libraries
 
 #include <nlohmann/json.hpp>
 #include <shared_mutex>
@@ -39,7 +39,9 @@ class Note
 public:
    
    // Constructor
-   Note() = default;
+   Note(UID id = Utils::UIDGenerator::generateUID())
+      : _id(id)
+   {}
 
    // Destructor
    ~Note() = default;
@@ -89,7 +91,7 @@ public:
 
 private:
 
-   UID _id{0};
+   UID _id;
 
    std::string _title;
    

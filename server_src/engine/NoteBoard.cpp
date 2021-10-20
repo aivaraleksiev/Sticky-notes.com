@@ -10,9 +10,9 @@ UID
 NoteBoard::createNote(Note& note)
 {
    std::scoped_lock writeLock(_mutex);
-   if (note.getUID() == INVALID_UID) {
-      auto id = Utils::UIDGenerator::generateUID();
-      note.setUID(id);
+   if (note.getUID() == INVALID_UID) {      
+      note.setUID(
+         Utils::UIDGenerator::generateUID());
    }
    _notes.emplace(note.getUID(), note);
    return note.getUID();
