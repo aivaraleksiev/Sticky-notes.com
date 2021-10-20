@@ -12,7 +12,6 @@ namespace {
    int const sSaltLength = sizeof(sSalt) - 1;
 } // anonymous namepspace 
 
-
 namespace Notes {
 namespace Utils {
 
