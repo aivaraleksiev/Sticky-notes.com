@@ -8,7 +8,7 @@ namespace Utils {
 
 
 #include <string>
-// Generate password has using PBKDF2 and sha 256.
+// Generate password hash using PBKDF2 and sha 256.
 std::string generatePasswordHash(std::string const& password);
 
 } // namespace Note
