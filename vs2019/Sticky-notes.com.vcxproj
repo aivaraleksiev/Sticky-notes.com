@@ -22,11 +22,13 @@
     <ClCompile Include="..\server_src\engine\Note.cpp" />
     <ClCompile Include="..\server_src\engine\NoteBoard.cpp" />
     <ClCompile Include="..\server_src\main.cpp" />
+    <ClCompile Include="..\server_src\User.cpp" />
     <ClCompile Include="..\server_src\utils\Crypto.cpp" />
     <ClCompile Include="..\server_src\utils\Logger.cpp" />
     <ClCompile Include="..\server_src\utils\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\server_src\AuthManager.h" />
     <ClInclude Include="..\server_src\engine\Note.h" />
     <ClInclude Include="..\server_src\engine\NoteBoard.h" />
     <ClInclude Include="..\server_src\LoginEndPoint.h" />
