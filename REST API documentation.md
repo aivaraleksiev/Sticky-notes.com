@@ -20,7 +20,7 @@ Based on [Define Note's REST API task](https://github.com/aivaraleksiev/Sticky-n
 | [PUT](#Request-4)     | [/notes](#Request-4)                | Edit existing notes. |
 | [DELETE](#Request-5)  | [/notes/{noteId}](#Request-5)       | Delete existing note. |
 
-
+TODO add /login ; authozation to all requests; Change to /notes/{owner}...
 
 ### Request
 

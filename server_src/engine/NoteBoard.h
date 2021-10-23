@@ -27,10 +27,24 @@ struct NoteContext
 class NoteBoard
 {
 public:
-   NoteBoard() = default;
+   
+   // Constructor.
+   NoteBoard() {}
+
+   // Destructor
    ~NoteBoard() = default;
-   NoteBoard(NoteBoard const&) = delete;
-   NoteBoard& operator=(NoteBoard const&) = delete;
+   
+   // Copy constructor.
+   NoteBoard(NoteBoard const&);
+
+   // Assignment operator
+   NoteBoard& operator=(NoteBoard const&);
+   
+   // Move constructor
+   NoteBoard(NoteBoard&& other) noexcept;
+
+   // Move assignment operator
+   NoteBoard& operator=(NoteBoard&& other) noexcept;
 
    UID createNote(Note& note);
    

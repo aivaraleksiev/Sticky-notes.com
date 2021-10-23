@@ -48,6 +48,12 @@
     <ClCompile Include="..\server_src\User.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\server_src\engine\NoteManger.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\server_src\AuthenticationManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\server_src\NotesEndpoint.h">
@@ -77,8 +83,11 @@
     <ClInclude Include="..\server_src\User.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\server_src\AuthManager.h">
+    <ClInclude Include="..\server_src\AuthenticationManager.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\server_src\engine\NoteManager.h">
+      <Filter>Header Files\engine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

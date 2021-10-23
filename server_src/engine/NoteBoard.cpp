@@ -6,6 +6,43 @@
 
 namespace Notes {
 
+NoteBoard::NoteBoard(NoteBoard const& other)
+{
+   std::shared_lock<std::shared_mutex> readLock(other._mutex);
+   _notes = other._notes;
+}
+
+NoteBoard&
+NoteBoard::operator=(NoteBoard const& other)
+{
+   std::unique_lock<std::shared_mutex> writeLock(_mutex, std::defer_lock);
+   std::shared_lock<std::shared_mutex> readLock(other._mutex, std::defer_lock);
+   std::lock(writeLock, readLock);
+   if (this != &other) {
+      _notes = other._notes;
+   }
+   return *this;
+}
+
+NoteBoard::NoteBoard(NoteBoard&& other) noexcept
+{
+   std::shared_lock<std::shared_mutex> readLock(other._mutex);
+   _notes = other._notes;
+}
+
+NoteBoard&
+NoteBoard::operator=(NoteBoard&& other) noexcept
+{
+   std::unique_lock<std::shared_mutex> writeLock(_mutex, std::defer_lock);
+   std::shared_lock<std::shared_mutex> readLock(other._mutex, std::defer_lock);
+   std::lock(writeLock, readLock);
+
+   if (this != &other) {
+      _notes = other._notes;
+   }
+   return *this;
+}
+
 UID
 NoteBoard::createNote(Note& note)
 {

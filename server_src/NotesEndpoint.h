@@ -55,10 +55,10 @@ NotesEndpoint::handleGetRequests()
    // Return all notes.
    _router->http_get(
       "/api/v1/notes",
-      [this](auto req, auto) mutable {
+      [this](auto request, auto) mutable {
          restinio::http_status_line_t status_line = restinio::status_ok();
          json outputArray;
-         const auto queryParams = restinio::parse_query(req->header().query());
+         const auto queryParams = restinio::parse_query(request->header().query());
          std::vector<Note> result;
          if (!queryParams.empty()) {
             // Handle search query.
@@ -119,7 +119,7 @@ NotesEndpoint::handleGetRequests()
             // status code: 204
             status_line = restinio::status_no_content();
          }
-         Utils::init_response(req->create_response(status_line))
+         Utils::init_response(request->create_response(status_line))
             .append_header(restinio::http_field::content_type, "text/json; charset=utf-8")            
             .set_body(outputArray.dump(3))
             .done();
@@ -130,7 +130,7 @@ NotesEndpoint::handleGetRequests()
    // Return note with specified id.
    _router->http_get(
       R"(/api/v1/notes/:noteId(\d+))",
-      [this](auto req, auto params) mutable { 
+      [this](auto request, auto params) mutable {
          restinio::http_status_line_t status_line = restinio::status_ok();
          auto noteId = restinio::cast_to<UID>(params["noteId"]);
          auto note = _noteBoard->getNote(noteId);
@@ -142,7 +142,7 @@ NotesEndpoint::handleGetRequests()
             // status code: 204
             status_line = restinio::status_no_content();
          }
-         Utils::init_response(req->create_response(status_line))
+         Utils::init_response(request->create_response(status_line))
             .append_header(restinio::http_field::content_type, "text/json; charset=utf-8")            
             .set_body(outputObj.dump(3))
             .done();
@@ -260,15 +260,15 @@ NotesEndpoint::handleInvalidRequests()
    // TODO when this code is applied it blocks the toher endpoint like mainendpoint and loginendpoint
    // Results in a ba dresuest for the other endpoiints. Otherwise when the code is removed, it is not implmemented.
    // Figure out what's wrong
-   //_router->non_matched_request_handler(
-   //   [](auto req) {
-   //      restinio::http_status_line_t status_line = restinio::status_bad_request();
-   //
-   //      return
-   //         Utils::init_response(req->create_response(status_line))
-   //            .append_header(restinio::http_field::content_type, "text/json; charset=utf-8")
-   //            .done();
-   //   });
+  //_router->non_matched_request_handler(
+  //   [](auto request) {
+  //      restinio::http_status_line_t status_line = restinio::status_bad_request();
+  //
+  //      Utils::init_response(request->create_response(status_line))
+  //         .append_header(restinio::http_field::content_type, "text/json; charset=utf-8")
+  //         .done();
+  //      return restinio::request_not_handled();
+  //   });
 }
 auto
 NotesEndpoint::createNoteEndpointRequestHandler()

@@ -19,8 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\server_src\AuthenticationManager.cpp" />
     <ClCompile Include="..\server_src\engine\Note.cpp" />
     <ClCompile Include="..\server_src\engine\NoteBoard.cpp" />
+    <ClCompile Include="..\server_src\engine\NoteManger.cpp" />
     <ClCompile Include="..\server_src\main.cpp" />
     <ClCompile Include="..\server_src\User.cpp" />
     <ClCompile Include="..\server_src\utils\Crypto.cpp" />
@@ -28,9 +30,10 @@
     <ClCompile Include="..\server_src\utils\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\server_src\AuthManager.h" />
+    <ClInclude Include="..\server_src\AuthenticationManager.h" />
     <ClInclude Include="..\server_src\engine\Note.h" />
     <ClInclude Include="..\server_src\engine\NoteBoard.h" />
+    <ClInclude Include="..\server_src\engine\NoteManager.h" />
     <ClInclude Include="..\server_src\LoginEndPoint.h" />
     <ClInclude Include="..\server_src\MainEndpoint.h" />
     <ClInclude Include="..\server_src\NotesEndpoint.h" />

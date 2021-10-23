@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include <string>
+
 #include <restinio/all.hpp>
 
 namespace Notes {
@@ -30,6 +32,16 @@ public:
    // Currently the IDs will start again from zero.
    static UID generateUID();
 };
+
+
+// Parse authorization header searching for basic authentication
+// param[in] header
+// param[out] username
+// param[out] password
+void 
+parseBasicAuth(restinio::http_request_header_t const& header,
+               std::string& username,
+               std::string& password);
 
 } // namespace Utils
 } // namespace Notes
