@@ -53,6 +53,10 @@ https://www.troyhunt.com/your-api-versioning-is-wrong-which-is/
 - DB
 https://www.youtube.com/watch?v=NC7IGLm69Ts
 
+
+- Polling mechansm
+Look at web API Design book
+
 - read/write client/server app configuration from xml/json file:
     There is JSON parser in POCO framework
 	https://github.com/nlohmann/json

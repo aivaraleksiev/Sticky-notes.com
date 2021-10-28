@@ -59,7 +59,7 @@ private:
    using equalFunc =
       decltype([](User const& left, User const& right) {return left.getUserName() == right.getUserName(); });
    using hashFunc =
-      decltype([](User const& obj) { std::hash<std::string> string_hash; return string_hash(obj.getUserName()); });
+      decltype([](User const& obj) { std::hash<std::string> stringHash; return stringHash(obj.getUserName()); });
 
    std::unordered_set<User, hashFunc, equalFunc> _users;
 

@@ -66,7 +66,7 @@ NotesEndpoint::handleGetRequests()
             auto const titleQueryParam = restinio::opt_value<std::string>(queryParams, "title");
             auto const textQueryParam = restinio::opt_value<std::string>(queryParams, "text");
             auto const colorQueryParam = restinio::opt_value<std::string>(queryParams, "color");
-
+            // todo Look at this logic aggain, It may not be correct.
             if (titleQueryParam) {
                result = _noteBoard->searchByTitle(*titleQueryParam);
             }
