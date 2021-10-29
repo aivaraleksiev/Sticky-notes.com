@@ -2,6 +2,10 @@
 // Author: Ayvar Aleksiev
 
 #include "Authorization.h"
+#include "AuthenticationManager.h"
+
+#include "utils/Utils.h"
+
 
 namespace {
 std::string const sSecret_key = "seasalt"; // todo user public/private key instead
@@ -20,18 +24,18 @@ Authorization::generateAccessToken(std::string username)
       .set_payload_claim(sUserKey, jwt::claim(username))
       .set_issued_at(std::chrono::system_clock::now())
       .set_expires_at(std::chrono::system_clock::now() + std::chrono::seconds{ 300 })
-      .sign(jwt::algorithm::hs256{ sSecret_key });
+      .sign(jwt::algorithm::hs256{ sSecret_key});
 
    return accessToken;
 }
 
 void
-Authorization::verifyAccessToken(std::string const& token, std::string& username)
+Authorization::verifyAccessToken(std::string const& token, std::string const& username)
 {
    try {
       auto decodedToken = jwt::decode(token);
       jwt::verify()
-         .allow_algorithm(jwt::algorithm::hs256{ sSecret_key })
+         .allow_algorithm(jwt::algorithm::hs256{ sSecret_key})
          .with_issuer(sIssuer)
          .not_before_leeway(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()))
          .verify(decodedToken);
@@ -40,8 +44,13 @@ Authorization::verifyAccessToken(std::string const& token, std::string& username
       auto claimsMap = decodedToken.get_payload_claims();
       auto userIt = claimsMap.find(sUserKey);
       if (userIt != claimsMap.end()) {
-         username = userIt->second.as_string();
-         // todo call AuthenticateionManager::authenticateUser
+         if (username != userIt->second.as_string()) {
+            // todo throw
+         }
+         bool foundUser = AuthenticateionManager::getInstance()->userExist(username);
+         if (!foundUser) {
+            // todo throw            
+         }
       }
 
    }
@@ -50,5 +59,15 @@ Authorization::verifyAccessToken(std::string const& token, std::string& username
       std::cout << e.what();
    }
 }
+
+void
+Authorization::verifyAccessToken(
+   restinio::http_request_header_t const& header,
+   std::string const& username)
+{
+   std::string token = Utils::extractAuthToken(header);
+   Authorization::verifyAccessToken(token, username);
+}
+
 
 } // namespace Notes

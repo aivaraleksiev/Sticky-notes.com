@@ -35,12 +35,18 @@ public:
       _users.emplace(username, Utils::generatePasswordHash(password));
    }
    
-   // todo return JWT?
    bool authenticateUser(std::string const& username, std::string const& password)
    {
       auto userIt = _users.find(User(username, ""));
 
       return (userIt != _users.end()) && (*userIt).comparePasswordHash(Utils::generatePasswordHash(password));
+   }
+
+   bool userExist(std::string const& username)
+   {
+      auto userIt = _users.find(User(username, ""));
+
+      return userIt != _users.end();
    }
 
    void deleteUser(std::string const& username, std::string const& password)

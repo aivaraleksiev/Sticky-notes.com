@@ -5,6 +5,7 @@
 
 #include "NoteBoard.h"
 #include <map>
+#include <memory>
 #include <string>
 
 namespace Notes {
@@ -18,19 +19,22 @@ public:
 
    void addUserNoteBoard(std::string const& user)
    {      
-      _noteboards.emplace( user, NoteBoard());
+      _noteboards.emplace( user, std::make_shared<NoteBoard>());
    }
 
-   NoteBoard& getUserNoteBoard(std::string const& user)
+   std::shared_ptr<NoteBoard> getUserNoteBoard(std::string const& user)
    {
       auto it = _noteboards.find(user);
+      if (it == _noteboards.end()) {
+         // todo throw 
+      }
       return it->second;
    }
 
 private:
    // [usersname -> noteboards]
    // Users' noteboards.
-   std::map <std::string, NoteBoard> _noteboards;
+   std::map <std::string, std::shared_ptr<NoteBoard>> _noteboards;
 };
 
 } // namespace Notes

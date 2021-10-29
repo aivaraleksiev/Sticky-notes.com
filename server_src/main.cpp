@@ -3,7 +3,7 @@
 
 #include "NotesEndpoint.h"
 #include "MainEndpoint.h"
-#include "LoginEndpoint.h"
+#include "UserEndpoint.h"
 #include "utils/Logger.h"
 
 #include <restinio/all.hpp>
@@ -17,7 +17,7 @@ int main()
 	{		
 		Notes::NotesEndpoint notesEndpoint;
 		Notes::MainEndpoint mainEndpoint;
-		Notes::LoginEndpoint loginEndPoint;
+		Notes::UserEndpoint userEndPoint;
 		auto restinioLogger = Notes::Utils::createLogger("restinio");
 
 		using traits_t =
@@ -34,7 +34,7 @@ int main()
 			.request_handler(
 				notesEndpoint.createNoteEndpointRequestHandler(),
 				mainEndpoint.createMainEndpointRequestHandler(),
-				loginEndPoint.createLoginEndpointRequestHandler()));
+				userEndPoint.createUserEndpointRequestHandler()));
 	}
 	catch (const std::exception& ex)
 	{

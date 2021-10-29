@@ -5,74 +5,93 @@
 
 #include "utils/Utils.h"
 #include "AuthenticationManager.h"
+#include "Authorization.h"
 #include <cassert>
 
 #include <nlohmann/json.hpp>
 #include <restinio/all.hpp>
-#include <restinio/helpers/http_field_parsers/basic_auth.hpp>
 
 using nlohmann::json;
 
 namespace Notes {
 
 //
-// LoginEndpoint class definition.
+// UserEndpoint class definition.
 //
-class LoginEndpoint
+class UserEndpoint
 {
 public:
-	LoginEndpoint()
+	UserEndpoint()
 	{
 		_router = std::make_shared<express_router_t>();
 	}
-	auto createLoginEndpointRequestHandler();
+	auto createUserEndpointRequestHandler();
 
 private:
 	void handlePostRequests();
 	void handleDeleteRequests();
 
-	// Helper func to identify if the client want's to create a new user.
-	bool signUpQueryParamExists(auto queryParams);
-
 	using express_router_t = restinio::router::express_router_t<>;
 	std::shared_ptr<express_router_t> _router;
 };
 
-bool
-LoginEndpoint::signUpQueryParamExists(auto queryParams)
-{
-	auto const signUpQueryParam = restinio::opt_value<std::string>(queryParams, "signUp");
-	return signUpQueryParam && (*signUpQueryParam == "true");
-}
-
 void
-LoginEndpoint::handlePostRequests()
+UserEndpoint::handlePostRequests()
 {
 	_router->http_post(
-		"/login",
+		"/user/login",
 		[this](auto request, auto) {
 			json outputArray;
 			restinio::http_status_line_t status_line = restinio::status_ok();
 
-			std::string username, password;
+			std::string username;
+			std::string password;
 			Utils::parseBasicAuth(request->header(), username, password);
-			
-			if (!username.empty() && !password.empty()) {
-				if (signUpQueryParamExists(restinio::parse_query(request->header().query()))) {
-					AuthenticateionManager::getInstance()->createUser(username, password);
-				} else {
-					auto result = AuthenticateionManager::getInstance()->authenticateUser(username, password);
-					if (!result) {
-						// todo throw specific exception from function authenticateUser
-						status_line = restinio::status_not_found();
-					}
-				}
-			} else {
+			std::string accessToken;
+			if (!username.empty() && !password.empty()) {			
+			   auto isAuthenticated = AuthenticateionManager::getInstance()->authenticateUser(username, password);
+			   if (!isAuthenticated) {
+			   	// todo throw specific exception from function authenticateUser
+			   	status_line = restinio::status_not_found();
+			   }
+				accessToken = Authorization::generateAccessToken(username);
+			}
+			else {
 				status_line = restinio::status_bad_request();
 			}
 
 			Utils::init_response(request->create_response(status_line))
 				.append_header(restinio::http_field::content_type, "text/json; charset=utf-8")
+				.append_header(restinio::http_field::authorization, accessToken)
+				.set_body(outputArray.dump(3)) 
+				.done();
+
+			return restinio::request_accepted();
+		});
+
+	_router->http_post(
+		"/user/signUp",
+		[this](auto request, auto) {
+			json outputArray;
+			restinio::http_status_line_t status_line = restinio::status_ok();
+
+			std::string username;
+			std::string password;
+			Utils::parseBasicAuth(request->header(), username, password);
+			std::string accessToken;
+			if (!username.empty() && !password.empty()) {
+				AuthenticateionManager::getInstance()->createUser(username, password);
+				accessToken = Authorization::generateAccessToken(username);
+
+				NoteManager::getInstance()->addUserNoteBoard(username);
+			}
+			else {
+				status_line = restinio::status_bad_request();
+			}
+
+			Utils::init_response(request->create_response(status_line))
+				.append_header(restinio::http_field::content_type, "text/json; charset=utf-8")
+				.append_header(restinio::http_field::authorization, accessToken)
 				.set_body(outputArray.dump(3))
 				.done();
 
@@ -81,10 +100,10 @@ LoginEndpoint::handlePostRequests()
 }
 
 void
-LoginEndpoint::handleDeleteRequests()
+UserEndpoint::handleDeleteRequests()
 {
 	_router->http_delete(
-		R"(/login/:user)",
+		R"(/user/:user)",
 		[this](auto request, auto params) mutable {
 			restinio::http_status_line_t status_line = restinio::status_no_content();
 			
@@ -108,7 +127,7 @@ LoginEndpoint::handleDeleteRequests()
 }
 
 auto
-LoginEndpoint::createLoginEndpointRequestHandler()
+UserEndpoint::createUserEndpointRequestHandler()
 {
 	handlePostRequests();
 	handleDeleteRequests();

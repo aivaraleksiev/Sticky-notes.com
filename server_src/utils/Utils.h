@@ -18,7 +18,7 @@ template < typename RESP >
 RESP
 init_response(RESP resp)
 {
-   resp.append_header(restinio::http_field::server, "sticky-notes.com REST server version 1");
+   resp.append_header(restinio::http_field::server, "sticky-notes.com REST server");
    resp.append_header_date_field();
    return resp;
 }
@@ -33,15 +33,23 @@ public:
    static UID generateUID();
 };
 
-
-// Parse authorization header searching for basic authentication
+// Parse authorization header searching for basic authentication.
 // param[in] header
 // param[out] username
 // param[out] password
 void 
-parseBasicAuth(restinio::http_request_header_t const& header,
-               std::string& username,
-               std::string& password);
+parseBasicAuth(
+   restinio::http_request_header_t const& header,
+   std::string& username,
+   std::string& password);
+
+
+// Extract from authorization header the encoded token.
+// param[in] header
+// param[out] username
+// param[out] password
+std::string
+extractAuthToken(restinio::http_request_header_t const& header);
 
 } // namespace Utils
 } // namespace Notes

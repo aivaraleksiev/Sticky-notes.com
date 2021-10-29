@@ -4,7 +4,10 @@
 #pragma once
 
 #include "engine/NoteBoard.h"
+#include "engine/NoteManager.h"
+#include "Authorization.h"
 #include "utils/Utils.h"
+
 
 #include <nlohmann/json.hpp>
 #include <restinio/all.hpp>
@@ -30,9 +33,7 @@ public:
    void handleInvalidRequests();
    auto createNoteEndpointRequestHandler();
 
-private:
-
-   std::shared_ptr<NoteBoard> _noteBoard;
+private:   
 
    using express_router_t = restinio::router::express_router_t<>;
 
@@ -45,7 +46,6 @@ private:
 
 NotesEndpoint::NotesEndpoint()
 {
-   _noteBoard = std::make_shared<NoteBoard>();
    _router = std::make_shared<express_router_t>();
 }
 
@@ -54,9 +54,14 @@ NotesEndpoint::handleGetRequests()
 {
    // Return all notes.
    _router->http_get(
-      "/api/v1/notes",
-      [this](auto request, auto) mutable {
+      "/api/v1/:username/notes",
+      [this](auto request, auto params) mutable {
          restinio::http_status_line_t status_line = restinio::status_ok();
+
+         auto userName = restinio::cast_to<std::string>(params["username"]);
+         Authorization::verifyAccessToken(request->header(), userName);
+         auto noteBoardPtr = NoteManager::getInstance()->getUserNoteBoard(userName);
+         
          json outputArray;
          const auto queryParams = restinio::parse_query(request->header().query());
          std::vector<Note> result;
@@ -68,10 +73,10 @@ NotesEndpoint::handleGetRequests()
             auto const colorQueryParam = restinio::opt_value<std::string>(queryParams, "color");
             // todo Look at this logic aggain, It may not be correct.
             if (titleQueryParam) {
-               result = _noteBoard->searchByTitle(*titleQueryParam);
+               result = noteBoardPtr->searchByTitle(*titleQueryParam);
             }
             if (textQueryParam) {
-               auto searchResult = _noteBoard->searchByText(*textQueryParam);
+               auto searchResult = noteBoardPtr->searchByText(*textQueryParam);
                result.reserve(result.size() + searchResult.size());
                result.insert(
                   result.end(),
@@ -81,7 +86,7 @@ NotesEndpoint::handleGetRequests()
             }
             if (colorQueryParam) {
                Color color = toColor(*colorQueryParam);
-               auto searchResult = _noteBoard->searchByColor(color);
+               auto searchResult = noteBoardPtr->searchByColor(color);
                result.reserve(result.size() + searchResult.size());
                result.insert(
                   result.end(),
@@ -105,7 +110,7 @@ NotesEndpoint::handleGetRequests()
             removeDuplicates();
          }
          else {
-            auto notesMap = _noteBoard->getNotes();
+            auto notesMap = noteBoardPtr->getNotes();
             for (auto const& [id, noteValue] : notesMap) {
                result.push_back(noteValue);
             }
@@ -129,11 +134,16 @@ NotesEndpoint::handleGetRequests()
 
    // Return note with specified id.
    _router->http_get(
-      R"(/api/v1/notes/:noteId(\d+))",
+      R"(/api/v1/:username/notes/:noteId(\d+))",
       [this](auto request, auto params) mutable {
          restinio::http_status_line_t status_line = restinio::status_ok();
+
+         auto userName = restinio::cast_to<std::string>(params["username"]);
+         Authorization::verifyAccessToken(request->header(), userName);
+         auto noteBoardPtr = NoteManager::getInstance()->getUserNoteBoard(userName);
+
          auto noteId = restinio::cast_to<UID>(params["noteId"]);
-         auto note = _noteBoard->getNote(noteId);
+         auto note = noteBoardPtr->getNote(noteId);
          json outputObj;
          if (note.getUID() != INVALID_UID) {
             to_json(outputObj, note);
@@ -155,12 +165,17 @@ void
 NotesEndpoint::handlePostRequests()
 {
    _router->http_post(
-      "/api/v1/notes",
-      [this](auto req, auto params) mutable {
+      "/api/v1/:username/notes",
+      [this](auto request, auto params) mutable {
          restinio::http_status_line_t status_line = restinio::status_ok();
+
+         auto userName = restinio::cast_to<std::string>(params["username"]);
+         Authorization::verifyAccessToken(request->header(), userName);
+         auto noteBoardPtr = NoteManager::getInstance()->getUserNoteBoard(userName);
+
          json output;
          json jArray;
-         json inputArray = json::parse(req->body());
+         json inputArray = json::parse(request->body());
          for (auto const& obj : inputArray) {
             Note newNote;
             std::string readInput;
@@ -173,11 +188,11 @@ NotesEndpoint::handlePostRequests()
             if (readColor != Color::invalid) {
                newNote.setColor(readColor);
             }
-            jArray.push_back(_noteBoard->createNote(newNote));
+            jArray.push_back(noteBoardPtr->createNote(newNote));
          }
          output["noteId"] = jArray;
          status_line = restinio::status_created();
-         Utils::init_response(req->create_response(status_line))
+         Utils::init_response(request->create_response(status_line))
             .append_header(restinio::http_field::content_type, "text/json; charset=utf-8")
             .set_body(output.dump(3))
             .done();
@@ -189,18 +204,22 @@ NotesEndpoint::handlePostRequests()
 void
 NotesEndpoint::handlePutRequests()
 {
-
    _router->http_put(
-      "/api/v1/notes",
-      [this](auto req, auto params) mutable {
+      "/api/v1/:username/notes",
+      [this](auto request, auto params) mutable {
          restinio::http_status_line_t status_line = restinio::status_no_content();
+
+         auto userName = restinio::cast_to<std::string>(params["username"]);
+         Authorization::verifyAccessToken(request->header(), userName);         
+         auto noteBoardPtr = NoteManager::getInstance()->getUserNoteBoard(userName);
+
          // todo 1
          // Maybe cast UID to json as ints, example:
          //  { "id" : intValue, "title": "string", ....} Look how to do it.
          // todo 2
          // put this in try catch clause and and status bad request on exception thrown.
          // add try catch in all paces that this is used.
-         json inputArray = json::parse(req->body());
+         json inputArray = json::parse(request->body());
          for (auto const& obj : inputArray) {
             NoteContext updateNote;
             if (obj.contains("id")) {
@@ -223,10 +242,10 @@ NotesEndpoint::handlePutRequests()
                obj.at("color").get_to(temp);
                updateNote._noteColor = toColor(std::move(temp));
             }
-            _noteBoard->updateNote(updateNote);
+            noteBoardPtr->updateNote(updateNote);
          }
          json noContentOutput;
-         Utils::init_response(req->create_response(status_line))
+         Utils::init_response(request->create_response(status_line))
             .append_header(restinio::http_field::content_type, "text/json; charset=utf-8")
             .set_body(noContentOutput.dump(3))
             .done();
@@ -239,13 +258,18 @@ void
 NotesEndpoint::handleDeleteRequests()
 {
    _router->http_delete(
-      R"(/api/v1/notes/:noteId(\d+))",
-      [this](auto req, auto params) mutable {
+      R"(/api/v1/:username/notes/:noteId(\d+))",
+      [this](auto request, auto params) mutable {
          restinio::http_status_line_t status_line = restinio::status_no_content();
+
+         auto userName = restinio::cast_to<std::string>(params["username"]);
+         Authorization::verifyAccessToken(request->header(), userName);
+         auto noteBoardPtr = NoteManager::getInstance()->getUserNoteBoard(userName);
+
          auto noteId = restinio::cast_to<UID>(params["noteId"]);
-         auto note = _noteBoard->deleteNote(noteId);
+         auto note = noteBoardPtr->deleteNote(noteId);
          json noContentOutput;
-         Utils::init_response(req->create_response(status_line))
+         Utils::init_response(request->create_response(status_line))
             .append_header(restinio::http_field::content_type, "text/json; charset=utf-8")
             .set_body(noContentOutput.dump(3))
             .done();

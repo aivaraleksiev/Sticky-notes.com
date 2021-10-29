@@ -54,6 +54,9 @@
     <ClCompile Include="..\server_src\AuthenticationManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\server_src\Authorization.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\server_src\NotesEndpoint.h">
@@ -68,7 +71,7 @@
     <ClInclude Include="..\server_src\utils\Logger.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
-    <ClInclude Include="..\server_src\LoginEndPoint.h">
+    <ClInclude Include="..\server_src\UserEndPoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\server_src\utils\Crypto.h">
@@ -88,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="..\server_src\engine\NoteManager.h">
       <Filter>Header Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\server_src\Authorization.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

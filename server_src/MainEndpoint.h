@@ -35,7 +35,7 @@ MainEndpoint::createMainEndpointRequestHandler()
 		[](auto req, auto) {
 			std::stringstream ostr;
 			ostr << "<html>"
-				<< "<body><h1>Hello from the sticky-notes Web Server</h1></body>"
+				<< "<body><h1>Hello from the sticky-notes.com Web Server</h1></body>"
 				<< "</html>";
 			restinio::http_status_line_t status_line = restinio::status_ok();
 			Utils::init_response(req->create_response(status_line))
