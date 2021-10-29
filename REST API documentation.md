@@ -84,7 +84,7 @@ GET localhost:9066/api/v1/{username}/notes
 ```
 Lists all notes created by the user.
 
-Add in Authorization header: `access token(JWT)`. <br>
+Authorization header: add `access token(JWT)`. <br>
 
 Path parameters: <br>
 _String `username` - The user to whom we are allowing operations on notes._ <br>
