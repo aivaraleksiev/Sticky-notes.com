@@ -28,9 +28,10 @@ Based on [Define Note's REST API task](https://github.com/aivaraleksiev/Sticky-n
 ```console
 POST localhost:9066/user/signUp
 ```
-Create a user with username and password. <br>
+Create a user with username and password. <br><br>
 
-Authorization header: add Basic Authentication(`username` and `password`).
+_Authorization header_ <br>
+Add Basic Authentication(`username` and `password`).
 
 ### Response
 204 No Content <br>
@@ -46,9 +47,10 @@ Returns `access token(JWT)` in authorization header.
 ```console
 POST localhost:9066/user/login
 ```
-Sign in a user. <br>
+Sign in a user. <br><br>
 
-Authorization header: add Basic Authentication(`username` and `password`).
+_Authorization header_ <br>
+Add Basic Authentication(`username` and `password`).
 
 ### Response
 204 No Content <br>
@@ -65,9 +67,10 @@ Returns `access token(JWT)` in authorization header.
 ```console
 DELETE localhost:9066/user/{username}
 ```
-Deletes a user. <br>
+Deletes a user. <br><br>
 
-Authorization header: add Basic Authentication(`username` and `password`).
+_Authorization header_<br>
+Add Basic Authentication(`username` and `password`).<br>
 
 ### Response
 204 No Content <br>
@@ -82,9 +85,10 @@ Authorization header: add Basic Authentication(`username` and `password`).
 ```console
 GET localhost:9066/api/v1/{username}/notes
 ```
-Lists all notes created by the user.
+Lists all notes created by the user.<br><br>
 
-Authorization header: add `access token(JWT)`. <br>
+_Authorization header_ <br>
+Add `access token(JWT)`. <br>
 
 Path parameters: <br>
 _String `username` - The user to whom we are allowing operations on notes._ <br>
@@ -112,9 +116,10 @@ Returns array of note structures of type text/json. <br>
 ```console
 GET localhost:9066/api/v1/{username}/notes/{noteId}
 ```
-List information for a note. <br>
+List information for a note. <br><br>
 
-Authorization header: add `access token(JWT)`. <br>
+_Authorization header_ <br>
+Add `access token(JWT)`. <br>
 
 Path parameters: <br>
 _String `username` - The user to whom we are allowing operations on notes._ <br>
@@ -141,9 +146,10 @@ Returns note structure of type text/json. <br>
 ```console
 GET localhost:9066/api/v1/{username}/notes?title={string}&text={string}&color={string}
 ```
-Search for notes: _by **title**_ and/or _by **text**_ and/or _by **color**. <br>
+Search for notes: _by **title**_ and/or _by **text**_ and/or _by **color**. <br><br>
 
-Authorization header: add `access token(JWT)`. <br>
+_Authorization header_ <br>
+Add `access token(JWT)`. <br>
 
 Path parameters: <br>
 _String `username` - The user to whom we are allowing operations on notes._ <br>
@@ -176,9 +182,10 @@ Returns Array of filtered note structures of type text/json. <br>
 ```console
 POST localhost:9066/api/v1/{username}/notes
 ```
-Add/Create new notes. <br>
+Add/Create new notes. <br><br>
 
-Authorization header: add `access token(JWT)`. <br>
+_Authorization header_ <br>
+Add `access token(JWT)`. <br>
 
 Path parameters: <br>
 _String `username` - The user to whom we are allowing operations on notes._ <br>
@@ -218,9 +225,10 @@ Returns array of note identifiers of type text/json. <br>
 ```console
 PUT localhost:9066/api/v1/{username}/notes
 ```
-Edit existing notes. <br>
+Edit existing notes. <br><br>
 
-Authorization header: add `access token(JWT)`. <br>
+_Authorization header_ <br>
+Add `access token(JWT)`. <br>
 
 Path parameters: <br>
 _String `username` - The user to whom we are allowing operations on notes._ <br>
@@ -254,9 +262,10 @@ Operation does not return any data structure. Updated successfully. <br>
 ```console
 DELETE localhost:9066/api/v1/{username}/notes/{noteId}
 ```
-Delete existing note. <br>
+Delete existing note. <br><br>
 
-Authorization header: add `access token(JWT)`. <br>
+_Authorization header_ <br> 
+Add `access token(JWT)`. <br>
 
 Path parameters:<br>
 _String `username` - The user to whom we are allowing operations on notes._ <br>
