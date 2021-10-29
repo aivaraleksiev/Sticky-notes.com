@@ -11,19 +11,17 @@ Based on [Define Note's REST API task](https://github.com/aivaraleksiev/Sticky-n
 
 ## REST API
 
-| Method                | Endpoint                            | Description  |                             
-| :------:              | ------                              | ------       |                        
-| [POST](#Request)      | [/user/signUp](#Request)            | Create a user with username and password. |
-| [POST](#Request-1)    | [/user/login](#Request-1)            | Sign in a user. |
-| [DELETE](#Request-2)  | [/user/{username}](#Request-2)      | Deletes a user. |       
-| [GET](#Request-3)     | [/notes](#Request-3)                | Lists all notes created by the user. |     
-| [GET](#Request-4)     | [/notes/{noteId}](#Request-4)       | List information for a note. |
-| [GET](#Request-5)     | [/notes?title={string}&text={string}&color={string}](#Request-5) | Filter notes: _by title_ and/or _by text_ and/or _by color_. |
-| [POST](#Request-6)    | [/notes](#Request-6)                | Add new notes. |
-| [PUT](#Request-7)     | [/notes](#Request-7)                | Edit existing notes. |
-| [DELETE](#Request-8)  | [/notes/{noteId}](#Request-8)       | Delete existing note. |
-
-TODO authozation to all requests; Change to /notes/{owner}...
+| Method                | Endpoint                                     | Description  |                             
+| :------:              | ------                                       | ------       |                        
+| [POST](#Request)      | [/user/signUp](#Request)                     | Create a user with username and password. |
+| [POST](#Request-1)    | [/user/login](#Request-1)                    | Sign in a user. |
+| [DELETE](#Request-2)  | [/user/{username}](#Request-2)               | Deletes a user. |       
+| [GET](#Request-3)     | [/{username}/notes](#Request-3)              | Lists all notes created by the user. |     
+| [GET](#Request-4)     | [/{username}/notes/{noteId}](#Request-4)     | List information for a note. |
+| [GET](#Request-5)     | [/{username}/notes?title={string}&text={string}&color={string}](#Request-5) | Filter notes: _by title_ and/or _by text_ and/or _by color_. |
+| [POST](#Request-6)    | [/{username}/notes](#Request-6)              | Add new notes. |
+| [PUT](#Request-7)     | [/{username}/notes](#Request-7)              | Edit existing notes. |
+| [DELETE](#Request-8)  | [/{username}/notes/{noteId}](#Request-8)     | Delete existing note. |
 
 ### Request
 
@@ -82,9 +80,14 @@ Add in authorization header Basic Authentication(`username` and `password`).
 ### Request
 
 ```console
-GET localhost:9066/api/v1/notes
+GET localhost:9066/api/v1/{username}/notes
 ```
 Lists all notes created by the user.
+
+Add in authorization header access token(JWT). <br>
+
+Path parameters: <br>
+_String `username` - The user to whom we are allowing operations on notes._ <br>
 
 ### Response
 204 No Content <br>
@@ -107,12 +110,15 @@ Returns array of note structures of type text/json. <br>
 ### Request
 
 ```console
-GET localhost:9066/api/v1/notes/{noteId}
+GET localhost:9066/api/v1/{username}/notes/{noteId}
 ```
 List information for a note. <br>
 
+Add in authorization header access token(JWT). <br>
+
 Path parameters: <br>
-_String `noteId` - Identifiers that notes must have to match the filter._
+_String `username` - The user to whom we are allowing operations on notes._ <br>
+_String `noteId` - Identifiers that notes must have to match the filter._ <br>
 
 ### Response
 204 No Content <br>
@@ -133,9 +139,14 @@ Returns note structure of type text/json. <br>
 ### Request
 
 ```console
-GET /notes?title={string}&text={string}&color={string}
+GET localhost:9066/api/v1/{username}/notes?title={string}&text={string}&color={string}
 ```
 Search for notes: _by **title**_ and/or _by **text**_ and/or _by **color**. <br>
+
+Add in authorization header access token(JWT). <br>
+
+Path parameters: <br>
+_String `username` - The user to whom we are allowing operations on notes._ <br>
 
 Query params:<br>
 _String `title` - Filter notes containing this title. This field is optional._<br>
@@ -163,9 +174,14 @@ Returns Array of filtered note structures of type text/json. <br>
 ### Request
 
 ```console
-POST localhost:9066/api/v1/notes
+POST localhost:9066/api/v1/{username}/notes
 ```
 Add/Create new notes. <br>
+
+Add in authorization header access token(JWT). <br>
+
+Path parameters: <br>
+_String `username` - The user to whom we are allowing operations on notes._ <br>
 
 Request body: <br>
 _String `title` - Note's title name._<br>
@@ -200,9 +216,14 @@ Returns array of note identifiers of type text/json. <br>
 ### Request
 
 ```console
-PUT localhost:9066/api/v1/notes
+PUT localhost:9066/api/v1/{username}/notes
 ```
 Edit existing notes. <br>
+
+Add in authorization header access token(JWT). <br>
+
+Path parameters: <br>
+_String `username` - The user to whom we are allowing operations on notes._ <br>
 
 Request body:<br>
 _String `noteId` - Note identifier._<br>
@@ -231,11 +252,14 @@ Operation does not return any data structure. Updated successfully. <br>
 ### Request
 
 ```console
-DELETE localhost:9066/api/v1/notes/{noteId}
+DELETE localhost:9066/api/v1/{username}/notes/{noteId}
 ```
 Delete existing note. <br>
 
-Path param:<br>
+Add in authorization header access token(JWT). <br>
+
+Path parameters:<br>
+_String `username` - The user to whom we are allowing operations on notes._ <br>
 _String `noteId` - Identifiers that notes must have to match the filter._<br>
 
 ### Response
