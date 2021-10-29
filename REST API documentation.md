@@ -12,15 +12,72 @@ Based on [Define Note's REST API task](https://github.com/aivaraleksiev/Sticky-n
 ## REST API
 
 | Method                | Endpoint                            | Description  |                             
-| :------:              | ------                              | ------       |                               
-| [GET](#Request)       | [/notes](#Request)                  | Lists all notes created by the user. |     
-| [GET](#Request-1)     | [/notes/{noteId}](#Request-1)       | List information for a note. |
-| [GET](#Request-2)     | [/notes?title={string}&text={string}&color={string}](#Request-2) | Filter notes: _by title_ and/or _by text_ and/or _by color_. |
-| [POST](#Request-3)    | [/notes](#Request-3)                | Add new notes. |
-| [PUT](#Request-4)     | [/notes](#Request-4)                | Edit existing notes. |
-| [DELETE](#Request-5)  | [/notes/{noteId}](#Request-5)       | Delete existing note. |
+| :------:              | ------                              | ------       |                        
+| [POST](#Request)      | [/user/signUp](#Request)            | Create a user with username and password. |
+| [POST](#Request-1)    | [/user/login](#Request-1)            | Sign in a user. |
+| [DELETE](#Request-2)  | [/user/{username}](#Request-2)      | Deletes a user. |       
+| [GET](#Request-3)     | [/notes](#Request-3)                | Lists all notes created by the user. |     
+| [GET](#Request-4)     | [/notes/{noteId}](#Request-4)       | List information for a note. |
+| [GET](#Request-5)     | [/notes?title={string}&text={string}&color={string}](#Request-5) | Filter notes: _by title_ and/or _by text_ and/or _by color_. |
+| [POST](#Request-6)    | [/notes](#Request-6)                | Add new notes. |
+| [PUT](#Request-7)     | [/notes](#Request-7)                | Edit existing notes. |
+| [DELETE](#Request-8)  | [/notes/{noteId}](#Request-8)       | Delete existing note. |
 
-TODO add /login ; authozation to all requests; Change to /notes/{owner}...
+TODO authozation to all requests; Change to /notes/{owner}...
+
+### Request
+
+```console
+POST localhost:9066/user/signUp
+```
+Create a user with username and password. <br>
+
+Add in authorization header Basic Authentication(`username` and `password`).
+
+### Response
+204 No Content <br>
+400 Bad Request <br>
+200 OK <br>
+
+Returns a set-cookie in authorization header with access token in it.
+
+---
+
+### Request
+
+```console
+POST localhost:9066/user/login
+```
+Sign in a user. <br>
+
+Add in authorization header Basic Authentication(`username` and `password`).
+
+### Response
+204 No Content <br>
+400 Bad Request <br>
+404 Not Found <br>
+200 OK <br>
+
+Returns a set-cookie in authorization header with access token in it.
+
+---
+
+### Request
+
+```console
+DELETE localhost:9066/user/{username}
+```
+Deletes a user. <br>
+
+Add in authorization header Basic Authentication(`username` and `password`).
+
+### Response
+204 No Content <br>
+400 Bad Request <br>
+404 Not Found <br>
+200 OK <br>
+
+---
 
 ### Request
 
