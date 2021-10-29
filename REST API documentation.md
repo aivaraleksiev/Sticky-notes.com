@@ -37,7 +37,7 @@ Authorization header: add Basic Authentication(`username` and `password`).
 400 Bad Request <br>
 200 OK <br>
 
-Returns access token in authorization header.
+Returns `access token(JWT)` in authorization header.
 
 ---
 
@@ -56,7 +56,7 @@ Authorization header: add Basic Authentication(`username` and `password`).
 404 Not Found <br>
 200 OK <br>
 
-Returns access token in authorization header.
+Returns `access token(JWT)` in authorization header.
 
 ---
 
