@@ -13,7 +13,7 @@ Based on [Define Note's REST API task](https://github.com/aivaraleksiev/Sticky-n
 
 | Method                | Endpoint                                     | Description  |                             
 | :------:              | ------                                       | ------       |                        
-| [POST](#Request)      | [/user/signUp](#Request)                     | Create a user with username and password. |
+| [POST](#Request)      | [/user/signUp](#Request)                     | Creates user with username and password. |
 | [POST](#Request-1)    | [/user/login](#Request-1)                    | Sign in a user. |
 | [DELETE](#Request-2)  | [/user/{username}](#Request-2)               | Deletes a user. |       
 | [GET](#Request-3)     | [/{username}/notes](#Request-3)              | Lists all notes created by the user. |     
