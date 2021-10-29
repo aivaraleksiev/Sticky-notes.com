@@ -39,7 +39,7 @@ Add in authorization header Basic Authentication(`username` and `password`).
 400 Bad Request <br>
 200 OK <br>
 
-Returns a set-cookie in authorization header with access token in it.
+Returns access token in authorization header.
 
 ---
 
@@ -58,7 +58,7 @@ Add in authorization header Basic Authentication(`username` and `password`).
 404 Not Found <br>
 200 OK <br>
 
-Returns a set-cookie in authorization header with access token in it.
+Returns access token in authorization header.
 
 ---
 
