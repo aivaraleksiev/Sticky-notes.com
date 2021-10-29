@@ -30,7 +30,7 @@ POST localhost:9066/user/signUp
 ```
 Create a user with username and password. <br>
 
-Authorization header: provide Basic Authentication(`username` and `password`).
+Authorization header: add Basic Authentication(`username` and `password`).
 
 ### Response
 204 No Content <br>
@@ -48,7 +48,7 @@ POST localhost:9066/user/login
 ```
 Sign in a user. <br>
 
-Authorization header: provide Basic Authentication(`username` and `password`).
+Authorization header: add Basic Authentication(`username` and `password`).
 
 ### Response
 204 No Content <br>
@@ -67,7 +67,7 @@ DELETE localhost:9066/user/{username}
 ```
 Deletes a user. <br>
 
-Authorization header: provide Basic Authentication(`username` and `password`).
+Authorization header: add Basic Authentication(`username` and `password`).
 
 ### Response
 204 No Content <br>
@@ -84,7 +84,7 @@ GET localhost:9066/api/v1/{username}/notes
 ```
 Lists all notes created by the user.
 
-Authorization header: *add* `access token(JWT)`. <br>
+Authorization header: add `access token(JWT)`. <br>
 
 Path parameters: <br>
 _String `username` - The user to whom we are allowing operations on notes._ <br>
@@ -114,7 +114,7 @@ GET localhost:9066/api/v1/{username}/notes/{noteId}
 ```
 List information for a note. <br>
 
-Authorization header: provide access token(JWT). <br>
+Authorization header: add `access token(JWT)`. <br>
 
 Path parameters: <br>
 _String `username` - The user to whom we are allowing operations on notes._ <br>
@@ -143,7 +143,7 @@ GET localhost:9066/api/v1/{username}/notes?title={string}&text={string}&color={s
 ```
 Search for notes: _by **title**_ and/or _by **text**_ and/or _by **color**. <br>
 
-Authorization header: provide access token(JWT). <br>
+Authorization header: add `access token(JWT)`. <br>
 
 Path parameters: <br>
 _String `username` - The user to whom we are allowing operations on notes._ <br>
@@ -178,7 +178,7 @@ POST localhost:9066/api/v1/{username}/notes
 ```
 Add/Create new notes. <br>
 
-Authorization header: provide access token(JWT). <br>
+Authorization header: add `access token(JWT)`. <br>
 
 Path parameters: <br>
 _String `username` - The user to whom we are allowing operations on notes._ <br>
@@ -220,7 +220,7 @@ PUT localhost:9066/api/v1/{username}/notes
 ```
 Edit existing notes. <br>
 
-Authorization header: provide access token(JWT). <br>
+Authorization header: add `access token(JWT)`. <br>
 
 Path parameters: <br>
 _String `username` - The user to whom we are allowing operations on notes._ <br>
@@ -256,7 +256,7 @@ DELETE localhost:9066/api/v1/{username}/notes/{noteId}
 ```
 Delete existing note. <br>
 
-Authorization header: provide access token(JWT). <br>
+Authorization header: add `access token(JWT)`. <br>
 
 Path parameters:<br>
 _String `username` - The user to whom we are allowing operations on notes._ <br>
