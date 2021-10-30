@@ -35,6 +35,8 @@ private:
 	std::shared_ptr<express_router_t> _router;
 };
 
+// todo may be add token in a set-cookie instead of authorization header?
+
 void
 UserEndpoint::handlePostRequests()
 {
