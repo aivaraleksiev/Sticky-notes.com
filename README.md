@@ -19,11 +19,12 @@ A place where you can create, edit and access your notes online. This is current
 ## Build project
 
 - Have Visual Studio 2019 to open the project in `vs2019` directory.
-- Install [vcpkg](https://github.com/Microsoft/vcpkg) to add _restinio_, _nlohmann-json_ packages. Run the following commands:
+- Install [vcpkg](https://github.com/Microsoft/vcpkg) to add _restinio_, _nlohmann-json_, _openssl_, _jwt-cpp_ packages. Run the following commands:
 ````sh
     vcpkg install restinio
 	vcpkg install nlohmann-json
-	vcpkg install restinio
+	vcpkg install openssl
+	vcpkg install jwt-cpp
     vcpkg integrate install
 ````
 

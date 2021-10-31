@@ -34,9 +34,9 @@ _Authorization header_ <br>
 Add Basic Authentication(`username` and `password`).
 
 ### Response
-204 No Content <br>
+500 Internal Server Error <br>
 400 Bad Request <br>
-200 OK <br>
+204 No Content <br>
 
 Returns `access token(JWT)` in authorization header.
 
@@ -53,10 +53,10 @@ _Authorization header_ <br>
 Add Basic Authentication(`username` and `password`).
 
 ### Response
-204 No Content <br>
+500 Internal Server Error <br>
 400 Bad Request <br>
-404 Not Found <br>
-200 OK <br>
+401 Unauthorized  <br>
+204 No Content <br>
 
 Returns `access token(JWT)` in authorization header.
 
@@ -76,7 +76,6 @@ Add Basic Authentication(`username` and `password`).<br>
 204 No Content <br>
 400 Bad Request <br>
 404 Not Found <br>
-200 OK <br>
 
 ---
 
