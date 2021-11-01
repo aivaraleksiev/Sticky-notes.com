@@ -10,18 +10,14 @@
 namespace Notes {
 namespace Utils {
 
-
 // Creates spdlog logger.
 std::shared_ptr<spdlog::logger>
 createLogger(
 	const std::string& name,
 	spdlog::level::level_enum level = spdlog::level::trace);
 
-
 // Helper logger class.
-// Enables custom logger besides the default logger provided by restinio
-// In our case this is 
-
+// Enables custom logger besides the default logger provided by restinio which is internal.
 class Logger
 {
 public:

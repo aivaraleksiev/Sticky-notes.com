@@ -25,6 +25,21 @@
     <Filter Include="Source Files\engine">
       <UniqueIdentifier>{934ced2d-ccaa-4c5e-be65-831a9bcd756c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\endpoint">
+      <UniqueIdentifier>{49a750d1-98ea-4cd2-b380-507207aadc2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\auth">
+      <UniqueIdentifier>{6ff2db8a-f258-42b2-8c85-67d4eb3e23db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\auth">
+      <UniqueIdentifier>{2e4dc431-3505-4001-8566-96f17c069eb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\auth\private">
+      <UniqueIdentifier>{9386ab5e-be6d-40ce-a8db-bee2ca775980}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\auth\private">
+      <UniqueIdentifier>{56307c21-e68e-4d63-b2fc-e5de26a10316}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\server_src\main.cpp">
@@ -36,45 +51,36 @@
     <ClCompile Include="..\server_src\utils\Logger.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
-    <ClCompile Include="..\server_src\utils\Crypto.cpp">
-      <Filter>Source Files\utils</Filter>
-    </ClCompile>
     <ClCompile Include="..\server_src\engine\Note.cpp">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
     <ClCompile Include="..\server_src\engine\NoteBoard.cpp">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
-    <ClCompile Include="..\server_src\User.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\server_src\engine\NoteManger.cpp">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
-    <ClCompile Include="..\server_src\AuthenticationManager.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\server_src\auth\AuthenticationManager.cpp">
+      <Filter>Source Files\auth</Filter>
     </ClCompile>
-    <ClCompile Include="..\server_src\Authorization.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\server_src\auth\Authorization.cpp">
+      <Filter>Source Files\auth</Filter>
+    </ClCompile>
+    <ClCompile Include="..\server_src\auth\private\Crypto.cpp">
+      <Filter>Source Files\auth\private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\server_src\auth\private\User.cpp">
+      <Filter>Source Files\auth\private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\server_src\utils\HttpException.cpp">
+      <Filter>Source Files\utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\server_src\NotesEndpoint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\server_src\MainEndpoint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\server_src\utils\Utils.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
     <ClInclude Include="..\server_src\utils\Logger.h">
-      <Filter>Header Files\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="..\server_src\UserEndPoint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\server_src\utils\Crypto.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
     <ClInclude Include="..\server_src\engine\Note.h">
@@ -83,17 +89,32 @@
     <ClInclude Include="..\server_src\engine\NoteBoard.h">
       <Filter>Header Files\engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\server_src\User.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\server_src\AuthenticationManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\server_src\engine\NoteManager.h">
       <Filter>Header Files\engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\server_src\Authorization.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\server_src\endpoint\MainEndpoint.h">
+      <Filter>Header Files\endpoint</Filter>
+    </ClInclude>
+    <ClInclude Include="..\server_src\endpoint\NotesEndpoint.h">
+      <Filter>Header Files\endpoint</Filter>
+    </ClInclude>
+    <ClInclude Include="..\server_src\endpoint\UserEndPoint.h">
+      <Filter>Header Files\endpoint</Filter>
+    </ClInclude>
+    <ClInclude Include="..\server_src\auth\AuthenticationManager.h">
+      <Filter>Header Files\auth</Filter>
+    </ClInclude>
+    <ClInclude Include="..\server_src\auth\Authorization.h">
+      <Filter>Header Files\auth</Filter>
+    </ClInclude>
+    <ClInclude Include="..\server_src\auth\private\Crypto.h">
+      <Filter>Header Files\auth\private</Filter>
+    </ClInclude>
+    <ClInclude Include="..\server_src\auth\private\User.h">
+      <Filter>Header Files\auth\private</Filter>
+    </ClInclude>
+    <ClInclude Include="..\server_src\utils\HttpException.h">
+      <Filter>Header Files\utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -4,7 +4,8 @@
 #include "Authorization.h"
 #include "AuthenticationManager.h"
 
-#include "utils/Utils.h"
+#include "../utils/Utils.h"
+#include "../utils/HttpException.h"
 
 
 namespace {
@@ -32,31 +33,24 @@ Authorization::generateAccessToken(std::string username)
 void
 Authorization::verifyAccessToken(std::string const& token, std::string const& username)
 {
-   try {
-      auto decodedToken = jwt::decode(token);
-      jwt::verify()
-         .allow_algorithm(jwt::algorithm::hs256{ sSecret_key})
-         .with_issuer(sIssuer)
-         .not_before_leeway(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()))
-         .verify(decodedToken);
-      // todo add additional checks 
+   auto decodedToken = jwt::decode(token);
+   jwt::verify()
+      .allow_algorithm(jwt::algorithm::hs256{ sSecret_key})
+      .with_issuer(sIssuer)
+      .not_before_leeway(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()))
+      .verify(decodedToken);
+   // todo add additional checks 
 
-      auto claimsMap = decodedToken.get_payload_claims();
-      auto userIt = claimsMap.find(sUserKey);
-      if (userIt != claimsMap.end()) {
-         if (username != userIt->second.as_string()) {
-            // todo throw
-         }
-         bool foundUser = AuthenticateionManager::getInstance()->userExist(username);
-         if (!foundUser) {
-            // todo throw            
-         }
+   auto claimsMap = decodedToken.get_payload_claims();
+   auto userIt = claimsMap.find(sUserKey);
+   if (userIt != claimsMap.end()) {
+      if (username != userIt->second.as_string()) {
+         throw Utils::HttpException(restinio::status_bad_request(), "Invalid token.");
       }
-
-   }
-   catch (std::exception const& e) {
-      // todo remove try catch from here. Move it outside function. Add logger
-      std::cout << e.what();
+      bool foundUser = AuthenticateionManager::getInstance()->userExist(username);
+      if (!foundUser) {
+         throw Utils::HttpException(restinio::status_not_found(), "User not found.");
+      }
    }
 }
 

@@ -28,7 +28,8 @@ Based on [Define Note's REST API task](https://github.com/aivaraleksiev/Sticky-n
 ```console
 POST localhost:9066/user/signUp
 ```
-Create a user with username and password. <br><br>
+Create a user with username and password. <br>
+Username/password must not be empty and longer must not be than 50 characters.<br><br>
 
 _Authorization header_ <br>
 Add Basic Authentication(`username` and `password`).
@@ -93,6 +94,7 @@ Path parameters: <br>
 _String `username` - The user to whom we are allowing operations on notes._ <br>
 
 ### Response
+500 Internal Server Error <br>
 204 No Content <br>
 400 Bad Request <br>
 200 OK <br>
@@ -125,6 +127,7 @@ _String `username` - The user to whom we are allowing operations on notes._ <br>
 _String `noteId` - Identifiers that notes must have to match the filter._ <br>
 
 ### Response
+500 Internal Server Error <br>
 204 No Content <br>
 400 Bad Request <br>
 200 OK <br>
@@ -159,6 +162,7 @@ _String `text`  - Filter notes containing this text sample. This field is option
 _String `color` - Filter notes by color. This field is optional._<br>
 
 ### Response
+500 Internal Server Error <br>
 204 No Content <br>
 400 Bad Request <br>
 200 OK <br>
@@ -204,6 +208,7 @@ _String  `color` - Note's color. Used to group notes by priority. Valid colors a
 ```
 
 ### Response
+500 Internal Server Error <br>
 204 No Content <br>
 400 Bad Request <br>
 201 Created <br>
@@ -250,7 +255,9 @@ _String  `color`  - Note's color. Used to group notes by priority. Valid colors 
 ```
 
 ### Response
+500 Internal Server Error <br>
 400 Bad Request <br>
+404 Not Found <br>
 204 No Content <br>
 Operation does not return any data structure. Updated successfully. <br> 
 
@@ -271,6 +278,7 @@ _String `username` - The user to whom we are allowing operations on notes._ <br>
 _String `noteId` - Identifiers that notes must have to match the filter._<br>
 
 ### Response
+500 Internal Server Error <br>
 400 Bad Request <br>
 404 Not Found <br>
 204 No Content <br>

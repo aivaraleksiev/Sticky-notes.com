@@ -16,6 +16,8 @@ RESTinio -> in progress
    https://github.com/Stiffstream/restinio/issues/51
    https://github.com/Stiffstream/restinio/issues/52
    https://github.com/Stiffstream/restinio/issues/27 -> https://habr-com.translate.goog/ru/post/417527/?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=nui
+   
+   https://bestofcpp.com/repo/Stiffstream-restinio-cpp-network optional values for post and put
 
 How much C ++ code needs to be written to parse the Authorization HTTP header using easy_parser from RESTinio?
    https://geek-week.imtqy.com/articles/en501498/index.html

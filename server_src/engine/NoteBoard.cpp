@@ -2,7 +2,10 @@
 // Author: Ayvar Aleksiev
 
 #include "NoteBoard.h"
-#include <stdexcept>
+#include "../utils/HttpException.h"
+
+#include <ranges>
+
 
 namespace Notes {
 
@@ -49,7 +52,7 @@ NoteBoard::createNote(Note& note)
    std::scoped_lock writeLock(_mutex);
    if (note.getUID() == INVALID_UID) {      
       note.setUID(
-         Utils::UIDGenerator::generateUID());
+         Utils::generateUID());
    }
    _notes.emplace(note.getUID(), note);
    return note.getUID();
@@ -57,23 +60,25 @@ NoteBoard::createNote(Note& note)
 
 void
 NoteBoard::updateNote(NoteContext const& note)
-{ // todo think about this method how it will be read from json. do we need std::optional vars.
+{
    std::scoped_lock writeLock(_mutex);
    auto it = _notes.find(note._id);
-   if (it != _notes.end()) {
-      auto& editNote = it->second;
-      
-      if (note._title) {
-         editNote.setTitle(*note._title);
-      }
-      if (note._text) {
-         editNote.setText(*note._text);
-      }
-      if (note._noteColor) {
-         editNote.setColor(*note._noteColor);
-      }
+   if (it == _notes.end()) {
+      std::ostringstream reason;
+      reason << "Note id '" << note._id << "' not found.";
+      throw Utils::HttpException(restinio::status_not_found(), reason.str());
+   }   
+   auto& editNote = it->second;
+   
+   if (note._title) {
+      editNote.setTitle(*note._title);
    }
-   // todo add exception logic
+   if (note._text) {
+      editNote.setText(*note._text);
+   }
+   if (note._noteColor) {
+      editNote.setColor(*note._noteColor);
+   }
 }
 
 std::unordered_map<UID, Note>
@@ -88,11 +93,12 @@ NoteBoard::getNote(UID id) const
 {
    std::shared_lock<std::shared_mutex> readLock(_mutex);
    auto noteIt = _notes.find(id);
-   if (noteIt != _notes.end()) {
-      return noteIt->second;
+   if (noteIt == _notes.end()) {
+      std::ostringstream reason;
+      reason << "Note with id '" << id << "'.";
+      throw Utils::HttpException(restinio::status_not_found(), reason.str());
    }
-   return Note();
-   // todo add excetion or return empty note with invalid uid.
+   return noteIt->second;
 }
 
 bool
@@ -106,15 +112,16 @@ std::vector<Note>
 NoteBoard::searchByTitle(std::string titleName) const
 {
    std::shared_lock<std::shared_mutex> readLock(_mutex);
+   if (titleName.empty()) {
+      throw Utils::HttpException(restinio::status_bad_request(), "Invalid empty title.");
+   }
+
    std::vector<Note> result;
-   if (titleName == "") {
-      return result;
+   auto sameTitle = [titleName](auto note) {return note.getTitle() == titleName; };
+   for (auto const& note : std::views::values(_notes) | std::views::filter(sameTitle)) {
+      result.push_back(note);
    }
-   for (auto const& [key, note] : _notes) {
-      if (note.getTitle() == titleName) {
-         result.push_back(note);
-      }
-   }
+
    return result;
 }
 
@@ -122,12 +129,13 @@ std::vector<Note>
 NoteBoard::searchByText(std::string text) const
 {
    std::shared_lock<std::shared_mutex> readLock(_mutex);
+
    std::vector<Note> result;
-   for (auto const& [key, note] : _notes) {
-      if (note.getText() == text) {
-         result.push_back(note);
-      }
+   auto sameText = [text](auto note) {return note.getText() == text; };
+   for (auto const& note : std::views::values(_notes) | std::views::filter(sameText)) {
+      result.push_back(note);
    }
+
    return result;
 }
 
@@ -135,16 +143,16 @@ std::vector<Note>
 NoteBoard::searchByColor(Color color) const
 {
    std::shared_lock<std::shared_mutex> readLock(_mutex);
-   // TODO use ranges, once the compiler supports them.
-   std::vector<Note> result;
    if (color == Color::invalid) {
-      return result;
+      throw Utils::HttpException(restinio::status_bad_request(), "Invalid color.");
    }
-   for (auto const& [key, value] : _notes) {
-      if (value.getColor() == color) {
-         result.push_back(value);
-      }
+   
+   std::vector<Note> result;
+   auto sameColor = [color](auto note) {return note.getColor() == color; };
+   for (auto const& note : std::views::values(_notes) | std::views::filter(sameColor)) {
+      result.push_back(note);
    }
+
    return result;
 }
 

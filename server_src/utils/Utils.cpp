@@ -2,25 +2,29 @@
 // Author: Ayvar Aleksiev
 
 #include "Utils.h"
+#include "HttpException.h"
 #include <restinio/helpers/http_field_parsers/basic_auth.hpp>
 #include <restinio/helpers/http_field_parsers/bearer_auth.hpp>
 
+#include <string>
+
 namespace {
    std::atomic<size_t> sUid { 0 };
-} // anonymous namepspace 
+} // anonymous namespace 
 
 namespace Notes {
 namespace Utils {
 
-UID
-UIDGenerator::generateUID()
+UID generateUID()
 {
    return ++sUid;
 }
 
-
 void
-parseBasicAuth(restinio::http_request_header_t const& header, std::string& username, std::string& password)
+parseBasicAuth(
+	restinio::http_request_header_t const& header, 
+	std::string& username, 
+	std::string& password)
 {
 	using namespace restinio::http_field_parsers;
 	username.clear();
@@ -37,8 +41,14 @@ parseBasicAuth(restinio::http_request_header_t const& header, std::string& usern
 			}
 		}
 	   else {
-	   	// todo did not parse correctly or Other authentification schemes.
+			throw HttpException(restinio::status_bad_request(), "Invalid content in authorization header.");
 	   }
+	}
+	else {
+		throw HttpException(restinio::status_unauthorized(), "Missing Content in authorization header.");
+	}
+	if (username.empty() || password.empty()) {
+		throw HttpException(restinio::status_bad_request(), "Invalid username or password value.");
 	}
 }
 
@@ -57,9 +67,12 @@ extractAuthToken(restinio::http_request_header_t const& header)
 		   	return bearer_params->token;
 		   }
 		}
-	   else {
-	   	// todo did not parse correctly or Other authentification schemes.
-	   }
+		else {
+			throw HttpException(restinio::status_bad_request(), "Invalid content in authorization header.");
+		}
+	}
+	else {
+		throw HttpException(restinio::status_unauthorized(), "Missing Content in authorization header.");
 	}
 }
 } // namespace Note

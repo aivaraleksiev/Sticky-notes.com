@@ -8,8 +8,7 @@
 #include "../utils/Utils.h" // todo change this. Maybe create separate libraries
 #include <optional>
 #include <string>
-#include <unordered_map> // todo remove
-#include <unordered_set>
+#include <unordered_map>
 
 namespace Notes {
 
@@ -17,7 +16,7 @@ using Utils::UID;
 
 // helper structure mainly used for update note operation.
 struct NoteContext
-{ // todo optional values https://bestofcpp.com/repo/Stiffstream-restinio-cpp-network for POST
+{
    UID _id;
    std::optional<std::string> _title;
    std::optional<std::string> _text;
@@ -47,8 +46,7 @@ public:
    NoteBoard& operator=(NoteBoard&& other) noexcept;
 
    UID createNote(Note& note);
-   
-   // todo think about this method how it will be read from json. do we need std::optional vars.
+
    void updateNote(NoteContext const& note);
 
    std::unordered_map<UID, Note> getNotes() const;
@@ -57,7 +55,7 @@ public:
 
    bool deleteNote(UID id);
 
-   std::vector<Note> searchByTitle(std::string titleName) const; // todo return Note const& how?
+   std::vector<Note> searchByTitle(std::string titleName) const;
 
    std::vector<Note> searchByText(std::string text) const;
 
@@ -65,8 +63,8 @@ public:
 
 private:
 
-   // [note uid -> notes ]
-   std::unordered_map<UID, Note> _notes; // todo make this unordered_set<Note> with custom comparator;
+   // [note uid -> note]
+   std::unordered_map<UID, Note> _notes;
 
    /// Mutex
    mutable std::shared_mutex  _mutex;

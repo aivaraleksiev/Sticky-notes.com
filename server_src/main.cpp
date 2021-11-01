@@ -1,9 +1,9 @@
 // Copyright 2021
 // Author: Ayvar Aleksiev
 
-#include "NotesEndpoint.h"
-#include "MainEndpoint.h"
-#include "UserEndpoint.h"
+#include "endpoint/NotesEndpoint.h"
+#include "endpoint/MainEndpoint.h"
+#include "endpoint/UserEndpoint.h"
 #include "utils/Logger.h"
 
 #include <restinio/all.hpp>

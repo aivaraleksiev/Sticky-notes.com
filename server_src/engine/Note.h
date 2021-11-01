@@ -30,8 +30,6 @@ NLOHMANN_JSON_SERIALIZE_ENUM(Color, {
 
 Color toColor(std::string const& val);
 
-
-// TODO ADD addtional checks and throw exceptions.
 // Synchronized class describing a note.
 // Every note consists of: Title, Text, and note Color.
 class Note
@@ -39,7 +37,7 @@ class Note
 public:
    
    // Constructor
-   Note(UID id = Utils::UIDGenerator::generateUID())
+   Note(UID id = Utils::generateUID())
       : _id(id)
    {}
 
@@ -83,7 +81,7 @@ public:
    }
    
    friend void from_json(json const& j, Note& obj) {
-      j.at("id").get_to<UID>(obj._id); // TODO WILL THIS WORK ?
+      j.at("id").get_to<UID>(obj._id);
       j.at("title").get_to(obj._title);
       j.at("text").get_to(obj._text);
       j.at("color").get_to<Color>(obj._noteColor);

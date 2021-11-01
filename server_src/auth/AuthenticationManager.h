@@ -3,8 +3,10 @@
 
 #pragma once
 
-#include "User.h"
-#include "utils/Crypto.h"
+#include "../utils/HttpException.h"
+
+#include "private/User.h"
+#include "private/Crypto.h"
 
 #include <algorithm>
 #include <unordered_set>
@@ -15,28 +17,30 @@
 namespace Notes {
 
 /// Class handling authenticaion.
+/// todo should I remember users that have deleted their accounts.
 class AuthenticateionManager
 {
 public:
-   
+
    // Access to the singleton instance of this class.
    static AuthenticateionManager* getInstance();
 
    void createUser(std::string const& username, std::string const& password)
    {
       std::scoped_lock writeLock(_mutex);
-      assert(!password.empty());
-      // todo should i check here for empty password.
+      if (username.empty() || password.empty() || username.length() > 50 || password.length() > 50) {
+         throw Utils::HttpException(restinio::status_bad_request(), "Invalid username/password input.");
+      }
+
       if (_users.contains(User(username, ""))) {
-         // todo htrow exception. User already exists.
-         // // Add log message
-         // Should I remember users that have deleted there accounts.
+         throw Utils::HttpException(restinio::status_bad_request(), "User already exists");
       }
       _users.emplace(username, Utils::generatePasswordHash(password));
    }
    
    bool authenticateUser(std::string const& username, std::string const& password)
    {
+      assert(!username.empty() && !password.empty());
       auto userIt = _users.find(User(username, ""));
 
       return (userIt != _users.end()) && (*userIt).comparePasswordHash(Utils::generatePasswordHash(password));
@@ -51,8 +55,8 @@ public:
 
    void deleteUser(std::string const& username, std::string const& password)
    {
+      assert(!username.empty() && !password.empty());
       std::scoped_lock writeLock(_mutex);
-      assert(!password.empty());
       
       auto userIt = _users.find(User(username, ""));
       if ((userIt != _users.end()) && (*userIt).comparePasswordHash(Utils::generatePasswordHash(password))) {

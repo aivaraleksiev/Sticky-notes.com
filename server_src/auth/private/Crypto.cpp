@@ -1,6 +1,8 @@
 // Copyright 2021
 // Author: Ayvar Aleksiev
 
+#include "../../utils/HttpException.h"
+
 #include <openssl/evp.h>
 #include <sstream>
 #include <iomanip>
@@ -30,7 +32,7 @@ generatePasswordHash(std::string const& password)
                         sKeyLength,
                         hashedPasswordResult);
    if (!success) {
-      // todo throw exception
+      throw Utils::HttpException(restinio::status_internal_server_error(), "Could not generate password hash.");
    }
 
    std::stringstream ss;
