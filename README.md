@@ -9,12 +9,12 @@ A place where you can create, edit and access your notes online. This is current
 - [X] use vcpkg package manager and visual studio for ease of use and speed.
 - [X] Choose a suitable library for creating C++ REST server and client.
   - [X] Write some web server logic
-- [ ] Define and implement Sticky-notes REST API.
-- [ ] Write business logic regarding sticky notes operations.
+- [X] Define and implement Sticky-notes REST API.
+- [X] Write business logic regarding sticky notes operations.
 
   
 ## P1 Goals
-- [ ] Choose some logging library for help. Something that is easy to use and quick to configure.
+- [X] Choose some logging library for help. Something that is easy to use and quick to configure.
 
 ## Build project
 
