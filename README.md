@@ -18,14 +18,14 @@ A place where you can create, edit and access your notes online. This is current
 
 ## Build project
 
-- Have Visual Studio 2019 to open the project in `vs2022` directory.
+- Have Visual Studio 2022 to open the project in `vs2022` directory.
 - Install [vcpkg](https://github.com/Microsoft/vcpkg) to add _restinio_, _nlohmann-json_, _openssl_, _jwt-cpp_ packages. Run the following commands:
 ````sh
     vcpkg install restinio:x64-windows
 	vcpkg install nlohmann-json:x64-windows
 	vcpkg install openssl:x64-windows
 	vcpkg install jwt-cpp:x64-windows
-    vcpkg integrate install:x64-windows
+    vcpkg integrate install
 ````
 
 - Set _Solution Platform_ in Visual Studio to _x64_.  
