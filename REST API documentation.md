@@ -102,10 +102,10 @@ Returns array of note structures of type text/json. <br>
 ```json
 [
    {
-      "noteId": string,
+      "noteId": integer,
       "title": string,
       "text": string,
-      "color": string
+      "color": "red"|"yellow"|"green"
    }
 ]
 ```
@@ -134,10 +134,10 @@ _String `noteId` - Identifiers that notes must have to match the filter._ <br>
 Returns note structure of type text/json. <br>
 ```json
 {
-   "noteId": string,
+   "noteId": integer,
    "title": string,
    "text": string,
-   "color": string
+   "color": "red"|"yellow"|"green"
 }
 ```
 
@@ -170,10 +170,10 @@ Returns Array of filtered note structures of type text/json. <br>
 ```json
 [
    {
-      "noteId": string,
+      "noteId": integer,
       "title": string,
       "text": string,
-      "color": string
+      "color": "red"|"yellow"|"green"
    }
 ]
 ```
@@ -202,7 +202,7 @@ _String `color` - Note's color. Used to group notes by priority. Valid colors ar
    {
       "title": string,
       "text": string,
-      "color": string
+      "color": "red"|"yellow"|"green"
    }
 ]
 ```
@@ -216,7 +216,7 @@ Returns array of note identifiers of type text/json. <br>
 
 ```json
 {
-   "noteId": [ string ]
+   "noteId": [ integer ]
 }
 ```
 
@@ -236,7 +236,7 @@ Path parameters: <br>
 _String `username` - The user to whom we are allowing operations on notes._ <br>
 
 Request body:<br>
-_String `noteId` - Note identifier._<br>
+_Integer `noteId` - Note identifier._<br>
 _String `title`  - Note's title name. This field is optional._<br>
 _String `text`   - Note's text content. This field is optional._<br>
 _String `color` - Note's color. Used to group notes by priority. Valid colors are "yellow", "green", "red". This field is optional._<br>
@@ -244,10 +244,10 @@ _String `color` - Note's color. Used to group notes by priority. Valid colors ar
 ```json
 [
    {
-      "noteId": string,
+      "noteId": integer,
       "title": string,
       "text": string,
-      "color": string
+      "color": "red"|"yellow"|"green"
    }
 ]
 ```
