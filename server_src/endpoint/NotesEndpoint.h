@@ -199,6 +199,8 @@ NotesEndpoint::handlePostRequests()
                newNote.setText(readInput);
                Color readColor;
                obj.at("color").get_to<Color>(readColor);
+               // If the user has elected the right color option it will be set, otherwise we will set the color to yellow.
+               // This is done in order not to stop the bulk operation in the middle of its lifetime.
                if (readColor != Color::invalid) {
                   newNote.setColor(readColor);
                }
@@ -259,9 +261,17 @@ NotesEndpoint::handlePutRequests()
                if (obj.contains("color")) {
                   std::string temp;
                   obj.at("color").get_to(temp);
-                  updateNote._noteColor = toColor(std::move(temp));
+                  auto color = toColor(std::move(temp));
+                  if (color == Color::invalid) {
+                      std::stringstream errMsg;
+                      errMsg << "Invalid color for NoteId '" << updateNote._id << "'";
+                      throw Utils::HttpException(restinio::status_bad_request(), errMsg.str());
+                  }
+                  updateNote._noteColor = color;
                }
                noteBoardPtr->updateNote(updateNote);
+
+               // todo put a try catch clause inside for loop so you can show multiple faults/exceptions for the different noteIds.
             }
             Utils::createNoContentResponse(request).done();
          }

@@ -19,10 +19,8 @@ public:
    static NoteManager* getInstance();
 
    void addUserNoteBoard(std::string const& user)
-   {  
-      //todo assert in release
+   {
       _noteboards.emplace( user, std::make_shared<NoteBoard>());
-      
    }
 
    std::shared_ptr<NoteBoard> getUserNoteBoard(std::string const& user)
