@@ -105,7 +105,7 @@ Returns array of note structures of type text/json. <br>
       "noteId": "integer",
       "title": "string",
       "text": "string",
-      "color": "red"|"yellow"|"green"
+      "color": "string" // red|yellow|green
    }
 ]
 ```
@@ -137,7 +137,7 @@ Returns note structure of type text/json. <br>
    "noteId": "integer",
    "title": "string",
    "text": "string",
-   "color": "red"|"yellow"|"green"
+   "color": "string" // red|yellow|green
 }
 ```
 
@@ -173,7 +173,7 @@ Returns Array of filtered note structures of type text/json. <br>
       "noteId": "integer",
       "title": "string",
       "text": "string",
-      "color": "red"|"yellow"|"green"
+      "color": "string" // red|yellow|green
    }
 ]
 ```
@@ -202,7 +202,7 @@ _String `color` - Note's color. Used to group notes by priority. Valid colors ar
    {
       "title": "string",
       "text": "string",
-      "color": "red"|"yellow"|"green"
+      "color": "string" // red|yellow|green
    }
 ]
 ```
@@ -247,7 +247,7 @@ _String `color` - Note's color. Used to group notes by priority. Valid colors ar
       "noteId": "integer",
       "title": "string",
       "text": "string",
-      "color": "red"|"yellow"|"green"
+      "color": "string" // red|yellow|green
    }
 ]
 ```
