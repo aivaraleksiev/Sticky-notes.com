@@ -196,7 +196,7 @@ _String `username` - The user to whom we are allowing operations on notes._ <br>
 Request body: <br>
 _String `title` - Note's title name._<br>
 _String `text`  - Note's text content._<br>
-_String `color` - Note's color. Used to group notes by priority. Valid colors are "yellow", "green", "red".  Default color is "yellow"._<br>
+_String `color` - Note's color. Used to group notes by priority. Valid colors are "yellow", "green", "red". If the color is invalid, it will be set to "yellow"._<br>
 ```json
 [
    {
@@ -239,7 +239,7 @@ Request body:<br>
 _String `noteId` - Note identifier._<br>
 _String `title`  - Note's title name. This field is optional._<br>
 _String `text`   - Note's text content. This field is optional._<br>
-_String  `color`  - Note's color. Used to group notes by priority. Valid colors are "yellow", "green", "red".  Default color is "yellow". This field is optional._<br>
+_String `color` - Note's color. Used to group notes by priority. Valid colors are "yellow", "green", "red". This field is optional._<br>
 
 ```json
 [
