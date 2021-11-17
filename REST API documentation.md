@@ -159,7 +159,7 @@ _String `username` - The user to whom we are allowing operations on notes._ <br>
 Query params:<br>
 _String `title` - Filter notes containing this title. This field is optional._<br>
 _String `text`  - Filter notes containing this text sample. This field is optional._<br>
-_String `color` - Filter notes by color. This field is optional._<br>
+_String `color` - Filter notes by color. Used to group notes by priority. Valid colors are "yellow", "green", "red". This field is optional._<br>
 
 ### Response
 500 Internal Server Error <br>
@@ -196,7 +196,7 @@ _String `username` - The user to whom we are allowing operations on notes._ <br>
 Request body: <br>
 _String `title` - Note's title name._<br>
 _String `text`  - Note's text content._<br>
-_String  `color` - Note's color. Used to group notes by priority. Valid colors are "yellow", "green", "red".  Default color is "yellow"._<br>
+_String `color` - Note's color. Used to group notes by priority. Valid colors are "yellow", "green", "red".  Default color is "yellow"._<br>
 ```json
 [
    {
