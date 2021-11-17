@@ -102,9 +102,9 @@ Returns array of note structures of type text/json. <br>
 ```json
 [
    {
-      "noteId": integer,
-      "title": string,
-      "text": string,
+      "noteId": "integer",
+      "title": "string",
+      "text": "string",
       "color": "red"|"yellow"|"green"
    }
 ]
@@ -134,9 +134,9 @@ _String `noteId` - Identifiers that notes must have to match the filter._ <br>
 Returns note structure of type text/json. <br>
 ```json
 {
-   "noteId": integer,
-   "title": string,
-   "text": string,
+   "noteId": "integer",
+   "title": "string",
+   "text": "string",
    "color": "red"|"yellow"|"green"
 }
 ```
@@ -170,9 +170,9 @@ Returns Array of filtered note structures of type text/json. <br>
 ```json
 [
    {
-      "noteId": integer,
-      "title": string,
-      "text": string,
+      "noteId": "integer",
+      "title": "string",
+      "text": "string",
       "color": "red"|"yellow"|"green"
    }
 ]
@@ -200,8 +200,8 @@ _String `color` - Note's color. Used to group notes by priority. Valid colors ar
 ```json
 [
    {
-      "title": string,
-      "text": string,
+      "title": "string",
+      "text": "string",
       "color": "red"|"yellow"|"green"
    }
 ]
@@ -216,7 +216,7 @@ Returns array of note identifiers of type text/json. <br>
 
 ```json
 {
-   "noteId": [ integer ]
+   "noteId": [ "integer" ]
 }
 ```
 
@@ -244,9 +244,9 @@ _String `color` - Note's color. Used to group notes by priority. Valid colors ar
 ```json
 [
    {
-      "noteId": integer,
-      "title": string,
-      "text": string,
+      "noteId": "integer",
+      "title": "string",
+      "text": "string",
       "color": "red"|"yellow"|"green"
    }
 ]
@@ -258,8 +258,8 @@ _String `color` - Note's color. Used to group notes by priority. Valid colors ar
 ```json
 [
     {
-        "Http error code": integer,
-        "noteId": integer,
+        "Http error code": "integer",
+        "noteId": "integer",
         "reason": "string"
     }
 ]
