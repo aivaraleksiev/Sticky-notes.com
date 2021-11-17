@@ -255,6 +255,15 @@ _String `color` - Note's color. Used to group notes by priority. Valid colors ar
 ### Response
 500 Internal Server Error <br>
 400 Bad Request <br>
+```json
+[
+    {
+        "Http error code": integer,
+        "noteId": integer,
+        "reason": "string"
+    }
+]
+```
 404 Not Found <br>
 204 No Content <br>
 Operation does not return any data structure. Updated successfully. <br> 
