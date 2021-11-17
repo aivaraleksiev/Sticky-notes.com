@@ -18,7 +18,7 @@ Based on [Define Note's REST API task](https://github.com/aivaraleksiev/Sticky-n
 | [DELETE](#Request-2)  | [/user/{username}](#Request-2)               | Deletes a user. |       
 | [GET](#Request-3)     | [/{username}/notes](#Request-3)              | Lists all notes created by the user. |     
 | [GET](#Request-4)     | [/{username}/notes/{noteId}](#Request-4)     | List information for a note. |
-| [GET](#Request-5)     | [/{username}/notes?title={string}&text={string}&color={"red"|"yellow"|"green"}](#Request-5) | Filter notes: _by title_ and/or _by text_ and/or _by color_. |
+| [GET](#Request-5)     | [/{username}/notes?title={string}&text={string}&color={string}](#Request-5) | Filter notes: _by title_ and/or _by text_ and/or _by color_. |
 | [POST](#Request-6)    | [/{username}/notes](#Request-6)              | Add new notes. |
 | [PUT](#Request-7)     | [/{username}/notes](#Request-7)              | Edit existing notes. |
 | [DELETE](#Request-8)  | [/{username}/notes/{noteId}](#Request-8)     | Delete existing note. |
