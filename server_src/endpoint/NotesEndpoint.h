@@ -327,6 +327,7 @@ void
 NotesEndpoint::handleInvalidRequests()
 {
    // TODO when this code is applied it blocks the toher endpoint like mainendpoint and loginendpoint
+   // // https://stiffstream.com/en/docs/restinio/0.6/expressrouter.html
    // Results in a ba dresuest for the other endpoiints. Otherwise when the code is removed, it is not implmemented.
    // Figure out what's wrong
   //_router->non_matched_request_handler(
