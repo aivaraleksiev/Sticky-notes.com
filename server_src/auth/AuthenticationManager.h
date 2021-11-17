@@ -17,7 +17,6 @@
 namespace Notes {
 
 /// Class handling authenticaion.
-/// todo should I remember users that have deleted their accounts.
 class AuthenticateionManager
 {
 public:

@@ -59,7 +59,7 @@ public:
       std::shared_lock<std::shared_mutex> readLock(_mutex);
       return _username;
    }
-   void changePassword(std::string const& newPassword) // todo add API/endpoint for this.
+   void changePassword(std::string const& newPassword)
    {
       std::scoped_lock writeLock(_mutex);
       if (newPassword == _password) {
