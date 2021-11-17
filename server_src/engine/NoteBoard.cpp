@@ -76,8 +76,13 @@ NoteBoard::updateNote(NoteContext const& note)
    if (note._text) {
       editNote.setText(*note._text);
    }
-   if (note._noteColor) {
+   if (note._noteColor && (note._noteColor != Color::invalid)) {
       editNote.setColor(*note._noteColor);
+   }
+   else {
+       std::stringstream errReason;
+       errReason << "Invalid color for NoteId '" << note._id << "'";
+       throw Utils::HttpException(restinio::status_bad_request(), errReason.str());
    }
 }
 

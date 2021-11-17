@@ -241,12 +241,12 @@ NotesEndpoint::handlePutRequests()
             auto noteBoardPtr = NoteManager::getInstance()->getUserNoteBoard(userName);
             
             json inputArray = json::parse(request->body());
+            json badRequestArray;
             for (auto const& obj : inputArray) {
                NoteContext updateNote;
-               if (obj.contains("id")) {
-                  std::string temp;
-                  obj.at("id").get_to(temp);
-                  updateNote._id = restinio::cast_to<UID>(temp);
+               updateNote._id = INVALID_UID;
+               if (obj.contains("noteId")) {
+                  updateNote._id = obj.at("noteId").get<size_t>();
                }
                if (obj.contains("title")) {
                   std::string temp;
@@ -261,19 +261,26 @@ NotesEndpoint::handlePutRequests()
                if (obj.contains("color")) {
                   std::string temp;
                   obj.at("color").get_to(temp);
-                  auto color = toColor(std::move(temp));
-                  if (color == Color::invalid) {
-                      std::stringstream errMsg;
-                      errMsg << "Invalid color for NoteId '" << updateNote._id << "'";
-                      throw Utils::HttpException(restinio::status_bad_request(), errMsg.str());
-                  }
-                  updateNote._noteColor = color;
+                  updateNote._noteColor = toColor(std::move(temp));
                }
-               noteBoardPtr->updateNote(updateNote);
-
-               // todo put a try catch clause inside for loop so you can show multiple faults/exceptions for the different noteIds.
+               try {
+                  noteBoardPtr->updateNote(updateNote);
+               } catch (Utils::HttpException const& exc) {
+                  json noteError;
+                  to_json(noteError, exc);
+                  noteError["noteId"] = updateNote._id;
+                  badRequestArray.push_back(noteError);
+               }
             }
-            Utils::createNoContentResponse(request).done();
+            if (!badRequestArray.is_null()) {
+               Utils::createGenericResponse(request->create_response(restinio::status_bad_request()))
+                  .append_header(restinio::http_field::content_type, "text/json; charset=utf-8")
+                  .set_body(badRequestArray.dump(3))
+                  .done();
+            }
+            else {
+                Utils::createNoContentResponse(request).done();
+            }
          }
          catch (Utils::HttpException const& exc) {
             Utils::createErrorResponse(request, exc).done();
