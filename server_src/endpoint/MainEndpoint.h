@@ -12,6 +12,14 @@ namespace Notes {
 class MainEndpoint
 {
 public:
+	// Access to the singleton instance of this class.
+	static MainEndpoint* getInstance()
+	{
+		static std::unique_ptr<MainEndpoint> sManagerPtr(
+			std::make_unique<MainEndpoint>());
+		return sManagerPtr.get();
+	}
+
 	auto createMainEndpointRequestHandler();
 private:
 	using express_router_t = restinio::router::express_router_t<>;

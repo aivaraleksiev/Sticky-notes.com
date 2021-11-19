@@ -24,6 +24,14 @@ namespace Notes {
 class UserEndpoint
 {
 public:
+	// Access to the singleton instance of this class.
+	static UserEndpoint* getInstance()
+	{
+		static std::unique_ptr<UserEndpoint> sManagerPtr(
+			std::make_unique<UserEndpoint>());
+		return sManagerPtr.get();
+	}
+
 	auto createUserEndpointRequestHandler();
 private:
 	void handlePostRequests();

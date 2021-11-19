@@ -75,5 +75,22 @@ extractAuthToken(restinio::http_request_header_t const& header)
 		throw HttpException(restinio::status_unauthorized(), "Missing Content in authorization header.");
 	}
 }
+
+restinio::asio_ns::ssl::context
+createTlsContext()
+{
+   restinio::asio_ns::ssl::context tls_context{ restinio::asio_ns::ssl::context::sslv23 };
+   tls_context.set_options(
+      restinio::asio_ns::ssl::context::default_workarounds
+	  | restinio::asio_ns::ssl::context::no_sslv2);
+   // todo remove hardcoded path.
+   // Variant 1: use configuration file.
+   // Variant 2: generate certs in memory.
+   tls_context.use_certificate_chain_file("D:/My Projects/Github/Sticky-notes.com/server_src/certificates/cacert.pem");
+   tls_context.use_private_key_file("D:/My Projects/Github/Sticky-notes.com/server_src/certificates/privkey.pem",
+   	restinio::asio_ns::ssl::context::pem);
+   return tls_context;
+}
+
 } // namespace Note
 } // namespace Utils

@@ -5,6 +5,7 @@
 
 #include "HttpException.h"
 #include <restinio/all.hpp>
+#include <restinio/tls.hpp>
 
 namespace Notes {
 namespace Utils {
@@ -67,6 +68,14 @@ parseBasicAuth(
 */
 std::string
 extractAuthToken(restinio::http_request_header_t const& header);
+
+
+/* Creates tls context. Needed to secure server using SSL/TLS.
+
+   @throws
+   @returns tls context
+*/
+restinio::asio_ns::ssl::context createTlsContext();
 
 } // namespace Utils
 } // namespace Notes
