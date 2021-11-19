@@ -9,8 +9,8 @@
 
 
 namespace {
-std::string const sSecret_key = "seasalt"; // todo user public/private key instead
-std::string const sIssuer = "sticky-notes.com";
+std::string const sSecretKey = "seasalt";
+std::string const sIssuerTag = "sticky-notes.com";
 std::string const sUserKey = "user";
 }
 
@@ -20,12 +20,12 @@ std::string
 Authorization::generateAccessToken(std::string username)
 {
    std::string accessToken = jwt::create()
-      .set_issuer(sIssuer)
-      .set_type("JWS")
+      .set_issuer(sIssuerTag)
+      .set_type("JWT")
       .set_payload_claim(sUserKey, jwt::claim(username))
       .set_issued_at(std::chrono::system_clock::now())
       .set_expires_at(std::chrono::system_clock::now() + std::chrono::seconds{ 300 })
-      .sign(jwt::algorithm::hs256{ sSecret_key});
+      .sign(jwt::algorithm::hs256{ sSecretKey });
 
    return accessToken;
 }
@@ -35,8 +35,8 @@ Authorization::verifyAccessToken(std::string const& token, std::string const& us
 {
    auto decodedToken = jwt::decode(token);
    jwt::verify()
-      .allow_algorithm(jwt::algorithm::hs256{ sSecret_key})
-      .with_issuer(sIssuer)
+      .allow_algorithm(jwt::algorithm::hs256{ sSecretKey })
+      .with_issuer(sIssuerTag)
       .not_before_leeway(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()))
       .verify(decodedToken);
    // todo add additional checks 

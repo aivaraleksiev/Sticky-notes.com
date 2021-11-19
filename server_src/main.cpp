@@ -7,7 +7,6 @@
 #include "utils/Logger.h"
 
 #include <restinio/all.hpp>
-#include <restinio/sync_chain/fixed_size.hpp>
 #include <restinio/sync_chain/growable_size.hpp>
 #include <restinio/tls.hpp>
 
@@ -23,9 +22,7 @@ int main()
 			Notes::Utils::Logger,
 			restinio::sync_chain::growable_size_chain_t<>>;
 		 
-		//todo  make some refactoring and add handlers in endpoint code.
 		restinio::sync_chain::growable_size_chain_t<>::builder_t chain_builder;
-
 		chain_builder.add(Notes::NotesEndpoint::getInstance()->createNoteEndpointRequestHandler());
 		chain_builder.add(Notes::MainEndpoint::getInstance()->createMainEndpointRequestHandler());
 		chain_builder.add(Notes::UserEndpoint::getInstance()->createUserEndpointRequestHandler());

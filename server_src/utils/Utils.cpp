@@ -9,7 +9,11 @@
 #include <string>
 
 namespace {
-   std::atomic<size_t> sUid { 0 };
+	std::atomic<size_t> sUid { 0 };
+	// todo describe this in how to build software.
+	std::string sCaCertPath("D:/My Projects/Github/Sticky-notes.com/server_src/certificates/cacert.pem");
+	std::string sPrivateKey("D:/My Projects/Github/Sticky-notes.com/server_src/certificates/privkey.pem");
+
 } // anonymous namespace 
 
 namespace Notes {
@@ -66,14 +70,12 @@ extractAuthToken(restinio::http_request_header_t const& header)
 		   if (bearer_params) {
 		   	return bearer_params->token;
 		   }
-		}
-		else {
+		} else {
 			throw HttpException(restinio::status_bad_request(), "Invalid content in authorization header.");
 		}
 	}
-	else {
-		throw HttpException(restinio::status_unauthorized(), "Missing Content in authorization header.");
-	}
+	// else
+	throw HttpException(restinio::status_unauthorized(), "Missing content in authorization header.");
 }
 
 restinio::asio_ns::ssl::context
@@ -86,8 +88,8 @@ createTlsContext()
    // todo remove hardcoded path.
    // Variant 1: use configuration file.
    // Variant 2: generate certs in memory.
-   tls_context.use_certificate_chain_file("D:/My Projects/Github/Sticky-notes.com/server_src/certificates/cacert.pem");
-   tls_context.use_private_key_file("D:/My Projects/Github/Sticky-notes.com/server_src/certificates/privkey.pem",
+	tls_context.use_certificate_chain_file(sCaCertPath);
+	tls_context.use_private_key_file(sPrivateKey,
    	restinio::asio_ns::ssl::context::pem);
    return tls_context;
 }
