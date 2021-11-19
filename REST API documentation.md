@@ -26,7 +26,7 @@ Based on [Define Note's REST API task](https://github.com/aivaraleksiev/Sticky-n
 ### Request
 
 ```console
-POST localhost:9066/user/signUp
+POST https://localhost:9066/user/signUp
 ```
 Create a user with username and password. <br>
 Username/password must not be empty and longer must not be than 50 characters.<br><br>
@@ -46,7 +46,7 @@ Returns `access token(JWT)` in authorization header.
 ### Request
 
 ```console
-POST localhost:9066/user/login
+POST https://localhost:9066/user/login
 ```
 Sign in a user. <br><br>
 
@@ -66,7 +66,7 @@ Returns `access token(JWT)` in authorization header.
 ### Request
 
 ```console
-DELETE localhost:9066/user/{username}
+DELETE https://localhost:9066/user/{username}
 ```
 Deletes a user. <br><br>
 
@@ -83,7 +83,7 @@ Add Basic Authentication(`username` and `password`).<br>
 ### Request
 
 ```console
-GET localhost:9066/api/v1/{username}/notes
+GET https://localhost:9066/api/v1/{username}/notes
 ```
 Lists all notes created by the user.<br><br>
 
@@ -115,7 +115,7 @@ Returns array of note structures of type text/json. <br>
 ### Request
 
 ```console
-GET localhost:9066/api/v1/{username}/notes/{noteId}
+GET https://localhost:9066/api/v1/{username}/notes/{noteId}
 ```
 List information for a note. <br><br>
 
@@ -146,7 +146,7 @@ Returns note structure of type text/json. <br>
 ### Request
 
 ```console
-GET localhost:9066/api/v1/{username}/notes?title={string}&text={string}&color="red"|"yellow"|"green"
+GET https://localhost:9066/api/v1/{username}/notes?title={string}&text={string}&color="red"|"yellow"|"green"
 ```
 Search for notes: _by **title**_ and/or _by **text**_ and/or _by **color**. <br><br>
 
@@ -183,7 +183,7 @@ Returns Array of filtered note structures of type text/json. <br>
 ### Request
 
 ```console
-POST localhost:9066/api/v1/{username}/notes
+POST https://localhost:9066/api/v1/{username}/notes
 ```
 Add/Create new notes. <br><br>
 
@@ -225,7 +225,7 @@ Returns array of note identifiers of type text/json. <br>
 ### Request
 
 ```console
-PUT localhost:9066/api/v1/{username}/notes
+PUT https://localhost:9066/api/v1/{username}/notes
 ```
 Edit existing notes. <br><br>
 
@@ -273,7 +273,7 @@ Operation does not return any data structure. Updated successfully. <br>
 ### Request
 
 ```console
-DELETE localhost:9066/api/v1/{username}/notes/{noteId}
+DELETE https://localhost:9066/api/v1/{username}/notes/{noteId}
 ```
 Delete existing note. <br><br>
 
