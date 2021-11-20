@@ -11,8 +11,8 @@
 namespace {
 	std::atomic<size_t> sUid { 0 };
 	// todo describe this in how to build software.
-	std::string sCaCertPath("D:/My Projects/Github/Sticky-notes.com/server_src/certificates/cacert.pem");
-	std::string sPrivateKey("D:/My Projects/Github/Sticky-notes.com/server_src/certificates/privkey.pem");
+	std::string sCaCertPath("D:/My Projects/Github/Sticky-notes.com/server_src/certificates/sticky-notes.com_CaCert.pem");
+	std::string sPrivateKey("D:/My Projects/Github/Sticky-notes.com/server_src/certificates/sticky-notes.com_PrivKey.pem");
 
 } // anonymous namespace 
 
