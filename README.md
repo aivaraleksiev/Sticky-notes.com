@@ -33,7 +33,7 @@ A place where you can create, edit and access your notes online. This is current
 Now you should be able to build and run the project.
 
 - Provide absolute path to certificates directory. <br>
-  When executing the program you must provide absolute path to the certificates dircetory. The certificates are located in `server_src\certificates`.
+  When executing the program you must provide absolute path to the certificates dircetory. The certificates are located in `server_src\certificates`.<br>
   Example<br>
   _Sticky-notes.com.exe --cerDir "C:\Projects\Sticky-notes.com\server_src\certificates"_ <br><br>
   If you want to start the project from Visual Studio you need to change the project properties: <br>
