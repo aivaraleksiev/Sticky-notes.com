@@ -116,5 +116,8 @@
     <ClInclude Include="..\server_src\utils\HttpException.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
+    <ClInclude Include="..\server_src\endpoint\InvalidEndpoint.h">
+      <Filter>Header Files\endpoint</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

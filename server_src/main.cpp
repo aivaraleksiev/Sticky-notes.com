@@ -4,6 +4,7 @@
 #include "endpoint/NotesEndpoint.h"
 #include "endpoint/MainEndpoint.h"
 #include "endpoint/UserEndpoint.h"
+#include "endpoint/InvalidEndpoint.h" //ayvar
 #include "utils/Logger.h"
 
 #include <boost/program_options.hpp>
@@ -49,6 +50,8 @@ int main(int argc, char* argv[])
 		chain_builder.add(Notes::NotesEndpoint::getInstance()->createNoteEndpointRequestHandler());
 		chain_builder.add(Notes::MainEndpoint::getInstance()->createMainEndpointRequestHandler());
 		chain_builder.add(Notes::UserEndpoint::getInstance()->createUserEndpointRequestHandler());
+		// The invalid endpoint handler should be added last, otherwise all handlers are returning bad request.
+		chain_builder.add(Notes::InvalidEndpoint::getInstance()->createInvalidEndpointRequestHandler());
 
 		restinio::run(
 			restinio::on_this_thread<traits_t>()

@@ -36,6 +36,7 @@
     <ClInclude Include="..\server_src\auth\Authorization.h" />
     <ClInclude Include="..\server_src\auth\private\Crypto.h" />
     <ClInclude Include="..\server_src\auth\private\User.h" />
+    <ClInclude Include="..\server_src\endpoint\InvalidEndpoint.h" />
     <ClInclude Include="..\server_src\endpoint\MainEndpoint.h" />
     <ClInclude Include="..\server_src\endpoint\NotesEndpoint.h" />
     <ClInclude Include="..\server_src\endpoint\UserEndPoint.h" />
