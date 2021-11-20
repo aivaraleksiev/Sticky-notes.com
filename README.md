@@ -32,10 +32,13 @@ A place where you can create, edit and access your notes online. This is current
 - Set _Solution Platform_ in Visual Studio to _x64_.  
 Now you should be able to build and run the project.
 
-- Provide path to certificates directory. When executing the program you must provide absolute path to the certificates dircetory. The certificates are located in 'server_src\certificates'.
-  Example: Sticky-notes.com.exe --cerDir "C:\My Projects\Sticky-notes.com\server_src\certificates"
-  Also if you want to startthe project from Visual Studio you need to change the project properties: <br>
-  Go to Sticky-notes.com project->Properties->Configuration Properties->Debugging->CommandArguments. Add --certDir "YourPath\Sticky-notes.com\server_src\certificates"
+- Provide absolute path to certificates directory. <br>
+  When executing the program you must provide absolute path to the certificates dircetory. The certificates are located in `server_src\certificates`.
+  Example<br>
+  _Sticky-notes.com.exe --cerDir "C:\Projects\Sticky-notes.com\server_src\certificates"_ <br><br>
+  If you want to start the project from Visual Studio you need to change the project properties: <br>
+  Go to `Sticky-notes.com project->Properties->Configuration Properties->Debugging->CommandArguments`.<br>
+  Add `--certDir "YourPath\Sticky-notes.com\server_src\certificates"`.
 
 ## Testing
 - Manual testing using Postman and browser for now is sufficient. 
