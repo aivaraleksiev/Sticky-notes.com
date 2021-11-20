@@ -71,11 +71,12 @@ extractAuthToken(restinio::http_request_header_t const& header);
 
 
 /* Creates tls context. Needed to secure server using SSL/TLS.
-
+   
+   @param[in] certDir The directory where the certificates are.
    @throws
    @returns tls context
 */
-restinio::asio_ns::ssl::context createTlsContext();
+restinio::asio_ns::ssl::context createTlsContext(std::string certDir);
 
 } // namespace Utils
 } // namespace Notes

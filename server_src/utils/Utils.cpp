@@ -10,9 +10,8 @@
 
 namespace {
 	std::atomic<size_t> sUid { 0 };
-	// todo describe this in how to build software.
-	std::string sCaCertPath("D:/My Projects/Github/Sticky-notes.com/server_src/certificates/sticky-notes.com_CaCert.pem");
-	std::string sPrivateKey("D:/My Projects/Github/Sticky-notes.com/server_src/certificates/sticky-notes.com_PrivKey.pem");
+	std::string sCaCertFileName("sticky-notes.com_CaCert.pem");
+	std::string sPrivateKeyFileName("sticky-notes.com_PrivKey.pem");
 
 } // anonymous namespace 
 
@@ -79,17 +78,24 @@ extractAuthToken(restinio::http_request_header_t const& header)
 }
 
 restinio::asio_ns::ssl::context
-createTlsContext()
+createTlsContext(std::string certDir)
 {
+
+	if (certDir.back() == '"') {
+		certDir.erase(certDir.end() - 1);
+	}
+	//replace backslash with forward slash.
+	std::replace(certDir.begin(), certDir.end(), '\\', '/');
+	if (certDir.back() != '/') {
+		certDir.append("/");
+	}
+
    restinio::asio_ns::ssl::context tls_context{ restinio::asio_ns::ssl::context::sslv23 };
    tls_context.set_options(
       restinio::asio_ns::ssl::context::default_workarounds
 	  | restinio::asio_ns::ssl::context::no_sslv2);
-   // todo remove hardcoded path.
-   // Variant 1: use configuration file.
-   // Variant 2: generate certs in memory.
-	tls_context.use_certificate_chain_file(sCaCertPath);
-	tls_context.use_private_key_file(sPrivateKey,
+	tls_context.use_certificate_chain_file(certDir + sCaCertFileName);
+	tls_context.use_private_key_file(certDir + sPrivateKeyFileName,
    	restinio::asio_ns::ssl::context::pem);
    return tls_context;
 }

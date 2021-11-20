@@ -6,16 +6,39 @@
 #include "endpoint/UserEndpoint.h"
 #include "utils/Logger.h"
 
+#include <boost/program_options.hpp>
 #include <restinio/all.hpp>
 #include <restinio/sync_chain/growable_size.hpp>
 #include <restinio/tls.hpp>
 
 #include <iostream>
 
-int main()
+using namespace boost::program_options;
+
+int main(int argc, char* argv[])
 {	
 	try
 	{
+		/*
+		 * Program options.
+		 */
+		std::string certDir;
+		options_description desc{ "Options" };
+		desc.add_options()
+			(",h", "Help screen.")
+			("certDir", value<std::string>(&certDir), "[Required] Absolute path to certificate directory.");
+
+		variables_map varMap;
+		store(parse_command_line(argc, argv, desc), varMap);
+		notify(varMap);
+		if ((argc < 2) || (varMap.count("help")) || (varMap.count("certDir") < 0)) {
+			std::cout << desc << '\n';
+			return 0;
+		}
+		
+		/*
+       * Server configuration.
+       */
 		using traits_t =
 			restinio::single_thread_tls_traits_t<
 			restinio::asio_timer_manager_t,
@@ -33,14 +56,13 @@ int main()
 			.address("localhost")
 			.logger(Notes::Utils::createLogger("restinio"))
 			.request_handler(chain_builder.release())
-			.tls_context(std::move(Notes::Utils::createTlsContext())));
+			.tls_context(std::move(Notes::Utils::createTlsContext(std::move(certDir)))));
 	}
 	catch (const std::exception& ex)
 	{
 		std::cerr << "Failed to start server. Error: " << ex.what() << std::endl;
-		return 1;
 	}
-
+	system("pause");
 	return 0;
 }
 
