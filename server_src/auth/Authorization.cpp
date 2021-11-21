@@ -39,7 +39,6 @@ Authorization::verifyAccessToken(std::string const& token, std::string const& us
       .with_issuer(sIssuerTag)
       .not_before_leeway(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()))
       .verify(decodedToken);
-   // todo add additional checks 
 
    auto claimsMap = decodedToken.get_payload_claims();
    auto userIt = claimsMap.find(sUserKey);
