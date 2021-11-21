@@ -24,7 +24,7 @@ Authorization::generateAccessToken(std::string username)
       .set_type("JWT")
       .set_payload_claim(sUserKey, jwt::claim(username))
       .set_issued_at(std::chrono::system_clock::now())
-      .set_expires_at(std::chrono::system_clock::now() + std::chrono::seconds{ 300 })
+      .set_expires_at(std::chrono::system_clock::now() + std::chrono::seconds{ 600 })
       .sign(jwt::algorithm::hs256{ sSecretKey });
 
    return accessToken;
