@@ -41,6 +41,10 @@ private:
 	std::shared_ptr<express_router_t> _router = std::make_shared<express_router_t>();
 };
 
+//
+// UserEndpoint class definition.
+//
+
 void
 UserEndpoint::handlePostRequests()
 {

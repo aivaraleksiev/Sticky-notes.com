@@ -4,7 +4,7 @@
 #include "endpoint/NotesEndpoint.h"
 #include "endpoint/MainEndpoint.h"
 #include "endpoint/UserEndpoint.h"
-#include "endpoint/InvalidEndpoint.h" //ayvar
+#include "endpoint/InvalidEndpoint.h"
 #include "utils/Logger.h"
 
 #include <boost/program_options.hpp>
