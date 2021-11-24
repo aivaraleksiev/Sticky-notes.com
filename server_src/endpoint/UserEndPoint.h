@@ -20,7 +20,7 @@ namespace Notes {
 // Class handling user endpoint.
 // Look at REST API documentation for usage description.
 //
-// // todo may be add token in a set-cookie instead of authorization header?
+// // /////////////////////////// !todo may be add token in a set-cookie instead of authorization header?
 class UserEndpoint
 {
 public:
