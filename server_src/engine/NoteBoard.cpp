@@ -122,9 +122,15 @@ NoteBoard::searchByTitle(std::string titleName) const
    }
 
    std::vector<Note> result;
-   auto sameTitle = [titleName](auto note) {return note.getTitle() == titleName; };
-   for (auto const& note : std::views::values(_notes) | std::views::filter(sameTitle)) {
-      result.push_back(note);
+   //Uncomment once it is fully supported by MSVC. Now compiles only with 'latest draft'.
+   //auto sameTitle = [titleName](auto note) {return note.getTitle() == titleName; };
+   //for (auto const& note : std::views::values(_notes) | std::views::filter(sameTitle)) {
+   //   result.push_back(note);
+   //}
+   for (auto const&[uid, note] : _notes) {
+      if (note.getTitle() == titleName) {
+         result.push_back(note);
+      }
    }
 
    return result;
@@ -136,9 +142,15 @@ NoteBoard::searchByText(std::string text) const
    std::shared_lock<std::shared_mutex> readLock(_mutex);
 
    std::vector<Note> result;
-   auto sameText = [text](auto note) {return note.getText() == text; };
-   for (auto const& note : std::views::values(_notes) | std::views::filter(sameText)) {
-      result.push_back(note);
+   //Uncomment once it is fully supported by MSVC. Now compiles only with 'latest draft'.
+   //auto sameText = [text](auto note) {return note.getText() == text; };
+   //for (auto const& note : std::views::values(_notes) | std::views::filter(sameText)) {
+   //   result.push_back(note);
+   //}
+   for (auto const& [uid, note] : _notes) {
+      if (note.getText() == text) {
+         result.push_back(note);
+      }
    }
 
    return result;
@@ -153,9 +165,15 @@ NoteBoard::searchByColor(Color color) const
    }
    
    std::vector<Note> result;
-   auto sameColor = [color](auto note) {return note.getColor() == color; };
-   for (auto const& note : std::views::values(_notes) | std::views::filter(sameColor)) {
-      result.push_back(note);
+   //Uncomment once it is fully supported by MSVC. Now compiles only with 'latest draft'.
+   //auto sameColor = [color](auto note) {return note.getColor() == color; };
+   //for (auto const& note : std::views::values(_notes) | std::views::filter(sameColor)) {
+   //   result.push_back(note);
+   //}
+   for (auto const& [uid, note] : _notes) {
+      if (note.getColor() == color) {
+         result.push_back(note);
+      }
    }
 
    return result;
