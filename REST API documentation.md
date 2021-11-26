@@ -79,7 +79,7 @@ _String `newPassword` - The new password._<br>
 [
    {
       "oldPassword": "string",
-      "newPassword": "string",
+      "newPassword": "string"
    }
 ]
 ```
