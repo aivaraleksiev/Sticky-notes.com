@@ -68,10 +68,16 @@ API Design for C++
 How to Design A Good API and Why It Matters
 
 
+---
+API usage metrics
+
 ------
 api usage metrics
 certificates
 users (login token), administrator
 database
 
- 
+---
+openssl req -x509 -newkey rsa:4096 -keyout sticky-notes.com-PrivKey.pem -out sticky-notes.com-CaCert.pem -sha256 -days 7300 -nodes -subj "/C=bG/ST=Sofia/L=Sofia/O=No Company/OU=IT/CN=localhost"
+
+generate self signed certificates
