@@ -47,6 +47,13 @@ https://www.troyhunt.com/your-api-versioning-is-wrong-which-is/
 - DB
 https://www.youtube.com/watch?v=NC7IGLm69Ts
 
+-Pagination
+
+https://www.moesif.com/blog/technical/api-design/REST-API-Design-Filtering-Sorting-and-Pagination/
+https://developer.atlassian.com/server/confluence/pagination-in-the-rest-api/
+https://nordicapis.com/everything-you-need-to-know-about-api-pagination/
+https://www.baeldung.com/rest-api-pagination-in-spring - http codes.
+
 
 - Polling mechansm
 Look at web API Design book
