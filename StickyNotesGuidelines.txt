@@ -1,12 +1,5 @@
 Copyright (c)  2021 Ayvar Aleksiev. All rights reserved.
 
-Look at Eliseys storyboard interview task
-
-
-- which library am I going to use for network communication:
-
-Look at example: https://github.com/pistacheio/pistache/blob/master/examples/rest_server.cc
-
 RESTinio -> in progress 
    https://github.com/Stiffstream/restinio
    https://stiffstream.com/en/docs/restinio/0.6/  -> guide
@@ -24,7 +17,6 @@ How much C ++ code needs to be written to parse the Authorization HTTP header us
    
 Authentication:
 look at you bookmarks -> Network -> Authentication
-Look at restinio basec_auth for a start.
 look at postman authorization learning materials
 https://www.codeproject.com/Articles/704865/Salted-Password-Hashing-Doing-it-Right
    

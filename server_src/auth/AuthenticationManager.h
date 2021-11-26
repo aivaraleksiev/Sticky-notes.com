@@ -45,6 +45,22 @@ public:
       return (userIt != _users.end()) && (*userIt).comparePasswordHash(Utils::generatePasswordHash(password));
    }
 
+   void changeUserPassword(std::string const& username, std::string const& oldPassword, std::string const& newPassword)
+   {
+      std::scoped_lock writeLock(_mutex);
+      if (!authenticateUser(username, oldPassword)) {
+         throw Utils::HttpException(restinio::status_bad_request(), "Invalid username or password.");
+      }
+      if (newPassword.empty() || newPassword.length() > 50) {
+         throw Utils::HttpException(restinio::status_bad_request(), "New password input is invalid.");
+      }
+
+      auto userIt = _users.find(User(username, ""));
+      assert(userIt != _users.end());
+      _users.erase(userIt);
+      _users.emplace(username, Utils::generatePasswordHash(newPassword));
+   }
+
    bool userExist(std::string const& username)
    {
       auto userIt = _users.find(User(username, ""));

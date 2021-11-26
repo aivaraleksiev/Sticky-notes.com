@@ -20,7 +20,6 @@ namespace Notes {
 // Class handling user endpoint.
 // Look at REST API documentation for usage description.
 //
-// // /////////////////////////// !todo may be add token in a set-cookie instead of authorization header?
 class UserEndpoint
 {
 public:
@@ -49,7 +48,7 @@ void
 UserEndpoint::handlePostRequests()
 {
 	_router->http_post(
-		"/user/login",
+		"/api/v1/user/login",
 		[this](auto request, auto) {
 			try {
 				std::string username, password;
@@ -77,7 +76,7 @@ UserEndpoint::handlePostRequests()
 		});
 
 	_router->http_post(
-		"/user/signUp",
+		"/api/v1/user/signUp",
 		[this](auto request, auto) {
 			try {
 				std::string username, password;
@@ -102,13 +101,45 @@ UserEndpoint::handlePostRequests()
 
 			return restinio::request_accepted();
 		});
+
+	_router->http_post(
+		"/api/v1/:username/passwordChange",
+		[this](auto request, auto params) {
+			try {
+				json inputArray = json::parse(request->body());
+				if (inputArray.is_null()) {
+					throw Utils::HttpException(restinio::status_bad_request(), "Missing request body.");
+				}
+				std::string oldPassword;
+				std::string newPassword;
+				for (auto const& obj : inputArray) {
+					obj.at("oldPassword").get_to(oldPassword);
+					obj.at("newPassword").get_to(newPassword);
+				}
+				AuthenticateionManager::getInstance()->changeUserPassword(
+					restinio::cast_to<std::string>(params["username"]),
+					oldPassword,
+					newPassword);
+
+				Utils::createNoContentResponse(request).done();
+			}
+			catch (Utils::HttpException const& exc) {
+				Utils::createErrorResponse(request, exc).done();
+			}
+			catch (std::exception const& exc) {
+				Utils::HttpException exception(restinio::status_internal_server_error(), exc.what());
+				Utils::createErrorResponse(request, exception).done();
+			}
+
+			return restinio::request_accepted();
+		});
 }
 
 void
 UserEndpoint::handleDeleteRequests()
 {
 	_router->http_delete(
-		R"(/user/:username)",
+		R"(/api/v1/user/:username)",
 		[this](auto request, auto params) mutable {
 			try {
 				std::string username, password;

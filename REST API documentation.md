@@ -14,19 +14,20 @@ Based on [Define Note's REST API task](https://github.com/aivaraleksiev/Sticky-n
 | Method                | Endpoint                                     | Description  |                             
 | :------:              | ------                                       | ------       |                        
 | [POST](#Request)      | [/user/signUp](#Request)                     | Creates user with username and password. |
-| [POST](#Request-1)    | [/user/login](#Request-1)                    | Sign in a user. |
-| [DELETE](#Request-2)  | [/user/{username}](#Request-2)               | Deletes a user. |       
-| [GET](#Request-3)     | [/{username}/notes](#Request-3)              | Lists all notes created by the user. |     
-| [GET](#Request-4)     | [/{username}/notes/{noteId}](#Request-4)     | List information for a note. |
-| [GET](#Request-5)     | [/{username}/notes?title={string}&text={string}&color={string}](#Request-5) | Filter notes: _by title_ and/or _by text_ and/or _by color_. |
-| [POST](#Request-6)    | [/{username}/notes](#Request-6)              | Add new notes. |
-| [PUT](#Request-7)     | [/{username}/notes](#Request-7)              | Edit existing notes. |
-| [DELETE](#Request-8)  | [/{username}/notes/{noteId}](#Request-8)     | Delete existing note. |
+| [POST](#Request-1)    | [/user/login](#Request-1)                    | Sign in user. |
+| [POST](#Request-2)    | [/{username}/passwordChange](#Request-2)     | Change user password.|
+| [DELETE](#Request-3)  | [/user/{username}](#Request-3)               | Deletes a user. |       
+| [GET](#Request-4)     | [/{username}/notes](#Request-4)              | Lists all notes created by the user. |     
+| [GET](#Request-5)     | [/{username}/notes/{noteId}](#Request-5)     | List information for a note. |
+| [GET](#Request-6)     | [/{username}/notes?title={string}&text={string}&color={string}](#Request-6) | Filter notes: _by title_ and/or _by text_ and/or _by color_. |
+| [POST](#Request-7)    | [/{username}/notes](#Request-7)              | Add new notes. |
+| [PUT](#Request-8)     | [/{username}/notes](#Request-8)              | Edit existing notes. |
+| [DELETE](#Request-9)  | [/{username}/notes/{noteId}](#Request-9)     | Delete existing note. |
 
 ### Request
 
 ```console
-POST https://localhost:9066/user/signUp
+POST https://localhost:9066/api/v1/user/signUp
 ```
 Create a user with username and password. <br>
 Username/password must not be empty and longer must not be than 50 characters.<br><br>
@@ -46,7 +47,7 @@ Returns `access token(JWT)` in authorization header.
 ### Request
 
 ```console
-POST https://localhost:9066/user/login
+POST https://localhost:9066/api/v1/user/login
 ```
 Sign in a user. <br><br>
 
@@ -66,7 +67,35 @@ Returns `access token(JWT)` in authorization header.
 ### Request
 
 ```console
-DELETE https://localhost:9066/user/{username}
+POST https://localhost:9066/api/v1/{username}/passswordChange
+```
+Change user password. <br><br>
+
+Request body:<br>
+_String `oldPassword` - The currently used password._<br>
+_String `newPassword` - The new password._<br>
+
+```json
+[
+   {
+      "oldPassword": "string",
+      "newPassword": "string",
+   }
+]
+```
+
+### Response
+500 Internal Server Error <br>
+400 Bad Request <br>
+401 Unauthorized  <br>
+204 No Content <br>
+
+---
+
+### Request
+
+```console
+DELETE https://localhost:9066/api/v1/user/{username}
 ```
 Deletes a user. <br><br>
 
