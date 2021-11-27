@@ -1,6 +1,5 @@
 # Sticky-notes.com 
 
-## Summary
 A place where you can create/edit/access your notes online.
 The idea of this project was to create a C++ REST Service which could be accessed through REST API.
 
