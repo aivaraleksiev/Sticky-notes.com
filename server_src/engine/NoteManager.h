@@ -18,24 +18,17 @@ public:
    // Access to the singleton instance of this class.
    static NoteManager* getInstance();
 
-   void addUserNoteBoard(std::string const& user)
-   {
-      _noteboards.emplace( user, std::make_shared<NoteBoard>());
-   }
+   void addUserNoteBoard(std::string const& user);
 
-   std::shared_ptr<NoteBoard> getUserNoteBoard(std::string const& user)
-   {
-      auto it = _noteboards.find(user);
-      if (it == _noteboards.end()) {
-         throw Utils::HttpException(restinio::status_not_found(), "User not found.");
-      }
-      return it->second;
-   }
+   std::shared_ptr<NoteBoard> getUserNoteBoard(std::string const& user);
 
 private:
-   // [usersname -> noteboards]
-   // Users' noteboards.
+   // Users' noteboards. [usersname -> noteboard]
    std::unordered_map<std::string, std::shared_ptr<NoteBoard>> _noteboards;
+   
+   /// Mutex
+   mutable std::shared_mutex  _mutex;
+
 };
 
 } // namespace Notes

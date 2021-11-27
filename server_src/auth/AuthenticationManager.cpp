@@ -31,6 +31,7 @@ AuthenticateionManager::createUser(std::string const& username, std::string cons
 bool
 AuthenticateionManager::authenticateUser(std::string const& username, std::string const& password)
 {
+   std::shared_lock<std::shared_mutex> readLock(_mutex);
    assert(!username.empty() && !password.empty());
    auto userIt = _users.find(User(username, ""));
 
@@ -41,15 +42,16 @@ void
 AuthenticateionManager::changeUserPassword(std::string const& username, std::string const& oldPassword, std::string const& newPassword)
 {
    std::scoped_lock writeLock(_mutex);
-   if (!authenticateUser(username, oldPassword)) {
+   
+   auto userIt = _users.find(User(username, ""));
+   if ((userIt == _users.end()) || 
+       !(*userIt).comparePasswordHash(Utils::generatePasswordHash(oldPassword))) {
       throw Utils::HttpException(restinio::status_bad_request(), "Invalid username or password.");
    }
+
    if (newPassword.empty() || newPassword.length() > 50) {
       throw Utils::HttpException(restinio::status_bad_request(), "New password input is invalid.");
    }
-
-   auto userIt = _users.find(User(username, ""));
-   assert(userIt != _users.end());
    _users.erase(userIt);
    _users.emplace(username, Utils::generatePasswordHash(newPassword));
 }
@@ -57,6 +59,7 @@ AuthenticateionManager::changeUserPassword(std::string const& username, std::str
 bool
 AuthenticateionManager::userExist(std::string const& username)
 {
+   std::shared_lock<std::shared_mutex> readLock(_mutex);
    auto userIt = _users.find(User(username, ""));
 
    return userIt != _users.end();

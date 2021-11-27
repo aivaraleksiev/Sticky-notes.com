@@ -69,9 +69,6 @@
     <ClCompile Include="..\server_src\auth\private\Crypto.cpp">
       <Filter>Source Files\auth\private</Filter>
     </ClCompile>
-    <ClCompile Include="..\server_src\auth\private\User.cpp">
-      <Filter>Source Files\auth\private</Filter>
-    </ClCompile>
     <ClCompile Include="..\server_src\utils\HttpException.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>

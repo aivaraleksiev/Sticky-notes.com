@@ -96,9 +96,6 @@ private:
    std::string _text;
 
    Color _noteColor { Color::yellow };
-
-   /// Mutex
-   mutable std::shared_mutex  _mutex;
 };
 
 } // namespace Notes

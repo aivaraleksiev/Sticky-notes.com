@@ -73,7 +73,7 @@ int main(int argc, char* argv[])
 	{
 		std::cerr << "Failed to start server. Error: " << ex.what() << std::endl;
 	}
-	system("pause");
+
 	return 0;
 }
 

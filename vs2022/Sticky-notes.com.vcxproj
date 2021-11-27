@@ -22,7 +22,6 @@
     <ClCompile Include="..\server_src\auth\AuthenticationManager.cpp" />
     <ClCompile Include="..\server_src\auth\Authorization.cpp" />
     <ClCompile Include="..\server_src\auth\private\Crypto.cpp" />
-    <ClCompile Include="..\server_src\auth\private\User.cpp" />
     <ClCompile Include="..\server_src\engine\Note.cpp" />
     <ClCompile Include="..\server_src\engine\NoteBoard.cpp" />
     <ClCompile Include="..\server_src\engine\NoteManger.cpp" />
