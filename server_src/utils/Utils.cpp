@@ -7,6 +7,7 @@
 #include <restinio/helpers/http_field_parsers/bearer_auth.hpp>
 
 #include <string>
+#include <memory>
 
 namespace {
 	std::atomic<size_t> sUid { 0 };

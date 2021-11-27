@@ -10,72 +10,12 @@ RESTinio -> in progress
    https://github.com/Stiffstream/restinio/issues/52
    https://github.com/Stiffstream/restinio/issues/27 -> https://habr-com.translate.goog/ru/post/417527/?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=nui
    
-   https://bestofcpp.com/repo/Stiffstream-restinio-cpp-network optional values for post and put
-
-How much C ++ code needs to be written to parse the Authorization HTTP header using easy_parser from RESTinio?
-   https://geek-week.imtqy.com/articles/en501498/index.html
-   
-Authentication:
-look at you bookmarks -> Network -> Authentication
-look at postman authorization learning materials
-https://www.codeproject.com/Articles/704865/Salted-Password-Hashing-Doing-it-Right
-   
 example application: 
 HTTP-server implemented with Restinio
 Request proccesing implemented usin Sobjectizer
 https://github.com/Stiffstream/shrimp-demo
 https://www.slideshare.net/YauheniAkhotnikau/shrimp-a-rather-practical-example-of-application-development-with-restinio-and-sobjectizer
 
-use nlohmann json for creating responses in json format:
-	https://github.com/nlohmann/json -> Arbitrary types conversions
-	https://github.com/nlohmann/json#arbitrary-types-conversions
-	https://github.com/nlohmann/json#stl-like-access  -> stl-like access
-	https://github.com/nlohmann/json/blob/develop/doc/examples/push_back.cpp
-	https://json.nlohmann.me/features/enum_conversion/
-	https://github.com/nlohmann/json#serialization--deserialization
-
--REST API design
-https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/
-https://yalantis.com/blog/how-to-create-a-restful-api/
-
-https://stackoverflow.blog/2021/10/06/best-practices-for-authentication-and-authorization-for-rest-apis/
-
-https://www.mixmax.com/engineering/api-paging-built-the-right-way -> Look at The right approach: Cursor-based paging
-
-https://www.freecodecamp.org/news/how-to-version-a-rest-api/
-https://www.troyhunt.com/your-api-versioning-is-wrong-which-is/
-- DB
-https://www.youtube.com/watch?v=NC7IGLm69Ts
-
--Pagination
-
-https://www.moesif.com/blog/technical/api-design/REST-API-Design-Filtering-Sorting-and-Pagination/
-https://developer.atlassian.com/server/confluence/pagination-in-the-rest-api/
-https://nordicapis.com/everything-you-need-to-know-about-api-pagination/
-https://www.baeldung.com/rest-api-pagination-in-spring - http codes.
-
-
-- Polling mechansm
-Look at web API Design book
-
-- read/write client/server app configuration from xml/json file:
-    There is JSON parser in POCO framework
-	https://github.com/nlohmann/json
-
-- look at books for API:
-APIs a strategy guide
-API Design for C++
-How to Design A Good API and Why It Matters
-
-
----
-API usage metrics
-
-------
-api usage metrics
-certificates
-users (login token), administrator
-database
 
 ---
 openssl req -x509 -newkey rsa:4096 -keyout sticky-notes.com-PrivKey.pem -out sticky-notes.com-CaCert.pem -sha256 -days 7300 -nodes -subj "/C=bG/ST=Sofia/L=Sofia/O=No Company/OU=IT/CN=localhost"

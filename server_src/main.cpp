@@ -53,13 +53,21 @@ int main(int argc, char* argv[])
 		// The invalid endpoint handler should be added last, otherwise all handlers are returning bad request.
 		chain_builder.add(Notes::InvalidEndpoint::getInstance()->createInvalidEndpointRequestHandler());
 
-		restinio::run(
-			restinio::on_this_thread<traits_t>()
-			.port(9066)
-			.address("localhost")
-			.logger(Notes::Utils::createLogger("restinio"))
-			.request_handler(chain_builder.release())
-			.tls_context(std::move(Notes::Utils::createTlsContext(std::move(certDir)))));
+		auto asyncServer =
+		   restinio::run_async(
+		      restinio::own_io_context(),
+		      restinio::server_settings_t< traits_t >{}
+	              .port(9066)
+	              .address("localhost")
+	              .logger(Notes::Utils::createLogger("restinio"))
+	              .request_handler(chain_builder.release())
+	              .tls_context(std::move(Notes::Utils::createTlsContext(std::move(certDir)))),
+		      // Threadpool size for the HTTP server.
+		      std::thread::hardware_concurrency());
+		
+		while (true) {
+			// Keep program alive.
+		}
 	}
 	catch (const std::exception& ex)
 	{
