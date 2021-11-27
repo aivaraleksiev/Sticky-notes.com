@@ -7,6 +7,11 @@ The idea of this project was to create a **C++ REST Server** which could be acce
 [**REST API Documentation**](https://github.com/aivaraleksiev/Sticky-notes.com/blob/main/REST%20API%20documentation.md)<br>
 You could use Postman or browser to access the REST Service.
 
+### Simple use case scenario
+1. [Create User.](https://github.com/aivaraleksiev/Sticky-notes.com/blob/main/REST%20API%20documentation.md#Request)
+2. [Add notes.](https://github.com/aivaraleksiev/Sticky-notes.com/blob/main/REST%20API%20documentation.md#Request-7)
+3. [Edit existing notes.](https://github.com/aivaraleksiev/Sticky-notes.com/blob/main/REST%20API%20documentation.md#Request-8)
+
 ## Build project
 
 - Have Visual Studio 2022 to open the project in `vs2022` directory.
