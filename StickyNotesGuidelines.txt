@@ -16,6 +16,10 @@ Request proccesing implemented usin Sobjectizer
 https://github.com/Stiffstream/shrimp-demo
 https://www.slideshare.net/YauheniAkhotnikau/shrimp-a-rather-practical-example-of-application-development-with-restinio-and-sobjectizer
 
+----
+
+Add PROXY????????????
+
 
 ---
 openssl req -x509 -newkey rsa:4096 -keyout sticky-notes.com-PrivKey.pem -out sticky-notes.com-CaCert.pem -sha256 -days 7300 -nodes -subj "/C=bG/ST=Sofia/L=Sofia/O=No Company/OU=IT/CN=localhost"
