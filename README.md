@@ -2,12 +2,11 @@
 
 ## Summary
 A place where you can create/edit/access your notes online.
-The idea of this project was to create a REST Service which could be accessed through REST API.
+The idea of this project was to create a C++ REST Service which could be accessed through REST API.
 
 ## Usage
 [REST API Documentation](https://github.com/aivaraleksiev/Sticky-notes.com/blob/main/REST%20API%20documentation.md)<br>
-You could use Postman and browser to access the REST Service.
-`server_src` folder contains the implementation of the C++ REST Server.
+You could use Postman or browser to access the REST Service.
 
 ## Build project
 
