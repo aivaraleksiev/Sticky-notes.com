@@ -1,4 +1,4 @@
-# Sticky-notes REST API documentation
+# Sticky-notes REST API Documentation
 
 This is the Sticky-notes REST API Reference. It provides API documentation, request/response samples, and usage description.
 
