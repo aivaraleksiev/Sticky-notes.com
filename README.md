@@ -15,9 +15,9 @@ You could use Postman or browser to access the REST Service.
 ````sh
    vcpkg install boost:x64-windows
    vcpkg install restinio:x64-windows
-	vcpkg install nlohmann-json:x64-windows
-	vcpkg install openssl:x64-windows
-	vcpkg install jwt-cpp:x64-windows
+   vcpkg install nlohmann-json:x64-windows
+   vcpkg install openssl:x64-windows
+   vcpkg install jwt-cpp:x64-windows
    vcpkg integrate install
 ````
 
