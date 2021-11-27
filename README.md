@@ -5,7 +5,7 @@ A place where you can create/edit/access your notes online.
 The idea of this project was to create a C++ REST Service which could be accessed through REST API.
 
 ## Usage
-[REST API Documentation](https://github.com/aivaraleksiev/Sticky-notes.com/blob/main/REST%20API%20documentation.md)<br>
+[**REST API Documentation**](https://github.com/aivaraleksiev/Sticky-notes.com/blob/main/REST%20API%20documentation.md)<br>
 You could use Postman or browser to access the REST Service.
 
 ## Build project
@@ -33,8 +33,7 @@ You could use Postman or browser to access the REST Service.
 
 ## Project tracking
 
-[**Sticky-notes.com project**](https://github.com/aivaraleksiev/Sticky-notes.com/projects/1) <br>
-Here you can find what tasks have been done and what is left to do.
+[**Sticky-notes.com Project**](https://github.com/aivaraleksiev/Sticky-notes.com/projects/1)
 
 ## Collaborators
 [Michael Stanin](https://github.com/michael-stanin) will help me with some of the decisions that I have to make during the server implementation.
