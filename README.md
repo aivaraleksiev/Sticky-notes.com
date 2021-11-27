@@ -33,8 +33,8 @@ You could use Postman or browser to access the REST Service.
 
 ## Project tracking
 
-Here you can find what tasks ahve been done and what is left to do.
 [**Sticky-notes.com project**](https://github.com/aivaraleksiev/Sticky-notes.com/projects/1)
+Here you can find what tasks ahve been done and what is left to do.
 
 ## Collaborators
 [Michael Stanin](https://github.com/michael-stanin) will help me with some of the decisions that I have to make during the server implementation.
