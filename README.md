@@ -1,7 +1,5 @@
 # Sticky-notes.com 
 
-[![REST SERVER]()]()
-
 A place where you can create/edit/access your notes online. <br>
 The idea of this project was to create a **C++ REST Server** which could be accessed through REST API.
 
