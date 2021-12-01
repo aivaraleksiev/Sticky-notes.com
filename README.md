@@ -1,7 +1,7 @@
 # Sticky-notes.com 
 
 A place where you can create/edit/access your notes online. <br>
-The idea of this project was to create a **C++ REST Server** which could be accessed through [REST API](https://github.com/aivaraleksiev/Sticky-notes.com/blob/main/REST%20API%20documentation.md).
+The idea of this project was to create a **C++ REST Server** which could be accessed through [**REST API**](https://github.com/aivaraleksiev/Sticky-notes.com/blob/main/REST%20API%20documentation.md).
 
 **Some of the server's characteristics:**
 - SSL/TLS secured (https).
