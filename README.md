@@ -50,7 +50,7 @@ Thank you!<br>
 [Michael Stanin](https://github.com/michael-stanin) will help me with some of the decisions that I have to make during the server implementation.
 
 ## Tools
-- CppCheck
+- CppCheck - A tool for static C/C++ code analysis
 
 ## LICENSE
 BSD 4-clause License
