@@ -1,4 +1,4 @@
-// Copyright 2021
+// Copyright 2021-2022
 // Author: Ayvar Aleksiev
 
 #include "NoteBoard.h"
@@ -9,75 +9,38 @@
 
 namespace Notes {
 
-NoteBoard::NoteBoard(NoteBoard const& other)
-{
-   std::shared_lock<std::shared_mutex> readLock(other._mutex);
-   _notes = other._notes;
-}
-
-NoteBoard&
-NoteBoard::operator=(NoteBoard const& other)
-{
-   std::unique_lock<std::shared_mutex> writeLock(_mutex, std::defer_lock);
-   std::shared_lock<std::shared_mutex> readLock(other._mutex, std::defer_lock);
-   std::lock(writeLock, readLock);
-   if (this != &other) {
-      _notes = other._notes;
-   }
-   return *this;
-}
-
-NoteBoard::NoteBoard(NoteBoard&& other) noexcept
-{
-   std::shared_lock<std::shared_mutex> readLock(other._mutex);
-   _notes = other._notes;
-}
-
-NoteBoard&
-NoteBoard::operator=(NoteBoard&& other) noexcept
-{
-   std::unique_lock<std::shared_mutex> writeLock(_mutex, std::defer_lock);
-   std::shared_lock<std::shared_mutex> readLock(other._mutex, std::defer_lock);
-   std::lock(writeLock, readLock);
-
-   if (this != &other) {
-      _notes = other._notes;
-   }
-   return *this;
-}
-
 UID
-NoteBoard::createNote(Note& note)
+NoteBoard::createNote(std::shared_ptr<Note> notePtr)
 {
    std::scoped_lock writeLock(_mutex);
-   if (note.getUID() == INVALID_UID) {      
-      note.setUID(
+   if (notePtr->getUID() == INVALID_UID) {
+      notePtr->setUID(
          Utils::generateUID());
    }
-   _notes.emplace(note.getUID(), note);
-   return note.getUID();
+   _notes->emplace(notePtr->getUID(), notePtr);
+   return notePtr->getUID();
 }
 
 void
 NoteBoard::updateNote(NoteContext const& note)
 {
    std::scoped_lock writeLock(_mutex);
-   auto it = _notes.find(note._id);
-   if (it == _notes.end()) {
+   auto it = _notes->find(note._id);
+   if (it == _notes->end()) {
       std::ostringstream reason;
       reason << "Note id '" << note._id << "' not found.";
       throw Utils::HttpException(restinio::status_not_found(), reason.str());
    }   
-   auto& editNote = it->second;
+   std::shared_ptr<Note>& updateNote = it->second;
    
    if (note._title) {
-      editNote.setTitle(*note._title);
+      updateNote->setTitle(*note._title);
    }
    if (note._text) {
-      editNote.setText(*note._text);
+      updateNote->setText(*note._text);
    }
    if (note._noteColor && (note._noteColor != Color::invalid)) {
-      editNote.setColor(*note._noteColor);
+      updateNote->setColor(*note._noteColor);
    }
    else {
        std::stringstream errReason;
@@ -86,19 +49,19 @@ NoteBoard::updateNote(NoteContext const& note)
    }
 }
 
-std::unordered_map<UID, Note>
+std::shared_ptr<std::unordered_map<UID, std::shared_ptr<Note>>>
 NoteBoard::getNotes() const
 {
    std::shared_lock<std::shared_mutex> readLock(_mutex);
    return _notes;
 }
 
-Note
+std::shared_ptr<Note>
 NoteBoard::getNote(UID id) const
 {
    std::shared_lock<std::shared_mutex> readLock(_mutex);
-   auto noteIt = _notes.find(id);
-   if (noteIt == _notes.end()) {
+   auto noteIt = _notes->find(id);
+   if (noteIt == _notes->end()) {
       std::ostringstream reason;
       reason << "Note with id '" << id << "'.";
       throw Utils::HttpException(restinio::status_not_found(), reason.str());
@@ -110,10 +73,10 @@ bool
 NoteBoard::deleteNote(UID id)
 {
    std::scoped_lock writeLock(_mutex);
-   return _notes.erase(id);
+   return _notes->erase(id);
 }
 
-std::vector<Note>
+std::vector<std::shared_ptr<Note>>
 NoteBoard::searchByTitle(std::string titleName) const
 {
    std::shared_lock<std::shared_mutex> readLock(_mutex);
@@ -121,32 +84,32 @@ NoteBoard::searchByTitle(std::string titleName) const
       throw Utils::HttpException(restinio::status_bad_request(), "Invalid empty title.");
    }
 
-   std::vector<Note> result;
-   for (auto const&[uid, note] : _notes) {
-      if (note.getTitle() == titleName) {
-         result.push_back(note);
+   std::vector<std::shared_ptr<Note>> result;
+   for (auto const& [uid, notePtr] : *_notes) {
+      if (notePtr->getTitle() == titleName) {
+         result.push_back(notePtr);
       }
    }
 
    return result;
 }
 
-std::vector<Note>
+std::vector<std::shared_ptr<Note>>
 NoteBoard::searchByText(std::string text) const
 {
    std::shared_lock<std::shared_mutex> readLock(_mutex);
 
-   std::vector<Note> result;
-   for (auto const& [uid, note] : _notes) {
-      if (note.getText() == text) {
-         result.push_back(note);
+   std::vector<std::shared_ptr<Note>> result;
+   for (auto const& [uid, notePtr] : *_notes) {
+      if (notePtr->getText() == text) {
+         result.push_back(notePtr);
       }
    }
 
    return result;
 }
 
-std::vector<Note>
+std::vector<std::shared_ptr<Note>>
 NoteBoard::searchByColor(Color color) const
 {
    std::shared_lock<std::shared_mutex> readLock(_mutex);
@@ -154,10 +117,10 @@ NoteBoard::searchByColor(Color color) const
       throw Utils::HttpException(restinio::status_bad_request(), "Invalid color.");
    }
    
-   std::vector<Note> result;
-   for (auto const& [uid, note] : _notes) {
-      if (note.getColor() == color) {
-         result.push_back(note);
+   std::vector<std::shared_ptr<Note>> result;
+   for (auto const& [uid, notePtr] : *_notes) {
+      if (notePtr->getColor() == color) {
+         result.push_back(notePtr);
       }
    }
 

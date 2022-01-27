@@ -42,7 +42,7 @@ private:
    void handleQueryParams(
       restinio::query_string_params_t const& queryParams, 
       std::shared_ptr<NoteBoard> const& noteBoardPtr,
-      std::vector<Note>& result);
+      std::vector<std::shared_ptr<Note>>& result);
 
    using express_router_t = restinio::router::express_router_t<>;
 
@@ -57,7 +57,7 @@ void
 NotesEndpoint::handleQueryParams(
    restinio::query_string_params_t const& queryParams,
    std::shared_ptr<NoteBoard> const& noteBoardPtr,
-   std::vector<Note>& result)
+   std::vector<std::shared_ptr<Note>>& result)
 {
    if (queryParams.empty()) {
       return;
@@ -93,12 +93,12 @@ NotesEndpoint::handleQueryParams(
    auto removeDuplicates = [&result]() {
       auto cmpLess =
          [](auto const& lhsNote, auto const& rhsNote) {
-         return lhsNote.getUID() < rhsNote.getUID();
+         return lhsNote->getUID() < rhsNote->getUID();
       };
       std::sort(result.begin(), result.end(), cmpLess);
       auto predicate =
          [](auto const& lhsNote, auto const& rhsNote) {
-         return lhsNote.getUID() == rhsNote.getUID();
+         return lhsNote->getUID() == rhsNote->getUID();
       };
       auto last = std::unique(result.begin(), result.end(), predicate);
       result.erase(last, result.end());
@@ -119,19 +119,19 @@ NotesEndpoint::handleGetRequests()
             auto noteBoardPtr = NoteManager::getInstance()->getUserNoteBoard(userName);
 
             const auto queryParams = restinio::parse_query(request->header().query());
-            std::vector<Note> result;
+            std::vector<std::shared_ptr<Note>> result;
             if (!queryParams.empty()) {
                handleQueryParams(queryParams, noteBoardPtr, result);
             }
             else {
-               auto notesMap = noteBoardPtr->getNotes();
-               for (auto const& [id, noteValue] : notesMap) {
+               auto notesMapPtr = noteBoardPtr->getNotes();
+               for (auto const& [id, noteValue] : *notesMapPtr) {
                   result.push_back(noteValue);
                }
             }
             json outputArray;
-            for (auto const& note : result) {
-               outputArray.push_back(note);
+            for (std::shared_ptr<Note> const& notePtr : result) {
+               outputArray.push_back(*notePtr);
             }
             restinio::http_status_line_t status_line = 
                outputArray.is_null() ? restinio::status_ok() : restinio::status_no_content();
@@ -160,7 +160,7 @@ NotesEndpoint::handleGetRequests()
             auto noteBoardPtr = NoteManager::getInstance()->getUserNoteBoard(userName);
 
             auto noteId = restinio::cast_to<UID>(params["noteId"]);
-            json outputObj = noteBoardPtr->getNote(noteId);;
+            json outputObj = *noteBoardPtr->getNote(noteId);;
             restinio::http_status_line_t status_line =
                outputObj.is_null() ? restinio::status_ok() : restinio::status_no_content();
 
@@ -198,18 +198,18 @@ NotesEndpoint::handlePostRequests()
                throw Utils::HttpException(restinio::status_bad_request(), "Missing request body.");
             }
             for (auto const& obj : inputArray) {
-               Note newNote;
+               std::shared_ptr<Note> newNote = std::make_shared<Note>();
                std::string readInput;
                obj.at("title").get_to(readInput);
-               newNote.setTitle(readInput);
+               newNote->setTitle(readInput);
                obj.at("text").get_to(readInput);
-               newNote.setText(readInput);
+               newNote->setText(readInput);
                Color readColor;
                obj.at("color").get_to<Color>(readColor);
                // If the user has elected the right color option it will be set, otherwise we will set the color to yellow.
                // This is done in order not to stop the bulk operation in the middle of its lifetime.
                if (readColor != Color::invalid) {
-                  newNote.setColor(readColor);
+                  newNote->setColor(readColor);
                }
                auto id = noteBoardPtr->createNote(newNote);
                noteIdArray.push_back(id);

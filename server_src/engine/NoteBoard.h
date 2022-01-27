@@ -1,4 +1,4 @@
-// Copyright 2021
+// Copyright 2021-2022
 // Author: Ayvar Aleksiev
 
 #pragma once
@@ -6,6 +6,8 @@
 
 #include "Note.h"
 #include "../utils/Utils.h"
+
+#include <memory>
 #include <optional>
 #include <string>
 #include <unordered_map>
@@ -28,46 +30,41 @@ class NoteBoard
 public:
    
    // Constructor.
-   NoteBoard() {}
+   NoteBoard() :
+      _notes(std::make_shared<std::unordered_map<UID,std::shared_ptr<Note>>>()) {}
 
    // Destructor
    ~NoteBoard() = default;
-   
+
    // Copy constructor.
-   NoteBoard(NoteBoard const&);
+   NoteBoard(NoteBoard const&) = delete;
 
    // Assignment operator
-   NoteBoard& operator=(NoteBoard const&);
-   
-   // Move constructor
-   NoteBoard(NoteBoard&& other) noexcept;
+   NoteBoard& operator=(NoteBoard const&) = delete;
 
-   // Move assignment operator
-   NoteBoard& operator=(NoteBoard&& other) noexcept;
-
-   UID createNote(Note& note);
+   UID createNote(std::shared_ptr<Note> notePtr);
 
    void updateNote(NoteContext const& note);
 
-   std::unordered_map<UID, Note> getNotes() const;
+   std::shared_ptr<std::unordered_map<UID, std::shared_ptr<Note>>> getNotes() const;
 
-   Note getNote(UID id) const;
+   std::shared_ptr<Note> getNote(UID id) const;
 
    bool deleteNote(UID id);
 
-   std::vector<Note> searchByTitle(std::string titleName) const;
+   std::vector<std::shared_ptr<Note>> searchByTitle(std::string titleName) const;
 
-   std::vector<Note> searchByText(std::string text) const;
+   std::vector<std::shared_ptr<Note>> searchByText(std::string text) const;
 
-   std::vector<Note> searchByColor(Color color) const;
+   std::vector<std::shared_ptr<Note>> searchByColor(Color color) const;
 
 private:
 
    // [note uid -> note]
-   std::unordered_map<UID, Note> _notes;
+   std::shared_ptr<std::unordered_map<UID, std::shared_ptr<Note>>> _notes;
 
    /// Mutex
-   mutable std::shared_mutex  _mutex;
+   mutable std::shared_mutex _mutex;
 };
 
 } // namespace Notes

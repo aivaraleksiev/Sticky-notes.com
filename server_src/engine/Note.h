@@ -1,4 +1,4 @@
-// Copyright 2021
+// Copyright 2021-2022
 // Author: Ayvar Aleksiev
 
 #pragma once
@@ -45,16 +45,10 @@ public:
    ~Note() = default;
 
    // Copy constructor.
-   Note(Note const& other);
+   Note(Note const& other) = delete;
 
    // Assignment operator
-   Note& operator=(Note const& other);
-
-   // Move constructor
-   Note(Note&& other) noexcept;
-
-   // Move assignment operator
-   Note& operator=(Note&& other) noexcept;
+   Note& operator=(Note const& other) = delete;
 
    void setUID(UID newId) {
       _id = newId;
@@ -79,7 +73,7 @@ public:
    friend void to_json(json& j, Note const& obj) {
     j = json{ {"id", obj._id}, {"title", obj._title}, {"text", obj._text}, {"color", obj._noteColor} };
    }
-   
+
    friend void from_json(json const& j, Note& obj) {
       j.at("id").get_to<UID>(obj._id);
       j.at("title").get_to(obj._title);

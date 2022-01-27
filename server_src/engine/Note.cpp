@@ -1,4 +1,4 @@
-// Copyright 2021
+// Copyright 2021-2022
 // Author: Ayvar Aleksiev
 
 #include "Note.h"
@@ -18,46 +18,6 @@ Color toColor(std::string const& val)
       return Color::red;
    }
    return Color::invalid;
-}
-
-Note::Note(Note const& other)
-{
-   _title = other._title;
-   _text = other._text;
-   _noteColor = other._noteColor;
-   _id = other._id;
-}
-
-Note&
-Note::operator=(Note const& other)
-{
-   if (this != &other) {
-      _title = other._title;
-      _text = other._text;
-      _noteColor = other._noteColor;
-      _id = other._id;
-   }
-   return *this;
-}
-
-Note::Note(Note&& other) noexcept
-{
-   _title = std::move(other._title);
-   _text = std::move(other._text);
-   _noteColor = other._noteColor;
-   _id = other._id;
-}
-
-Note&
-Note::operator=(Note&& other) noexcept
-{
-   if (this != &other) {
-      _title = std::move(other._title);
-      _text = std::move(other._text);
-      _noteColor = other._noteColor;
-      _id = other._id;
-   }
-   return *this;
 }
 
 std::string const&
