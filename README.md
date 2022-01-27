@@ -46,7 +46,7 @@ You could use Postman or browser to access the REST Service.
 [**Sticky-notes.com Project**](https://github.com/aivaraleksiev/Sticky-notes.com/projects/1)
 
 ## Collaborators
-Thank you!
+Thank you!<br>
 [Michael Stanin](https://github.com/michael-stanin) will help me with some of the decisions that I have to make during the server implementation.
 
 ## Tools
