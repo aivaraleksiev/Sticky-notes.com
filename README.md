@@ -48,5 +48,8 @@ You could use Postman or browser to access the REST Service.
 ## Collaborators
 [Michael Stanin](https://github.com/michael-stanin) will help me with some of the decisions that I have to make during the server implementation.
 
+## Tools
+- CppCheck
+
 ## LICENSE
 BSD 4-clause License
