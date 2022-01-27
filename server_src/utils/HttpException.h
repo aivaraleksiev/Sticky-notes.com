@@ -14,7 +14,7 @@ namespace Utils {
 class HttpException : public std::exception
 {
 public:
-   HttpException(restinio::http_status_line_t httpStatusLine, std::string const& reason);
+   HttpException(restinio::http_status_line_t const& httpStatusLine, std::string const& reason);
 
    restinio::http_status_line_t getHttpStatusLine() const;
    char const* what() const override;
@@ -23,7 +23,8 @@ public:
    friend void from_json(nlohmann::json const& j, HttpException& exc);
 
 private:
-   restinio::http_status_line_t _httpStatus;   
+   restinio::http_status_line_t _httpStatus;
+   std::ostringstream _reason;
 };
 
 } // namespace Utils

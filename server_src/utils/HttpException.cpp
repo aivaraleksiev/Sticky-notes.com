@@ -6,11 +6,12 @@
 namespace Notes {
 namespace Utils {
 
-HttpException::HttpException(restinio::http_status_line_t httpStatusLine, std::string const& reason)
+HttpException::HttpException(restinio::http_status_line_t const& httpStatusLine, std::string const& reason)
+   : _httpStatus(httpStatusLine)
 {
-   _httpStatus = httpStatusLine;
    auto const& oldReason = _httpStatus.reason_phrase();
    _httpStatus.reason_phrase(oldReason + ": " + reason);
+   _reason << _httpStatus.status_code().raw_code() << ", " << _httpStatus.reason_phrase();
 }
 
 restinio::http_status_line_t
@@ -22,9 +23,7 @@ HttpException::getHttpStatusLine() const
 char const*
 HttpException::what() const
 {
-   std::ostringstream ostr;
-   ostr << _httpStatus.status_code().raw_code() << ", " << _httpStatus.reason_phrase();
-   return ostr.str().c_str();
+   return _reason.str().c_str();
 }
 
 // Friend function of HttpException.

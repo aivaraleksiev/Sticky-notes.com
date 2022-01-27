@@ -21,7 +21,7 @@ createLogger(
 class Logger
 {
 public:
-	Logger(std::shared_ptr<spdlog::logger> logger)
+	explicit Logger(std::shared_ptr<spdlog::logger> logger)
 		: _logger(std::move(logger))
 	{}
 
