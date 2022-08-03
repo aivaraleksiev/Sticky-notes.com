@@ -42,7 +42,7 @@ You could use Postman or browser to access the REST Service.
 - Now you should be able to build and run the project.
 
 ## Project tracking
-
+Here you can track what work have been done and what is left to do. <br>
 [**Sticky-notes.com Project**](https://github.com/users/aivaraleksiev/projects/1)
 
 ## Collaborators
