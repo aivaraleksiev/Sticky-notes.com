@@ -46,6 +46,9 @@ int main(int argc, char* argv[])
          Notes::Utils::Logger,
          restinio::sync_chain::growable_size_chain_t<>>;
 
+      /*
+       * Add endpoints.
+       */
       restinio::sync_chain::growable_size_chain_t<>::builder_t chain_builder;
       chain_builder.add(Notes::NotesEndpoint::getInstance()->createNoteEndpointRequestHandler());
       chain_builder.add(Notes::MainEndpoint::getInstance()->createMainEndpointRequestHandler());
