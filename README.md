@@ -44,7 +44,8 @@ You could use Postman or browser to access the REST Service.
 
 ## Project tracking
 Here you can track what work have been done and what is left to do. <br>
-[**Sticky-notes.com Project**](https://github.com/users/aivaraleksiev/projects/1)
+[**Sticky-notes.com Project Board**](https://github.com/users/aivaraleksiev/projects/1)
+[**Sticky-notes.com Milestones**](https://github.com/aivaraleksiev/Sticky-notes.com/milestones)
 
 ## Collaborators
 Thank you!<br>
