@@ -53,7 +53,7 @@ int main(int argc, char* argv[])
       // The invalid endpoint handler should be added last, otherwise all handlers are returning bad request.
       chain_builder.add(Notes::InvalidEndpoint::getInstance()->createInvalidEndpointRequestHandler());
 
-      auto asyncServer =
+      auto asyncServerPtr =
          restinio::run_async(
             restinio::own_io_context(),
             restinio::server_settings_t< traits_t >{}
