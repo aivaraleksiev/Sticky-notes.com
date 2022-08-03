@@ -38,8 +38,8 @@ int main(int argc, char* argv[])
 		}
 
 		/*
-       * Server configuration.
-       */
+                 * Server configuration.
+                 */
 		using traits_t =
 			restinio::single_thread_tls_traits_t<
 			restinio::asio_timer_manager_t,
