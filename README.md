@@ -43,7 +43,7 @@ You could use Postman or browser to access the REST Service.
 
 ## Project tracking
 
-[**Sticky-notes.com Project**](https://github.com/aivaraleksiev/Sticky-notes.com/projects/1)
+[**Sticky-notes.com Project**](https://github.com/users/aivaraleksiev/projects/1)
 
 ## Collaborators
 Thank you!<br>
