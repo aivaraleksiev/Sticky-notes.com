@@ -21,13 +21,14 @@ You could use Postman or browser to access the REST Service.
 ## Build project
 
 - Install Visual Studio 2022 to open the project located in `vs2022` directory.
-- Install [vcpkg](https://github.com/Microsoft/vcpkg) to add _boost_, _restinio_, _nlohmann-json_, _openssl_, _jwt-cpp_ packages. Run the following commands:
+- Install [vcpkg](https://github.com/Microsoft/vcpkg) to add _boost_, _restinio_, _nlohmann-json_, _openssl_, _jwt-cpp_, _spdlog_ packages. Run the following commands:
 ````sh
    vcpkg install boost:x64-windows
    vcpkg install restinio:x64-windows
    vcpkg install nlohmann-json:x64-windows
    vcpkg install openssl:x64-windows
    vcpkg install jwt-cpp:x64-windows
+   vcpkg install spdlog:x64-windows
    vcpkg integrate install
 ````
 
