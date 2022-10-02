@@ -8,10 +8,10 @@
 #include <iomanip>
 
 namespace {
-   int const sKeyLength = 32;
-   int const sIterations = 1000;
    unsigned char sSalt[] = "himalayansalt";
    int const sSaltLength = sizeof(sSalt) - 1;
+   int const sKeyLength = 32;
+   int const sIterations = 1000;
 } // anonymous namepspace 
 
 namespace Notes {
@@ -20,8 +20,7 @@ namespace Utils {
 std::string
 generatePasswordHash(std::string const& password)
 {
-   unsigned char hashedPasswordResult[sKeyLength];
-   memset(hashedPasswordResult, 0, sKeyLength);
+   std::array<unsigned char, sKeyLength> hashedPasswordResult{};
    int success =
       PKCS5_PBKDF2_HMAC(password.c_str(),
                         password.length(),
@@ -29,15 +28,15 @@ generatePasswordHash(std::string const& password)
                         sSaltLength,
                         sIterations,
                         EVP_sha256(),
-                        sKeyLength,
-                        hashedPasswordResult);
+                  hashedPasswordResult.size(),
+                         hashedPasswordResult.data());
    if (!success) {
       throw Utils::HttpException(restinio::status_internal_server_error(), "Could not generate password hash.");
    }
 
    std::stringstream ss;
-   for (int i = 0; i < sKeyLength; ++i) {
-      ss << std::setfill('0') << std::setw(2) << std::hex << (int)hashedPasswordResult[i];
+   for (auto const& value : hashedPasswordResult) {
+      ss << std::setfill('0') << std::setw(2) << std::hex << static_cast<int>(value);
    }
    std::string finalPasswordResult = ss.str();
 
