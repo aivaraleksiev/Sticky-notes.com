@@ -54,10 +54,10 @@ UserEndpoint::handlePostRequests()
 				std::string username, password;
 				Utils::parseBasicAuth(request->header(), username, password);
 			   
-			   auto isAuthenticated = AuthenticateionManager::getInstance()->authenticateUser(username, password);
-			   if (!isAuthenticated) {
-					throw Utils::HttpException(restinio::status_bad_request(), "Invalid username or password.");
-			   }
+			        auto isAuthenticated = AuthenticateionManager::getInstance()->authenticateUser(username, password);
+			        if (!isAuthenticated) {
+			           throw Utils::HttpException(restinio::status_bad_request(), "Invalid username or password.");
+			        }
 				std::string accessToken = Authorization::generateAccessToken(username);
 
 				Utils::createNoContentResponse(request)
