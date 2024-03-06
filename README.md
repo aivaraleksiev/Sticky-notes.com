@@ -31,7 +31,7 @@ You could use Postman or browser to access the REST Service.
    vcpkg install openssl:x64-windows
    vcpkg install jwt-cpp:x64-windows
    vcpkg install spdlog:x64-windows
-   vcpkg integrate install
+   vcpkg integrate install 
 ````
 
 - Set _Solution Platform_ in Visual Studio to _x64_. 
