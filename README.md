@@ -55,6 +55,3 @@ Thank you!<br>
 
 ## Tools
 - CppCheck - A tool for static C/C++ code analysis.
-
-## LICENSE
-[BSD 4-clause License](https://github.com/aivaraleksiev/Sticky-notes.com/blob/main/LICENSE)
