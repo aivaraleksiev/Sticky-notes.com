@@ -40,7 +40,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-         vcpkg install gtest:x64-windows
+         vcpkg install gtest gtest:x64-windows
          vcpkg integrate install
 
     - name: Restore NuGet packages
