@@ -7,9 +7,9 @@ name: Windpws VS MSBuild
 
 on:
   push:
-    branches: [ "Windows-VS-build" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "Windows-VS-build" ]
+    branches: [ "main" ]
 
 env:
   # Path to the solution file relative to the root of the project.
