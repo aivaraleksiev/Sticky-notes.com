@@ -51,7 +51,7 @@ Here you can track what work have been done and what is left to do. <br>
 
 ## Collaborators
 Thank you!<br>
-[Michael Stanin](https://github.com/michael-stanin) will help me with some of the decisions that I have to make during the server implementation.
+[Michael Stanin](https://github.com/michael-stanin) helped me with some of the decisions that I had to make during the server implementation.
 
 ## Tools
 - CppCheck - A tool for static C/C++ code analysis.
