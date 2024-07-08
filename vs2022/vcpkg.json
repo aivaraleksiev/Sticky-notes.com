@@ -1,0 +1,30 @@
+{
+  "name": "sticky-notes.com",
+  "version": "1.0",
+  "dependencies": [
+    {
+      "name": "boost",
+      "version>=": "1.84.0"
+    },
+    {
+      "name": "restinio",
+      "version>=": "0.7.2"
+    },
+    {
+      "name": "openssl",
+      "version>=": "3.3.0"
+    },
+    {
+      "name": "nlohmann-json",
+      "version>=": "3.11.3"
+    },
+    {
+      "name": "jwt-cpp",
+      "version>=": "0.7.0"
+    },
+    {
+      "name": "spdlog",
+      "version>=": "1.13.0#1"
+    }
+  ]
+}
