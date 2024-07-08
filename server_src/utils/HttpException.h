@@ -15,6 +15,8 @@ class HttpException : public std::exception
 {
 public:
    HttpException(restinio::http_status_line_t const& httpStatusLine, std::string const& reason);
+   HttpException(HttpException const& other);
+   HttpException& operator=(HttpException const& other);
 
    restinio::http_status_line_t getHttpStatusLine() const;
    char const* what() const override;
