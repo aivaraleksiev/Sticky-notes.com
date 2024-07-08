@@ -35,8 +35,8 @@ You could use Postman or browser to access the REST Service.
 ````
 
 - Set _Solution Platform_ in Visual Studio to _x64_.
-- Add preprocessor definitions in Visual Studio to surpress restinio compilation issues and warnings
-  _Sticky-notes.com project_ -> _Properties_ -> _Configuration Properties_ -> _C/C++_ -> _Preprocessor_ -> _Preprocessor Definitions_ <br>
+- Add preprocessor definitions in Visual Studio to surpress restinio compilation issues and warnings. <br>
+  Go to _Sticky-notes.com project_ -> _Properties_ -> _Configuration Properties_ -> _C/C++_ -> _Preprocessor_ -> _Preprocessor Definitions_ <br>
  NOMINMAX <br>
 _WIN32_WINNT=0x0A00  (For Windows 10)
 - Provide absolute path to certificates directory. <br>
