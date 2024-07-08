@@ -40,16 +40,13 @@ Authorization::verifyAccessToken(std::string const& token, std::string const& us
       .not_before_leeway(std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()))
       .verify(decodedToken);
 
-   auto claimsMap = decodedToken.get_payload_claims();
-   auto userIt = claimsMap.find(sUserKey);
-   if (userIt != claimsMap.end()) {
-      if (username != userIt->second.as_string()) {
-         throw Utils::HttpException(restinio::status_bad_request(), "Invalid token.");
-      }
-      bool foundUser = AuthenticateionManager::getInstance()->userExist(username);
-      if (!foundUser) {
-         throw Utils::HttpException(restinio::status_not_found(), "User not found.");
-      }
+   auto userClaim = decodedToken.get_payload_claim(sUserKey);
+   if (username != userClaim.as_string()) {
+      throw Utils::HttpException(restinio::status_bad_request(), "Invalid token.");
+   }
+   bool foundUser = AuthenticateionManager::getInstance()->userExist(username);
+   if (!foundUser) {
+      throw Utils::HttpException(restinio::status_not_found(), "User not found.");
    }
 }
 
