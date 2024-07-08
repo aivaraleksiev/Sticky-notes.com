@@ -45,7 +45,8 @@ _WIN32_WINNT=0x0A00
   _Sticky-notes.com.exe --certDir "C:\Projects\Sticky-notes.com\server_src\certificates"_ <br><br>
   If you want to start the project from Visual Studio you need to change the project properties: <br>
   Go to `Sticky-notes.com project->Properties->Configuration Properties->Debugging->CommandArguments`.<br>
-  Add `--certDir "YourPath\Sticky-notes.com\server_src\certificates"`.
+  Add `--certDir "YourPath\Sticky-notes.com\server_src\certificates"`. <br>
+  Or `--certDir "$(SolutionDir)..\server_src\certificates\"`.
 - Now you should be able to build and run the project.
 
 ## Project tracking
