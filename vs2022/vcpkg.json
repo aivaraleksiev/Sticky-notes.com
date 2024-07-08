@@ -1,6 +1,7 @@
 {
   "name": "sticky-notes",
   "version": "1.0",
+  "builtin-baseline": "47bf3d1ac192b3fa0feb6e6ac9c845de179eebe9",
   "dependencies": [
     {
       "name": "boost",
