@@ -14,6 +14,22 @@ HttpException::HttpException(restinio::http_status_line_t const& httpStatusLine,
    _reason << _httpStatus.status_code().raw_code() << ", " << _httpStatus.reason_phrase();
 }
 
+HttpException::HttpException(HttpException const& other)
+   : _httpStatus(other._httpStatus)
+{
+   _reason << other._reason.str();
+}
+
+HttpException& HttpException::operator=(const HttpException& other)
+{
+   if (this != &other) {
+      _httpStatus = other._httpStatus;
+      _reason.clear();
+      _reason << other._reason.str();
+   }
+   return *this;
+}
+
 restinio::http_status_line_t
 HttpException::getHttpStatusLine() const
 {
