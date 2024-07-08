@@ -90,7 +90,7 @@ createTlsContext(std::string certDir)
 		certDir.append("/");
 	}
 
-   restinio::asio_ns::ssl::context tls_context{ restinio::asio_ns::ssl::context::sslv23 };
+   restinio::asio_ns::ssl::context tls_context{ restinio::asio_ns::ssl::context::sslv23_server };
    tls_context.set_options(
       restinio::asio_ns::ssl::context::default_workarounds
 	  | restinio::asio_ns::ssl::context::no_sslv2);
