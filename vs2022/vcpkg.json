@@ -26,6 +26,10 @@
     {
       "name": "spdlog",
       "version>=": "1.13.0#1"
+    },
+    {
+      "name": "sqlite3",
+      "version>=": "3.45.3"
     }
   ]
 }
