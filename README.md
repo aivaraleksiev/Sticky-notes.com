@@ -28,7 +28,7 @@ You could use Postman or browser to access the REST Service.
 The stpes below should be already configured right away. <br>
 - Enable vcpkg Manifests in Visual Studio <br>
    Go to _Project Properties_ -> _vcpkg_ -> _Use vcpkg Manifest_. Set to `Yes`.
-- Install [vcpkg](https://github.com/Microsoft/vcpkg) to add _boost_, _restinio_, _nlohmann-json_, _openssl_, _jwt-cpp_, _spdlog_ packages. <br>
+- Install [vcpkg](https://github.com/Microsoft/vcpkg) to add _boost_, _restinio_, _nlohmann-json_, _openssl_, _jwt-cpp_, _spdlog_, _sqlite3_ packages. <br>
   [vs2022/vcpkg.json](https://github.com/aivaraleksiev/Sticky-notes.com/blob/main/vs2022/vcpkg.json) will install locally in _vcpkg_installed_ folder all the needed packages. The commands below are only if you want to install and use the packages system-wide. <br>
 Run the following commands:
 ````sh
@@ -38,6 +38,7 @@ Run the following commands:
    vcpkg install openssl:x64-windows
    vcpkg install jwt-cpp:x64-windows
    vcpkg install spdlog:x64-windows
+   vcpkg install sqlite3:x64-windows
    vcpkg integrate install 
 ````
 
