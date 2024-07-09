@@ -23,7 +23,14 @@ You could use Postman or browser to access the REST Service.
 ## Build project
 
 - Install Visual Studio 2022 to open the project located in `vs2022` directory.
-- Install [vcpkg](https://github.com/Microsoft/vcpkg) to add _boost_, _restinio_, _nlohmann-json_, _openssl_, _jwt-cpp_, _spdlog_ packages. Run the following commands:
+
+### Optional steps
+The stpes below should be already configured right away. <br>
+- Enable vcpkg Manifests in Visual Studio <br>
+   Go to _Project Properties_ -> _vcpkg_ -> _Use vcpkg Manifest_. Set to `Yes`.
+- Install [vcpkg](https://github.com/Microsoft/vcpkg) to add _boost_, _restinio_, _nlohmann-json_, _openssl_, _jwt-cpp_, _spdlog_ packages.
+  **vcpkg.json** will install locally in _vcpkg_installed_ folder all the needed packages. The commands below are only if you want to install and use the packages system-wide. <br>
+Run the following commands:
 ````sh
    vcpkg install boost:x64-windows
    vcpkg install restinio:x64-windows
