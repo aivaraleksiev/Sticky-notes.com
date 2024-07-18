@@ -37,10 +37,10 @@ class Note
 {
 public:
    
-   // Constructor
-   Note(UID id = Utils::generateUID())
-      : _id(id)
-   {}
+   // Factory method to create instances.
+   static std::shared_ptr<Note> createInstance(UID id = Utils::generateUID()) {
+      return std::shared_ptr<Note>(new Note(id));
+   }
 
    // Destructor
    ~Note() = default;
