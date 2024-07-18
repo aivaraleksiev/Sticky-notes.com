@@ -20,6 +20,25 @@ Color toColor(std::string const& val)
    return Color::invalid;
 }
 
+std::string const& colorToString(Color color) {
+   switch (color) {
+   case Color::red:
+      return std::string("red");
+      break;
+   case Color::green:
+      return std::string("green");
+      break;
+   case Color::yellow:
+      return std::string("yellow");
+      break;
+   case Color::invalid:
+      return std::string("invalid");
+      break;
+   default:
+      return std::string("invalid");
+   }
+}
+
 std::string const&
 Note::getTitle() const
 {
