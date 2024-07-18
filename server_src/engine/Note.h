@@ -29,7 +29,7 @@ NLOHMANN_JSON_SERIALIZE_ENUM(Color, {
    })
 
 Color toColor(std::string const& val);
-std::string colorToString(Color color);
+std::string const& colorToString(Color color);
 
 // Synchronized class describing a note.
 // Every note consists of: Title, Text, and note Color.
