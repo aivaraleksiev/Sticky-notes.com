@@ -28,6 +28,10 @@
       "version>=": "1.13.0#1"
     },
     {
+      "name": "fmt",
+      "version>=": "10.2.1#2"
+    },
+    {
       "name": "sqlite3",
       "version>=": "3.45.3"
     }
