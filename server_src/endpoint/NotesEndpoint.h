@@ -198,7 +198,7 @@ NotesEndpoint::handlePostRequests()
                throw Utils::HttpException(restinio::status_bad_request(), "Missing request body.");
             }
             for (auto const& obj : inputArray) {
-               std::shared_ptr<Note> newNote = std::make_shared<Note>();
+               std::shared_ptr<Note> newNote = Note::createInstance();
                std::string readInput;
                obj.at("title").get_to(readInput);
                newNote->setTitle(readInput);
