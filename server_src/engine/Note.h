@@ -83,6 +83,10 @@ public:
    }
 
 private:
+   // Constructor
+   Note(UID id = Utils::generateUID())
+      : _id(id)
+   {}
 
    UID _id;
 
