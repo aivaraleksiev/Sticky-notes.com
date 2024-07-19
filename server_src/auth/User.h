@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "../../utils/HttpException.h"
+#include "../utils/HttpException.h"
 #include <shared_mutex>
 
 namespace Notes {
