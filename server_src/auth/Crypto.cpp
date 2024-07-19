@@ -1,7 +1,7 @@
 // Copyright 2021
 // Author: Ayvar Aleksiev
 
-#include "../../utils/HttpException.h"
+#include "../utils/HttpException.h"
 
 #include <openssl/evp.h>
 #include <sstream>
