@@ -5,8 +5,8 @@
 
 #include "../utils/HttpException.h"
 
-#include "private/User.h"
-#include "private/Crypto.h"
+#include "User.h"
+#include "Crypto.h"
 
 #include <algorithm>
 #include <unordered_set>
