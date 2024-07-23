@@ -16,26 +16,44 @@
 
 using namespace boost::program_options;
 
-int main(int argc, char* argv[])
+class ProgramOptions
 {
-   try
-   {
-      /*
-       * Program options.
-       */
-      std::string certDir;
+public:
+   ProgramOptions() = default;
+   ProgramOptions(ProgramOptions const& o) = delete;
+   ProgramOptions& operator=(ProgramOptions const& o) = delete;
+   bool parseCmdLine(int argc, char* argv[]) {
       options_description desc{ "Options" };
       desc.add_options()
          (",h", "Help screen.")
-         ("certDir", value<std::string>(&certDir), "[Required] Absolute path to certificate directory.");
+         ("certDir", value<std::string>(&_certDir), "[Required] Absolute path to certificate directory.");
 
       variables_map varMap;
       store(parse_command_line(argc, argv, desc), varMap);
       notify(varMap);
       if ((argc < 2) || (varMap.count("help")) || (varMap.count("certDir") < 0)) {
          std::cout << desc << '\n';
+         return false;
+      }
+      return true;
+   }
+   // Returns Certificate directory absolute path.
+   std::string getCertDir() const {
+      return _certDir;
+   }
+private:
+   std::string _certDir;
+};
+
+int main(int argc, char* argv[])
+{
+   try
+   {
+      ProgramOptions cmdLineOptHandler;
+      if (!cmdLineOptHandler.parseCmdLine(argc, argv)) {
          return 0;
       }
+      std::string certDir = cmdLineOptHandler.getCertDir();
 
       /*
        * Server configuration.
