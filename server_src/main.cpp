@@ -54,23 +54,20 @@ int main(int argc, char* argv[])
          return 0;
       }
       std::string certDir = cmdLineOptHandler.getCertDir();
-
-      /*
-       * Server configuration.
-       */
+      
+      // Server configuration.
       using traits_t =
          restinio::single_thread_tls_traits_t<
          restinio::asio_timer_manager_t,
          Notes::Utils::Logger,
          restinio::sync_chain::growable_size_chain_t<>>;
 
-      /*
-       * Add endpoints.
-       */
+      // Add endpoints.
       restinio::sync_chain::growable_size_chain_t<>::builder_t chain_builder;
       chain_builder.add(Notes::NotesEndpoint::getInstance()->createNoteEndpointRequestHandler());
       chain_builder.add(Notes::MainEndpoint::getInstance()->createMainEndpointRequestHandler());
       chain_builder.add(Notes::UserEndpoint::getInstance()->createUserEndpointRequestHandler());
+      
       // The invalid endpoint handler should be added last, otherwise all handlers are returning bad request.
       chain_builder.add(Notes::InvalidEndpoint::getInstance()->createInvalidEndpointRequestHandler());
 
