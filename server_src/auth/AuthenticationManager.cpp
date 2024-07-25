@@ -9,8 +9,8 @@ namespace Notes {
 AuthenticationManager*
 AuthenticationManager::getInstance()
 {
-   static std::unique_ptr<AuthenticateionManager> sManagerPtr(
-      std::make_unique<AuthenticateionManager>());
+   static std::unique_ptr<AuthenticationManager> sManagerPtr(
+      std::make_unique<AuthenticationManager>());
    return sManagerPtr.get();
 }
 
