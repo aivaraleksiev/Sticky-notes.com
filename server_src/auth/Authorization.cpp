@@ -44,7 +44,7 @@ Authorization::verifyAccessToken(std::string const& token, std::string const& us
    if (username != userClaim.as_string()) {
       throw Utils::HttpException(restinio::status_bad_request(), "Invalid token.");
    }
-   bool foundUser = AuthenticateionManager::getInstance()->userExist(username);
+   bool foundUser = AuthenticationManager::getInstance()->userExist(username);
    if (!foundUser) {
       throw Utils::HttpException(restinio::status_not_found(), "User not found.");
    }
