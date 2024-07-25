@@ -17,12 +17,12 @@
 namespace Notes {
 
 /// Class handling authenticaion.
-class AuthenticateionManager
+class AuthenticationManager
 {
 public:
 
    // Access to the singleton instance of this class.
-   static AuthenticateionManager* getInstance();
+   static AuthenticationManager* getInstance();
 
    void createUser(std::string const& username, std::string const& password);
    
