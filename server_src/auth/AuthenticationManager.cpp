@@ -6,8 +6,8 @@
 
 namespace Notes {
 
-AuthenticateionManager*
-AuthenticateionManager::getInstance()
+AuthenticationManager*
+AuthenticationManager::getInstance()
 {
    static std::unique_ptr<AuthenticateionManager> sManagerPtr(
       std::make_unique<AuthenticateionManager>());
@@ -15,7 +15,7 @@ AuthenticateionManager::getInstance()
 }
 
 void
-AuthenticateionManager::createUser(std::string const& username, std::string const& password)
+AuthenticationManager::createUser(std::string const& username, std::string const& password)
 {
    std::scoped_lock writeLock(_mutex);
    if (username.empty() || password.empty() || username.length() > 50 || password.length() > 50) {
@@ -29,7 +29,7 @@ AuthenticateionManager::createUser(std::string const& username, std::string cons
 }
 
 bool
-AuthenticateionManager::authenticateUser(std::string const& username, std::string const& password)
+AuthenticationManager::authenticateUser(std::string const& username, std::string const& password)
 {
    std::shared_lock<std::shared_mutex> readLock(_mutex);
    assert(!username.empty() && !password.empty());
@@ -39,7 +39,7 @@ AuthenticateionManager::authenticateUser(std::string const& username, std::strin
 }
 
 void
-AuthenticateionManager::changeUserPassword(std::string const& username, std::string const& oldPassword, std::string const& newPassword)
+AuthenticationManager::changeUserPassword(std::string const& username, std::string const& oldPassword, std::string const& newPassword)
 {
    std::scoped_lock writeLock(_mutex);
    
@@ -57,7 +57,7 @@ AuthenticateionManager::changeUserPassword(std::string const& username, std::str
 }
 
 bool
-AuthenticateionManager::userExist(std::string const& username)
+AuthenticationManager::userExist(std::string const& username)
 {
    std::shared_lock<std::shared_mutex> readLock(_mutex);
    auto userIt = _users.find(User(username, ""));
@@ -66,7 +66,7 @@ AuthenticateionManager::userExist(std::string const& username)
 }
 
 void
-AuthenticateionManager::deleteUser(std::string const& username, std::string const& password)
+AuthenticationManager::deleteUser(std::string const& username, std::string const& password)
 {
    assert(!username.empty() && !password.empty());
    std::scoped_lock writeLock(_mutex);
