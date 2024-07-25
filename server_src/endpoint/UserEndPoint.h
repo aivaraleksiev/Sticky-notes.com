@@ -54,7 +54,7 @@ UserEndpoint::handlePostRequests()
 				std::string username, password;
 				Utils::parseBasicAuth(request->header(), username, password);
 			   
-			        auto isAuthenticated = AuthenticateionManager::getInstance()->authenticateUser(username, password);
+			        auto isAuthenticated = AuthenticationManager::getInstance()->authenticateUser(username, password);
 			        if (!isAuthenticated) {
 			           throw Utils::HttpException(restinio::status_bad_request(), "Invalid username or password.");
 			        }
@@ -82,7 +82,7 @@ UserEndpoint::handlePostRequests()
 				std::string username, password;
 				Utils::parseBasicAuth(request->header(), username, password);
 
-				AuthenticateionManager::getInstance()->createUser(username, password);
+				AuthenticationManager::getInstance()->createUser(username, password);
 				std::string accessToken = Authorization::generateAccessToken(username);
 
 				NoteManager::getInstance()->addUserNoteBoard(username);
@@ -116,7 +116,7 @@ UserEndpoint::handlePostRequests()
 					obj.at("oldPassword").get_to(oldPassword);
 					obj.at("newPassword").get_to(newPassword);
 				}
-				AuthenticateionManager::getInstance()->changeUserPassword(
+				AuthenticationManager::getInstance()->changeUserPassword(
 					restinio::cast_to<std::string>(params["username"]),
 					oldPassword,
 					newPassword);
@@ -149,7 +149,7 @@ UserEndpoint::handleDeleteRequests()
 				if (userNameParam != username) {
 					throw Utils::HttpException(restinio::status_bad_request(), "Username missmatch.");
 				}
-			   AuthenticateionManager::getInstance()->deleteUser(username, password);				
+			   AuthenticationManager::getInstance()->deleteUser(username, password);				
 
 				Utils::createNoContentResponse(request).done();
 			}
