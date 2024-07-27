@@ -7,6 +7,7 @@
 #include "../utils/HttpException.h"
 #include "../auth/AuthenticationManager.h"
 #include "../auth/Authorization.h"
+#include "../database/SQLiteDBConnection.h"
 #include <cassert>
 
 #include <nlohmann/json.hpp>
@@ -32,12 +33,16 @@ public:
 	}
 
 	auto createUserEndpointRequestHandler();
+	void setDatabaseConnection(std::shared_ptr<SQLiteDBConnection> const& dbService) {
+		_dbService = dbService;
+	}
 private:
 	void handlePostRequests();
 	void handleDeleteRequests();
 
 	using express_router_t = restinio::router::express_router_t<>;
 	std::shared_ptr<express_router_t> _router = std::make_shared<express_router_t>();
+        std::shared_ptr<SQLiteDBConnection> _dbService {nullptr};
 };
 
 //
