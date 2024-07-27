@@ -33,7 +33,7 @@ public:
 	}
 
 	auto createUserEndpointRequestHandler();
-	void setDatabaseConnection(std::shared_ptr<SQLiteDBConnection> const& dbService) {
+	void setDbConnection(std::shared_ptr<SQLiteDBConnection> const& dbService) {
 		_dbService = dbService;
 	}
 private:
