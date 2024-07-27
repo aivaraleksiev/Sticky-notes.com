@@ -5,6 +5,7 @@
 #include "endpoint/MainEndpoint.h"
 #include "endpoint/UserEndpoint.h"
 #include "endpoint/InvalidEndpoint.h"
+#include "database/SQLiteDBConnection.h"
 #include "utils/Logger.h"
 
 #include <boost/program_options.hpp>
@@ -54,6 +55,10 @@ int main(int argc, char* argv[])
          return 0;
       }
       std::string certDir = cmdLineOptHandler.getCertDir();
+
+      // Initialize database.
+      std::shared_ptr<Notes::SQLiteDBConnection> dbServicePtr =
+         Notes::SQLiteDBConnection::createInstance("sticky-notes.db");
       
       // Server configuration.
       using traits_t =
