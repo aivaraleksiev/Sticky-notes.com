@@ -8,8 +8,8 @@
 #include "../auth/AuthenticationManager.h"
 #include "../auth/Authorization.h"
 #include "../database/SQLiteDBConnection.h"
-#include <cassert>
 
+#include <cassert>
 #include <nlohmann/json.hpp>
 #include <restinio/all.hpp>
 
