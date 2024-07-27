@@ -19,6 +19,7 @@ using namespace boost::program_options;
 
 namespace {
 std::string const sDbName("sticky-notes.db");
+constexpr uint16_t sServerPort = 9066;
 }
 
 class ProgramOptions
@@ -89,7 +90,7 @@ int main(int argc, char* argv[])
          restinio::run_async(
             restinio::own_io_context(),
             restinio::server_settings_t< traits_t >{}
-                 .port(9066)
+                 .port(sServerPort)
                  .address("localhost")
                  .logger(Notes::Utils::createLogger("restinio"))
                  .request_handler(chain_builder.release())
