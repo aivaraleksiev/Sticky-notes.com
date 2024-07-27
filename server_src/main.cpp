@@ -17,6 +17,10 @@
 
 using namespace boost::program_options;
 
+namespace {
+std::string const sDbName("sticky-notes.db");
+}
+
 class ProgramOptions
 {
 public:
@@ -58,7 +62,7 @@ int main(int argc, char* argv[])
 
       // Initialize database.
       std::shared_ptr<Notes::SQLiteDBConnection> dbServiceSPtr =
-         Notes::SQLiteDBConnection::createInstance("sticky-notes.db");
+         Notes::SQLiteDBConnection::createInstance(sDbName);
       
       // Server configuration.
       using traits_t =
