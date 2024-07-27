@@ -68,10 +68,13 @@ int main(int argc, char* argv[])
          restinio::sync_chain::growable_size_chain_t<>>;
 
       // Add endpoints.
+      auto userEndpointPtr = Notes::UserEndpoint::getInstance();
+      userEndpointPtr->setDbConnection(dbServicePtr);
+      
       restinio::sync_chain::growable_size_chain_t<>::builder_t chain_builder;
       chain_builder.add(Notes::NotesEndpoint::getInstance()->createNoteEndpointRequestHandler());
       chain_builder.add(Notes::MainEndpoint::getInstance()->createMainEndpointRequestHandler());
-      chain_builder.add(Notes::UserEndpoint::getInstance()->createUserEndpointRequestHandler());
+      chain_builder.add(userEndpointPtr->createUserEndpointRequestHandler());
       
       // The invalid endpoint handler should be added last, otherwise all handlers are returning bad request.
       chain_builder.add(Notes::InvalidEndpoint::getInstance()->createInvalidEndpointRequestHandler());
