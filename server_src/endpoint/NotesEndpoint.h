@@ -36,7 +36,9 @@ public:
    void handlePutRequests();
    void handleDeleteRequests();
    auto createNoteEndpointRequestHandler();
-
+   void setDbConnection(std::shared_ptr<SQLiteDBConnection> const& dbService) {
+      _dbService = dbService;
+   }
 private:  
    // Helper function handling query params for filtered GET request.
    void handleQueryParams(
@@ -45,8 +47,9 @@ private:
       std::vector<std::shared_ptr<Note>>& result);
 
    using express_router_t = restinio::router::express_router_t<>;
-
    std::shared_ptr<express_router_t> _router = std::make_shared<express_router_t>();
+
+   std::shared_ptr<SQLiteDBConnection> _dbService { nullptr };
 };
 
 //
