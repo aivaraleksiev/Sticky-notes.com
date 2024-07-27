@@ -70,9 +70,11 @@ int main(int argc, char* argv[])
       // Add endpoints.
       auto userEndpointUPtr = Notes::UserEndpoint::getInstance();
       userEndpointUPtr->setDbConnection(dbServiceSPtr);
+      auto notesEndpointUPtr = Notes::NotesEndpoint::getInstance();
+      notesEndpointUPtr->setDbConnection(dbServiceSPtr);
       
       restinio::sync_chain::growable_size_chain_t<>::builder_t chain_builder;
-      chain_builder.add(Notes::NotesEndpoint::getInstance()->createNoteEndpointRequestHandler());
+      chain_builder.add(notesEndpointUPtr->createNoteEndpointRequestHandler());
       chain_builder.add(Notes::MainEndpoint::getInstance()->createMainEndpointRequestHandler());
       chain_builder.add(userEndpointPtr->createUserEndpointRequestHandler());
       
