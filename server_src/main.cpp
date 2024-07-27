@@ -57,7 +57,7 @@ int main(int argc, char* argv[])
       std::string certDir = cmdLineOptHandler.getCertDir();
 
       // Initialize database.
-      std::shared_ptr<Notes::SQLiteDBConnection> dbServicePtr =
+      std::shared_ptr<Notes::SQLiteDBConnection> dbServiceSPtr =
          Notes::SQLiteDBConnection::createInstance("sticky-notes.db");
       
       // Server configuration.
@@ -68,8 +68,8 @@ int main(int argc, char* argv[])
          restinio::sync_chain::growable_size_chain_t<>>;
 
       // Add endpoints.
-      auto userEndpointPtr = Notes::UserEndpoint::getInstance();
-      userEndpointPtr->setDbConnection(dbServicePtr);
+      auto userEndpointUPtr = Notes::UserEndpoint::getInstance();
+      userEndpointUPtr->setDbConnection(dbServiceSPtr);
       
       restinio::sync_chain::growable_size_chain_t<>::builder_t chain_builder;
       chain_builder.add(Notes::NotesEndpoint::getInstance()->createNoteEndpointRequestHandler());
