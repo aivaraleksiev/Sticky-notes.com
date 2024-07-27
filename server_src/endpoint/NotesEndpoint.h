@@ -49,7 +49,7 @@ private:
    using express_router_t = restinio::router::express_router_t<>;
    std::shared_ptr<express_router_t> _router = std::make_shared<express_router_t>();
 
-   std::shared_ptr<SQLiteDBConnection> _dbService { nullptr };
+   std::shared_ptr<SQLiteDBConnection> _dbService {nullptr};
 };
 
 //
