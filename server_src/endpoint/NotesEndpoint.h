@@ -8,6 +8,7 @@
 #include "../auth/Authorization.h"
 #include "../utils/Utils.h"
 #include "../utils/HttpException.h"
+#include "../database/SQLiteDBConnection.h"
 
 
 #include <nlohmann/json.hpp>
