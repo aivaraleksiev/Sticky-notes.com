@@ -21,7 +21,8 @@
   <ItemGroup>
     <ClCompile Include="..\server_src\auth\AuthenticationManager.cpp" />
     <ClCompile Include="..\server_src\auth\Authorization.cpp" />
-    <ClCompile Include="..\server_src\auth\private\Crypto.cpp" />
+    <ClCompile Include="..\server_src\auth\Crypto.cpp" />
+    <ClCompile Include="..\server_src\database\SQLiteDBConnection.cpp" />
     <ClCompile Include="..\server_src\engine\Note.cpp" />
     <ClCompile Include="..\server_src\engine\NoteBoard.cpp" />
     <ClCompile Include="..\server_src\engine\NoteManger.cpp" />
@@ -33,8 +34,9 @@
   <ItemGroup>
     <ClInclude Include="..\server_src\auth\AuthenticationManager.h" />
     <ClInclude Include="..\server_src\auth\Authorization.h" />
-    <ClInclude Include="..\server_src\auth\private\Crypto.h" />
-    <ClInclude Include="..\server_src\auth\private\User.h" />
+    <ClInclude Include="..\server_src\auth\Crypto.h" />
+    <ClInclude Include="..\server_src\auth\User.h" />
+    <ClInclude Include="..\server_src\database\SQLiteDBConnection.h" />
     <ClInclude Include="..\server_src\endpoint\InvalidEndpoint.h" />
     <ClInclude Include="..\server_src\endpoint\MainEndpoint.h" />
     <ClInclude Include="..\server_src\endpoint\NotesEndpoint.h" />
@@ -141,6 +143,7 @@
     <ClCompile>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <PreprocessorDefinitions>NOMINMAX;_WIN32_WINNT=0x0A00;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
     </ClCompile>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
