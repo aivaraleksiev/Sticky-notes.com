@@ -34,11 +34,11 @@
     <Filter Include="Source Files\auth">
       <UniqueIdentifier>{2e4dc431-3505-4001-8566-96f17c069eb9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\auth\private">
-      <UniqueIdentifier>{9386ab5e-be6d-40ce-a8db-bee2ca775980}</UniqueIdentifier>
+    <Filter Include="Header Files\database">
+      <UniqueIdentifier>{2ebf0743-92ba-428e-b60f-9e41db303b51}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\auth\private">
-      <UniqueIdentifier>{56307c21-e68e-4d63-b2fc-e5de26a10316}</UniqueIdentifier>
+    <Filter Include="Source Files\database">
+      <UniqueIdentifier>{7c2f3233-b686-4a42-8ac6-c17852d6ebec}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -66,11 +66,14 @@
     <ClCompile Include="..\server_src\auth\Authorization.cpp">
       <Filter>Source Files\auth</Filter>
     </ClCompile>
-    <ClCompile Include="..\server_src\auth\private\Crypto.cpp">
-      <Filter>Source Files\auth\private</Filter>
-    </ClCompile>
     <ClCompile Include="..\server_src\utils\HttpException.cpp">
       <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\server_src\auth\Crypto.cpp">
+      <Filter>Source Files\auth</Filter>
+    </ClCompile>
+    <ClCompile Include="..\server_src\database\SQLiteDBConnection.cpp">
+      <Filter>Source Files\database</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -104,17 +107,20 @@
     <ClInclude Include="..\server_src\auth\Authorization.h">
       <Filter>Header Files\auth</Filter>
     </ClInclude>
-    <ClInclude Include="..\server_src\auth\private\Crypto.h">
-      <Filter>Header Files\auth\private</Filter>
-    </ClInclude>
-    <ClInclude Include="..\server_src\auth\private\User.h">
-      <Filter>Header Files\auth\private</Filter>
-    </ClInclude>
     <ClInclude Include="..\server_src\utils\HttpException.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
     <ClInclude Include="..\server_src\endpoint\InvalidEndpoint.h">
       <Filter>Header Files\endpoint</Filter>
+    </ClInclude>
+    <ClInclude Include="..\server_src\auth\User.h">
+      <Filter>Header Files\auth</Filter>
+    </ClInclude>
+    <ClInclude Include="..\server_src\auth\Crypto.h">
+      <Filter>Header Files\auth</Filter>
+    </ClInclude>
+    <ClInclude Include="..\server_src\database\SQLiteDBConnection.h">
+      <Filter>Header Files\database</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
