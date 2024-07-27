@@ -10,7 +10,6 @@
 #include "../utils/HttpException.h"
 #include "../database/SQLiteDBConnection.h"
 
-
 #include <nlohmann/json.hpp>
 #include <restinio/all.hpp>
 
