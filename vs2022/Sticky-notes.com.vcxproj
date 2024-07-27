@@ -1,126 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
-    </Filter>
-    <Filter Include="Header Files\utils">
-      <UniqueIdentifier>{9588e13f-3b0b-4dac-ba07-abe0b7eefcd0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\utils">
-      <UniqueIdentifier>{4dc5e98c-4600-4703-8cff-d585f85c367e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\engine">
-      <UniqueIdentifier>{76828e32-5b41-4cb6-83e5-ba83e62afb79}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\engine">
-      <UniqueIdentifier>{934ced2d-ccaa-4c5e-be65-831a9bcd756c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\endpoint">
-      <UniqueIdentifier>{49a750d1-98ea-4cd2-b380-507207aadc2a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\auth">
-      <UniqueIdentifier>{6ff2db8a-f258-42b2-8c85-67d4eb3e23db}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\auth">
-      <UniqueIdentifier>{2e4dc431-3505-4001-8566-96f17c069eb9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\database">
-      <UniqueIdentifier>{2ebf0743-92ba-428e-b60f-9e41db303b51}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\database">
-      <UniqueIdentifier>{7c2f3233-b686-4a42-8ac6-c17852d6ebec}</UniqueIdentifier>
-    </Filter>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\server_src\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\server_src\utils\Utils.cpp">
-      <Filter>Source Files\utils</Filter>
-    </ClCompile>
-    <ClCompile Include="..\server_src\utils\Logger.cpp">
-      <Filter>Source Files\utils</Filter>
-    </ClCompile>
-    <ClCompile Include="..\server_src\engine\Note.cpp">
-      <Filter>Source Files\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\server_src\engine\NoteBoard.cpp">
-      <Filter>Source Files\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\server_src\engine\NoteManger.cpp">
-      <Filter>Source Files\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\server_src\auth\AuthenticationManager.cpp">
-      <Filter>Source Files\auth</Filter>
-    </ClCompile>
-    <ClCompile Include="..\server_src\auth\Authorization.cpp">
-      <Filter>Source Files\auth</Filter>
-    </ClCompile>
-    <ClCompile Include="..\server_src\utils\HttpException.cpp">
-      <Filter>Source Files\utils</Filter>
-    </ClCompile>
-    <ClCompile Include="..\server_src\auth\Crypto.cpp">
-      <Filter>Source Files\auth</Filter>
-    </ClCompile>
-    <ClCompile Include="..\server_src\database\SQLiteDBConnection.cpp">
-      <Filter>Source Files\database</Filter>
-    </ClCompile>
+    <ClCompile Include="..\server_src\auth\AuthenticationManager.cpp" />
+    <ClCompile Include="..\server_src\auth\Authorization.cpp" />
+    <ClCompile Include="..\server_src\auth\Crypto.cpp" />
+    <ClCompile Include="..\server_src\database\SQLiteDBConnection.cpp" />
+    <ClCompile Include="..\server_src\engine\Note.cpp" />
+    <ClCompile Include="..\server_src\engine\NoteBoard.cpp" />
+    <ClCompile Include="..\server_src\engine\NoteManger.cpp" />
+    <ClCompile Include="..\server_src\main.cpp" />
+    <ClCompile Include="..\server_src\utils\HttpException.cpp" />
+    <ClCompile Include="..\server_src\utils\Logger.cpp" />
+    <ClCompile Include="..\server_src\utils\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\server_src\utils\Utils.h">
-      <Filter>Header Files\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="..\server_src\utils\Logger.h">
-      <Filter>Header Files\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="..\server_src\engine\Note.h">
-      <Filter>Header Files\engine</Filter>
-    </ClInclude>
-    <ClInclude Include="..\server_src\engine\NoteBoard.h">
-      <Filter>Header Files\engine</Filter>
-    </ClInclude>
-    <ClInclude Include="..\server_src\engine\NoteManager.h">
-      <Filter>Header Files\engine</Filter>
-    </ClInclude>
-    <ClInclude Include="..\server_src\endpoint\MainEndpoint.h">
-      <Filter>Header Files\endpoint</Filter>
-    </ClInclude>
-    <ClInclude Include="..\server_src\endpoint\NotesEndpoint.h">
-      <Filter>Header Files\endpoint</Filter>
-    </ClInclude>
-    <ClInclude Include="..\server_src\endpoint\UserEndPoint.h">
-      <Filter>Header Files\endpoint</Filter>
-    </ClInclude>
-    <ClInclude Include="..\server_src\auth\AuthenticationManager.h">
-      <Filter>Header Files\auth</Filter>
-    </ClInclude>
-    <ClInclude Include="..\server_src\auth\Authorization.h">
-      <Filter>Header Files\auth</Filter>
-    </ClInclude>
-    <ClInclude Include="..\server_src\utils\HttpException.h">
-      <Filter>Header Files\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="..\server_src\endpoint\InvalidEndpoint.h">
-      <Filter>Header Files\endpoint</Filter>
-    </ClInclude>
-    <ClInclude Include="..\server_src\auth\User.h">
-      <Filter>Header Files\auth</Filter>
-    </ClInclude>
-    <ClInclude Include="..\server_src\auth\Crypto.h">
-      <Filter>Header Files\auth</Filter>
-    </ClInclude>
-    <ClInclude Include="..\server_src\database\SQLiteDBConnection.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
+    <ClInclude Include="..\server_src\auth\AuthenticationManager.h" />
+    <ClInclude Include="..\server_src\auth\Authorization.h" />
+    <ClInclude Include="..\server_src\auth\Crypto.h" />
+    <ClInclude Include="..\server_src\auth\User.h" />
+    <ClInclude Include="..\server_src\database\SQLiteDBConnection.h" />
+    <ClInclude Include="..\server_src\endpoint\InvalidEndpoint.h" />
+    <ClInclude Include="..\server_src\endpoint\MainEndpoint.h" />
+    <ClInclude Include="..\server_src\endpoint\NotesEndpoint.h" />
+    <ClInclude Include="..\server_src\endpoint\UserEndPoint.h" />
+    <ClInclude Include="..\server_src\engine\Note.h" />
+    <ClInclude Include="..\server_src\engine\NoteBoard.h" />
+    <ClInclude Include="..\server_src\engine\NoteManager.h" />
+    <ClInclude Include="..\server_src\utils\HttpException.h" />
+    <ClInclude Include="..\server_src\utils\Logger.h" />
+    <ClInclude Include="..\server_src\utils\Utils.h" />
   </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{EE9305C6-8971-45B8-BD44-A641611A1520}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg">
+    <VcpkgEnableManifest>true</VcpkgEnableManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <PreprocessorDefinitions>NOMINMAX;_WIN32_WINNT=0x0A00;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <PreprocessorDefinitions>NOMINMAX;_WIN32_WINNT=0x0A00;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
 </Project>
