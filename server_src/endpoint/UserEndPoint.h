@@ -34,7 +34,7 @@ public:
 
 	auto createUserEndpointRequestHandler();
 	void setDbConnection(std::shared_ptr<SQLiteDBConnection> const& dbService) {
-		_dbService = dbService;
+		AuthenticationManager::getInstance()->setDbConnection(dbService);
 	}
 private:
 	void handlePostRequests();
@@ -42,7 +42,6 @@ private:
 
 	using express_router_t = restinio::router::express_router_t<>;
 	std::shared_ptr<express_router_t> _router = std::make_shared<express_router_t>();
-        std::shared_ptr<SQLiteDBConnection> _dbService {nullptr};
 };
 
 //
