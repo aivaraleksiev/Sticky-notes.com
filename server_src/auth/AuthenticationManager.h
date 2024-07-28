@@ -34,6 +34,10 @@ public:
 
    void deleteUser(std::string const& username, std::string const& password);
 
+   void setDbConnection(std::shared_ptr<SQLiteDBConnection> const& dbService) {
+      _dbService = dbService;
+   }
+
 private:
 
    using equalFunc =
@@ -45,6 +49,8 @@ private:
 
    /// Mutex
    mutable std::shared_mutex  _mutex;
+
+   std::shared_ptr<SQLiteDBConnection> _dbService {nullptr};
 };
 
 } // namespace Notes
