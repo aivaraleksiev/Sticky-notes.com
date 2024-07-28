@@ -34,7 +34,7 @@ public:
    /*
     * Users Table
     */
-   bool addUser(std::string const& username, std::string const& password_hash);
+   bool createUser(std::string const& username, std::string const& password_hash);
    bool deleteUser(std::string const& username, std::string const& password_hash);
    bool changeUserPassword(
       std::string const& username,
