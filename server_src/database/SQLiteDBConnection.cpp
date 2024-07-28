@@ -170,7 +170,7 @@ SQLiteDBConnection::clearDatabase()
 }
 
 bool
-SQLiteDBConnection::addUser(std::string const& username, std::string const& password_hash)
+SQLiteDBConnection::createUser(std::string const& username, std::string const& password_hash)
 {
    static constexpr std::string_view query("INSERT INTO Users (username, password_hash) VALUES (?, ?);");
    std::vector<std::string> params = { sanitizeInput(username) , sanitizeInput(password_hash) };
