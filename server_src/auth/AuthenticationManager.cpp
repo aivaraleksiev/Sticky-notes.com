@@ -17,15 +17,16 @@ AuthenticationManager::getInstance()
 void
 AuthenticationManager::createUser(std::string const& username, std::string const& password)
 {
-   std::scoped_lock writeLock(_mutex);
    if (username.empty() || password.empty() || username.length() > 50 || password.length() > 50) {
       throw Utils::HttpException(restinio::status_bad_request(), "Invalid username/password input.");
    }
-
-   if (_users.contains(User(username, ""))) {
-      throw Utils::HttpException(restinio::status_bad_request(), "User already exists");
+   if (_dbService->getUserInfo(username)) {
+      throw Utils::HttpException(restinio::status_bad_request(), "User already exists.");
    }
-   _users.emplace(username, Utils::generatePasswordHash(password));
+   if (!_dbService->createUser(username, Utils::generatePasswordHash(password))) {
+      throw Utils::HttpException(restinio::status_internal_server_error(),
+         "'" + username + "'" + " cannot be inserted into database.");
+   }
 }
 
 bool
