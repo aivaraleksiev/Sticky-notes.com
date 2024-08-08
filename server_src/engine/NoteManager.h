@@ -11,6 +11,8 @@
 
 namespace Notes {
 
+class SQLiteDBConnection;
+
 class NoteManager
 {
 public:
@@ -22,7 +24,13 @@ public:
 
    std::shared_ptr<NoteBoard> getUserNoteBoard(std::string const& user);
 
+   void setDbConnection(std::shared_ptr<SQLiteDBConnection> const& dbService) {
+      _dbService = dbService;
+   }
+
 private:
+   std::shared_ptr<SQLiteDBConnection> _dbService {nullptr};
+
    // Users' noteboards. [usersname -> noteboard]
    std::unordered_map<std::string, std::shared_ptr<NoteBoard>> _noteboards;
    
