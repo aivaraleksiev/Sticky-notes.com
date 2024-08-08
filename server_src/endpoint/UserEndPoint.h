@@ -89,8 +89,6 @@ UserEndpoint::handlePostRequests()
 				AuthenticationManager::getInstance()->createUser(username, password);
 				std::string accessToken = Authorization::generateAccessToken(username);
 
-				NoteManager::getInstance()->addUserNoteBoard(username);
-
 				Utils::createNoContentResponse(request)
 					.append_header(restinio::http_field::authorization, accessToken)
 					.done();
