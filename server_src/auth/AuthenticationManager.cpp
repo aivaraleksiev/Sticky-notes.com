@@ -3,8 +3,9 @@
 
 #include "AuthenticationManager.h"
 #include "../database/SQLiteDBConnection.h"
+#include "../utils/HttpException.h"
 #include "User.h"
-
+#include "Crypto.h"
 
 namespace Notes {
 
