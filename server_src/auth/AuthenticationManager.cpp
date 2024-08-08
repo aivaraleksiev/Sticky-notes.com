@@ -59,22 +59,18 @@ AuthenticationManager::changeUserPassword(std::string const& username, std::stri
 bool
 AuthenticationManager::userExist(std::string const& username)
 {
-   std::shared_lock<std::shared_mutex> readLock(_mutex);
-   auto userIt = _users.find(User(username, ""));
-
-   return userIt != _users.end();
+   std::optional<std::tuple<User, int>> userInfo = _dbService->getUserInfo(username);
+   if (userInfo) {
+      return true;
+   }
+   return false;
 }
 
 void
 AuthenticationManager::deleteUser(std::string const& username, std::string const& password)
 {
    assert(!username.empty() && !password.empty());
-   std::scoped_lock writeLock(_mutex);
-
-   auto userIt = _users.find(User(username, ""));
-   if ((userIt != _users.end()) && (*userIt).comparePasswordHash(Utils::generatePasswordHash(password))) {
-      _users.erase(userIt);
-   }
+   _dbService->deleteUser(username, Utils::generatePasswordHash(password));
 }
 
 } //namspace Notes
