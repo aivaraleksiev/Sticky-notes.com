@@ -43,19 +43,17 @@ AuthenticationManager::authenticateUser(std::string const& username, std::string
 void
 AuthenticationManager::changeUserPassword(std::string const& username, std::string const& oldPassword, std::string const& newPassword)
 {
-   std::scoped_lock writeLock(_mutex);
-   
-   auto userIt = _users.find(User(username, ""));
-   if ((userIt == _users.end()) || 
-       !(*userIt).comparePasswordHash(Utils::generatePasswordHash(oldPassword))) {
-      throw Utils::HttpException(restinio::status_bad_request(), "Invalid username or password.");
-   }
-
    if (newPassword.empty() || newPassword.length() > 50) {
       throw Utils::HttpException(restinio::status_bad_request(), "New password input is invalid.");
    }
-   _users.erase(userIt);
-   _users.emplace(username, Utils::generatePasswordHash(newPassword));
+   bool succeed = 
+      _dbService->changeUserPassword(
+         username, 
+         Utils::generatePasswordHash(oldPassword), 
+         Utils::generatePasswordHash(newPassword));
+   if(!succeed) {
+      throw Utils::HttpException(restinio::status_bad_request(), "Invalid username or password.");
+   }
 }
 
 bool
