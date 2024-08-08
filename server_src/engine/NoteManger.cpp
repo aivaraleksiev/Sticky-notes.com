@@ -13,13 +13,6 @@ NoteManager::getInstance()
    return sManagerPtr.get();
 }
 
-void
-NoteManager::addUserNoteBoard(std::string const& user)
-{
-   std::scoped_lock writeLock(_mutex);
-   _noteboards.emplace(user, std::make_shared<NoteBoard>());
-}
-
 std::shared_ptr<NoteBoard>
 NoteManager::getUserNoteBoard(std::string const& user)
 {
