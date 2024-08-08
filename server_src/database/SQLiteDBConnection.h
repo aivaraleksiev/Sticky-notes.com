@@ -49,8 +49,8 @@ public:
    std::vector<std::shared_ptr<Note>> getUserNotes(int user_id);
    std::vector<std::shared_ptr<Note>> getUserNotes(
       int user_id,
-      std::string const& title = std::string(),
-      std::string const& text = std::string(),
+      std::string const& title,
+      std::string const& text,
       Color noteColor = Color::invalid);
    std::shared_ptr<Note> getUserNoteByUID(int user_id, int uid);
    bool updateNoteByUid(
