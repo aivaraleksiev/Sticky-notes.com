@@ -24,4 +24,16 @@ NoteManager::getUserNoteBoard(std::string const& user)
    return it->second;
 }
 
+std::vector<std::shared_ptr<Note>>
+NoteManager::getUserNotes(std::string username)
+{
+   std::vector<std::shared_ptr<Note>> result;
+   std::optional<std::tuple<User, int>> userInfo = 
+      _dbService->getUserInfo(username);
+   if (userInfo) {
+      result = _dbService->getUserNotes(std::get<1>(*userInfo));
+   }
+   return result;
+}
+
 } // namespac eNotes
