@@ -25,7 +25,7 @@ public:
    void setDbConnection(std::shared_ptr<SQLiteDBConnection> const& dbService) {
       _dbService = dbService;
    }
-
+   std::vector<std::shared_ptr<Note>> getUserNotes(std::string username);
 private:
    std::shared_ptr<SQLiteDBConnection> _dbService {nullptr};
 
