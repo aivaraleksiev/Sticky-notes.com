@@ -37,7 +37,7 @@ public:
    void handleDeleteRequests();
    auto createNoteEndpointRequestHandler();
    void setDbConnection(std::shared_ptr<SQLiteDBConnection> const& dbService) {
-      _dbService = dbService;
+      NoteManager::getInstance()->setDbConnection(dbService);
    }
 private:  
    // Helper function handling query params for filtered GET request.
