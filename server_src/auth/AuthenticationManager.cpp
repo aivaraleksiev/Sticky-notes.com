@@ -32,11 +32,12 @@ AuthenticationManager::createUser(std::string const& username, std::string const
 bool
 AuthenticationManager::authenticateUser(std::string const& username, std::string const& password)
 {
-   std::shared_lock<std::shared_mutex> readLock(_mutex);
-   assert(!username.empty() && !password.empty());
-   auto userIt = _users.find(User(username, ""));
-
-   return (userIt != _users.end()) && (*userIt).comparePasswordHash(Utils::generatePasswordHash(password));
+   std::optional<std::tuple<User, int>> userInfo = _dbService->getUserInfo(username);
+   if (userInfo) {
+      User const& user = std::get<0>(*userInfo);
+      return user.comparePasswordHash(Utils::generatePasswordHash(password));
+   }
+   return false;
 }
 
 void
