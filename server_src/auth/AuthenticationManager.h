@@ -9,7 +9,6 @@
 #include "User.h"
 #include "Crypto.h"
 
-#include <algorithm>
 #include <string>
 #include <cassert>
 
