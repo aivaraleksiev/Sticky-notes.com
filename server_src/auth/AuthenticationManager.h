@@ -3,16 +3,16 @@
 
 #pragma once
 
-#include "../database/SQLiteDBConnection.h"
 #include "../utils/HttpException.h"
 
-#include "User.h"
 #include "Crypto.h"
 
 #include <string>
 #include <cassert>
 
 namespace Notes {
+
+class SQLiteDBConnection;
 
 /// Class handling authenticaion.
 class AuthenticationManager
