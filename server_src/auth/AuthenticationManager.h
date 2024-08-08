@@ -1,12 +1,9 @@
-// Copyright 2021
+// Copyright 2021 - 2024
 // Author: Ayvar Aleksiev
 
 #pragma once
 
-#include "../utils/HttpException.h"
-
-#include "Crypto.h"
-
+#include <memory>
 #include <string>
 #include <cassert>
 
