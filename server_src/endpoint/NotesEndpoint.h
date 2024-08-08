@@ -127,10 +127,7 @@ NotesEndpoint::handleGetRequests()
                handleQueryParams(queryParams, noteBoardPtr, result);
             }
             else {
-               auto notesMapPtr = noteBoardPtr->getNotes();
-               for (auto const& [id, noteValue] : *notesMapPtr) {
-                  result.push_back(noteValue);
-               }
+               result = NoteManager::getInstance()->getUserNotes(userName);
             }
             json outputArray;
             for (std::shared_ptr<Note> const& notePtr : result) {
