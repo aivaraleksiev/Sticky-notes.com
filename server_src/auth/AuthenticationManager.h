@@ -10,8 +10,6 @@
 #include "Crypto.h"
 
 #include <algorithm>
-#include <unordered_set>
-#include <shared_mutex>
 #include <string>
 #include <cassert>
 
@@ -40,16 +38,6 @@ public:
    }
 
 private:
-
-   using equalFunc =
-      decltype([](User const& left, User const& right) {return left.getUserName() == right.getUserName(); });
-   using hashFunc =
-      decltype([](User const& obj) { std::hash<std::string> stringHash; return stringHash(obj.getUserName()); });
-
-   std::unordered_set<User, hashFunc, equalFunc> _users;
-
-   /// Mutex
-   mutable std::shared_mutex  _mutex;
 
    std::shared_ptr<SQLiteDBConnection> _dbService {nullptr};
 };
