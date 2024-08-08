@@ -2,6 +2,8 @@
 // Author: Ayvar Aleksiev
 
 #include "AuthenticationManager.h"
+#include "../database/SQLiteDBConnection.h"
+#include "User.h"
 
 
 namespace Notes {
