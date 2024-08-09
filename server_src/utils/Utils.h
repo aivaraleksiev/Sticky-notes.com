@@ -10,7 +10,7 @@
 namespace Notes {
 namespace Utils {
 
-using UID = int64_t;
+using UID = int;
 #define INVALID_UID UID(0)
 
 // Unique identifier generator.
