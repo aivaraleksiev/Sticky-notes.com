@@ -44,7 +44,7 @@ public:
    /*
     * Notes Table
     */
-   bool addNotes(int64_t user_id, std::vector<std::shared_ptr<Note>> notes);
+   bool addNotes(int user_id, std::vector<std::shared_ptr<Note>> notes);
    std::vector<std::string> getUserNoteUIDs(int user_id);
    std::vector<std::shared_ptr<Note>> getUserNotes(int user_id);
    std::vector<std::shared_ptr<Note>> getUserNotes(
