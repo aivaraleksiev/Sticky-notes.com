@@ -26,6 +26,12 @@ public:
       _dbService = dbService;
    }
    std::vector<std::shared_ptr<Note>> getUserNotes(std::string const& username);
+
+   std::vector<std::shared_ptr<Note>> getUserNotes(
+      std::string const& username,
+      std::string const& title,
+      std::string const& text,
+      Color noteColor = Color::invalid);
 private:
    std::optional<int> getUserID(std::string const& username);
 
