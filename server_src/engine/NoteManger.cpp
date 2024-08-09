@@ -24,14 +24,24 @@ NoteManager::getUserNoteBoard(std::string const& user)
    return it->second;
 }
 
+std::optional<int> NoteManager::getUserID(std::string const& username)
+{
+   std::optional<int> result;
+   std::optional<std::tuple<User, int>> userInfo =
+      _dbService->getUserInfo(username);
+   if (userInfo) {
+      result = std::get<1>(*userInfo);
+   }
+   return result;
+}
+
 std::vector<std::shared_ptr<Note>>
 NoteManager::getUserNotes(std::string const& username)
 {
    std::vector<std::shared_ptr<Note>> result;
-   std::optional<std::tuple<User, int>> userInfo = 
-      _dbService->getUserInfo(username);
-   if (userInfo) {
-      result = _dbService->getUserNotes(std::get<1>(*userInfo));
+   std::optional<int> userId = getUserID(username);
+   if (userId) {
+      result = _dbService->getUserNotes(std::get<1>(*userId));
    }
    return result;
 }
