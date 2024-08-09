@@ -25,7 +25,7 @@ NoteManager::getUserNoteBoard(std::string const& user)
 }
 
 std::vector<std::shared_ptr<Note>>
-NoteManager::getUserNotes(std::string username)
+NoteManager::getUserNotes(std::string const& username)
 {
    std::vector<std::shared_ptr<Note>> result;
    std::optional<std::tuple<User, int>> userInfo = 
