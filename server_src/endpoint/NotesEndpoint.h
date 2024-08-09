@@ -138,10 +138,9 @@ NotesEndpoint::handleGetRequests()
          try {
             auto userName = restinio::cast_to<std::string>(params["username"]);
             Authorization::verifyAccessToken(request->header(), userName);
-            auto noteBoardPtr = NoteManager::getInstance()->getUserNoteBoard(userName);
 
             auto noteId = restinio::cast_to<UID>(params["noteId"]);
-            json outputObj = *noteBoardPtr->getNote(noteId);;
+            json outputObj = *NoteManager::getInstance()->getUserNoteByUID(userName, noteId);
             restinio::http_status_line_t status_line =
                outputObj.is_null() ? restinio::status_ok() : restinio::status_no_content();
 
