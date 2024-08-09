@@ -41,10 +41,10 @@ public:
    }
 private:  
    // Helper function handling query params for filtered GET request.
-   void handleQueryParams(
-      restinio::query_string_params_t const& queryParams, 
-      std::shared_ptr<NoteBoard> const& noteBoardPtr,
-      std::vector<std::shared_ptr<Note>>& result);
+   std::vector<std::shared_ptr<Note>>
+      handleQueryParams(
+         std::string const& username,
+         restinio::query_string_params_t const& queryParams);
 
    using express_router_t = restinio::router::express_router_t<>;
    std::shared_ptr<express_router_t> _router = std::make_shared<express_router_t>();
@@ -56,57 +56,38 @@ private:
 // NotesEndpoint class definition.
 //
 
-void
+std::vector<std::shared_ptr<Note>>
 NotesEndpoint::handleQueryParams(
-   restinio::query_string_params_t const& queryParams,
-   std::shared_ptr<NoteBoard> const& noteBoardPtr,
-   std::vector<std::shared_ptr<Note>>& result)
+   std::string const& username,
+   restinio::query_string_params_t const& queryParams)
 {
+   std::vector<std::shared_ptr<Note>> result;
    if (queryParams.empty()) {
-      return;
+      return result;
    }
    // Handle search query.
    // example: /notes?title={string}&text={string}&color={string}
    auto const titleQueryParam = restinio::opt_value<std::string>(queryParams, "title");
    auto const textQueryParam = restinio::opt_value<std::string>(queryParams, "text");
    auto const colorQueryParam = restinio::opt_value<std::string>(queryParams, "color");
-
+   std::string title;
+   std::string text;
+   Color noteColor = Color::invalid;
    if (titleQueryParam) {
-      result = noteBoardPtr->searchByTitle(*titleQueryParam);
+      title = *titleQueryParam;
    }
    if (textQueryParam) {
-      auto searchResult = noteBoardPtr->searchByText(*textQueryParam);
-      result.reserve(result.size() + searchResult.size());
-      result.insert(
-         result.end(),
-         std::make_move_iterator(searchResult.begin()),
-         std::make_move_iterator(searchResult.end())
-      );
+      text = *textQueryParam;
    }
    if (colorQueryParam) {
-      Color color = toColor(*colorQueryParam);
-      auto searchResult = noteBoardPtr->searchByColor(color);
-      result.reserve(result.size() + searchResult.size());
-      result.insert(
-         result.end(),
-         std::make_move_iterator(searchResult.begin()),
-         std::make_move_iterator(searchResult.end())
-      );
+      noteColor = toColor(*colorQueryParam);
    }
-   auto removeDuplicates = [&result]() {
-      auto cmpLess =
-         [](auto const& lhsNote, auto const& rhsNote) {
-         return lhsNote->getUID() < rhsNote->getUID();
-      };
-      std::sort(result.begin(), result.end(), cmpLess);
-      auto predicate =
-         [](auto const& lhsNote, auto const& rhsNote) {
-         return lhsNote->getUID() == rhsNote->getUID();
-      };
-      auto last = std::unique(result.begin(), result.end(), predicate);
-      result.erase(last, result.end());
-   };
-   removeDuplicates();
+   result = NoteManager::getInstance()->getUserNotes(
+      username, 
+      title,
+      text,
+      noteColor);
+   return result;
 }
 
 void
@@ -124,7 +105,7 @@ NotesEndpoint::handleGetRequests()
             const auto queryParams = restinio::parse_query(request->header().query());
             std::vector<std::shared_ptr<Note>> result;
             if (!queryParams.empty()) {
-               handleQueryParams(queryParams, noteBoardPtr, result);
+               result = handleQueryParams(userName, queryParams);
             }
             else {
                result = NoteManager::getInstance()->getUserNotes(userName);
