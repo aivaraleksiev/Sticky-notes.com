@@ -9,7 +9,7 @@
 #include <string>
 
 namespace {
-	std::atomic<size_t> sUid { 0 };
+	std::atomic<int64_t> sUid { 0 };
 	std::string sCaCertFileName("sticky-notes.com_CaCert.pem");
 	std::string sPrivateKeyFileName("sticky-notes.com_PrivKey.pem");
 
