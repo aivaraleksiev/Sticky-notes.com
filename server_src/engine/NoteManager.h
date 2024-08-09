@@ -27,6 +27,8 @@ public:
    }
    std::vector<std::shared_ptr<Note>> getUserNotes(std::string const& username);
 private:
+   std::optional<int> getUserID(std::string const& username);
+
    std::shared_ptr<SQLiteDBConnection> _dbService {nullptr};
 
    // Users' noteboards. [usersname -> noteboard]
