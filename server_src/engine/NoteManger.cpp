@@ -60,4 +60,16 @@ NoteManager::getUserNotes(
    }
    return result;
 }
+
+std::shared_ptr<Note> 
+NoteManager::getUserNoteByUID(std::string const& username, UID uid)
+{
+   std::shared_ptr<Note> result;
+   std::optional<int> userId = getUserID(username);
+   if (userId) {
+      result = _dbService->getUserNoteByUID(*userId, uid);
+   }
+   return result;
+}
+
 } // namespace Notes
