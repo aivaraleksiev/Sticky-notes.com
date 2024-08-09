@@ -46,4 +46,18 @@ NoteManager::getUserNotes(std::string const& username)
    return result;
 }
 
+std::vector<std::shared_ptr<Note>>
+NoteManager::getUserNotes(
+   std::string const& username,
+   std::string const& title,
+   std::string const& text,
+   Color noteColor)
+{
+   std::vector<std::shared_ptr<Note>> result;
+   std::optional<int> userId = getUserID(username);
+   if (userId) {
+      result = _dbService->getUserNotes(*userId, title, text, noteColor);
+   }
+   return result;
+}
 } // namespac eNotes
