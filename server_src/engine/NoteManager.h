@@ -32,6 +32,8 @@ public:
       std::string const& title,
       std::string const& text,
       Color noteColor = Color::invalid);
+
+   std::shared_ptr<Note> getUserNoteByUID(std::string const& username, UID uid);
 private:
    std::optional<int> getUserID(std::string const& username);
 
