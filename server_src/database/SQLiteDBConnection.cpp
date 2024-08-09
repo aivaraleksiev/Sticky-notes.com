@@ -236,7 +236,7 @@ SQLiteDBConnection::getUserInfo(const std::string& username)
 }
 
 bool
-SQLiteDBConnection::addNotes(int user_id, std::vector<std::shared_ptr<Note>> notes)
+SQLiteDBConnection::addNotes(int64_t user_id, std::vector<std::shared_ptr<Note>> notes)
 {
    std::scoped_lock writeLock(_noteTableMutex);
 
