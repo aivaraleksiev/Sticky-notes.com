@@ -60,4 +60,4 @@ NoteManager::getUserNotes(
    }
    return result;
 }
-} // namespac eNotes
+} // namespace Notes
