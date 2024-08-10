@@ -194,7 +194,7 @@ NotesEndpoint::handlePostRequests()
                newNotes.push_back(newNote);
                noteIdArray.push_back(newNote->getUID());
             }
-             NoteManager::getInstance()->addNotes(userName, newNotes);
+            NoteManager::getInstance()->addNotes(userName, newNotes);
             json output;
             output["noteId"] = noteIdArray;
             restinio::http_status_line_t status_line =
