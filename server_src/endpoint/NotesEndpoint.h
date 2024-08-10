@@ -170,13 +170,13 @@ NotesEndpoint::handlePostRequests()
          try {
             auto userName = restinio::cast_to<std::string>(params["username"]);         
             Authorization::verifyAccessToken(request->header(), userName);
-            auto noteBoardPtr = NoteManager::getInstance()->getUserNoteBoard(userName);
 
             json noteIdArray;
             json inputArray = json::parse(request->body());
             if (inputArray.is_null()) {
                throw Utils::HttpException(restinio::status_bad_request(), "Missing request body.");
             }
+            std::vector<std::shared_ptr<Note>> newNotes;
             for (auto const& obj : inputArray) {
                std::shared_ptr<Note> newNote = Note::createInstance();
                std::string readInput;
@@ -191,9 +191,10 @@ NotesEndpoint::handlePostRequests()
                if (readColor != Color::invalid) {
                   newNote->setColor(readColor);
                }
-               auto id = noteBoardPtr->createNote(newNote);
-               noteIdArray.push_back(id);
+               newNotes.push_back(newNote);
+               noteIdArray.push_back(newNote->getUID());
             }
+             NoteManager::getInstance()->addNotes(userName, newNotes);
             json output;
             output["noteId"] = noteIdArray;
             restinio::http_status_line_t status_line =
