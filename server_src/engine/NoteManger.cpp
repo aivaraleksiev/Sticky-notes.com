@@ -72,4 +72,15 @@ NoteManager::getUserNoteByUID(std::string const& username, UID uid)
    return result;
 }
 
+bool 
+NoteManager::addNotes(std::string const& username, std::vector<std::shared_ptr<Note>> const& newNotes)
+{
+   bool result = false;
+   std::optional<int> userId = getUserID(username);
+   if (userId) {
+      result = _dbService->addNotes(*userId, newNotes);
+   }
+   return result;
+}
+
 } // namespace Notes
