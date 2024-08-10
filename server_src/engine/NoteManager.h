@@ -34,6 +34,8 @@ public:
       Color noteColor = Color::invalid);
 
    std::shared_ptr<Note> getUserNoteByUID(std::string const& username, UID uid);
+
+   bool addNotes(std::string const& username, std::vector<std::shared_ptr<Note>> const& newNotes);
 private:
    std::optional<int> getUserID(std::string const& username);
 
