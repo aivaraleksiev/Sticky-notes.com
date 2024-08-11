@@ -253,7 +253,7 @@ NotesEndpoint::handlePutRequests()
                   noteColor = toColor(std::move(temp));
                }
                try {
-                  if (NoteManager::getInstance()->updateNoteByUid(
+                  if (@NoteManager::getInstance()->updateNoteByUid(
                      userName,
                      uid,
                      title,
