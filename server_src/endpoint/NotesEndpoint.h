@@ -234,7 +234,7 @@ NotesEndpoint::handlePutRequests()
                NoteContext updateNote;
                updateNote._id = INVALID_UID;
                if (obj.contains("noteId")) {
-                  updateNote._id = obj.at("noteId").get<size_t>();
+                  updateNote._id = obj.at("noteId").get<UID>();
                }
                if (obj.contains("title")) {
                   std::string temp;
