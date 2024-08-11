@@ -36,6 +36,14 @@ public:
    std::shared_ptr<Note> getUserNoteByUID(std::string const& username, UID uid);
 
    bool addNotes(std::string const& username, std::vector<std::shared_ptr<Note>> const& newNotes);
+
+bool updateNoteByUid(
+   std::string const& username, 
+   int uid,
+   const std::optional<std::string>& title,
+   const std::optional<std::string>& text,
+   const std::optional<Color>& noteColor);
+
 private:
    std::optional<int> getUserID(std::string const& username);
 
