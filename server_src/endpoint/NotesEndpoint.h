@@ -226,33 +226,43 @@ NotesEndpoint::handlePutRequests()
          try {
             auto userName = restinio::cast_to<std::string>(params["username"]);
             Authorization::verifyAccessToken(request->header(), userName);
-            auto noteBoardPtr = NoteManager::getInstance()->getUserNoteBoard(userName);
             
             json inputArray = json::parse(request->body());
             json badRequestArray;
             for (auto const& obj : inputArray) {
-               NoteContext updateNote;
-               updateNote._id = INVALID_UID;
+               int uid = INVALID_UID;
+               std::optional<std::string> title;
+               std::optional<std::string> text;
+               std::optional<Color> noteColor;
                if (obj.contains("noteId")) {
-                  updateNote._id = obj.at("noteId").get<UID>();
+                  uid = obj.at("noteId").get<UID>();
                }
                if (obj.contains("title")) {
                   std::string temp;
                   obj.at("title").get_to(temp);
-                  updateNote._title = std::move(temp);
+                  title = std::move(temp);
                }
                if (obj.contains("text")) {
                   std::string temp;
                   obj.at("text").get_to(temp);
-                  updateNote._text = std::move(temp);
+                  text = std::move(temp);
                }
                if (obj.contains("color")) {
                   std::string temp;
                   obj.at("color").get_to(temp);
-                  updateNote._noteColor = toColor(std::move(temp));
+                  noteColor = toColor(std::move(temp));
                }
                try {
-                  noteBoardPtr->updateNote(updateNote);
+                  if (NoteManager::getInstance()->updateNoteByUid(
+                     userName,
+                     uid,
+                     title,
+                     text,
+                     noteColor)) {
+                    std::stringstream errReason;
+                    errReason << "Couldn't update NoteId '" << uid << "'";
+                    throw Utils::HttpException(restinio::status_bad_request(), errReason.str());
+                  }
                } catch (Utils::HttpException const& exc) {
                   json noteError;
                   to_json(noteError, exc);
