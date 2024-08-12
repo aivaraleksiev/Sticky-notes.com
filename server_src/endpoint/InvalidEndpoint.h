@@ -3,7 +3,6 @@
 
 #pragma once
 
-#include "../engine/NoteBoard.h"
 #include "../engine/NoteManager.h"
 #include "../auth/Authorization.h"
 #include "../utils/Utils.h"
