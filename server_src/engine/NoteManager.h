@@ -34,16 +34,16 @@ public:
 
    bool addNotes(std::string const& username, std::vector<std::shared_ptr<Note>> const& newNotes);
 
-bool updateNoteByUid(
-   std::string const& username, 
-   int uid,
-   const std::optional<std::string>& title,
-   const std::optional<std::string>& text,
-   const std::optional<Color>& noteColor);
+   bool updateNoteByUid(
+      std::string const& username, 
+      int uid,
+      const std::optional<std::string>& title,
+      const std::optional<std::string>& text,
+      const std::optional<Color>& noteColor);
 
- bool deleteNoteByUid(std::string const& username, int uid);
+   bool deleteNoteByUid(std::string const& username, int uid);
 
- bool deleteNotesForUser(std::string const& username);
+   bool deleteNotesForUser(std::string const& username);
 
 private:
    std::optional<int> getUserID(std::string const& username);
