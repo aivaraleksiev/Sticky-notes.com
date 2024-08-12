@@ -10,7 +10,9 @@ The idea of this project was to create a **C++ REST Server** which could be acce
 - Authentication mechanism using PBKDF2 and sha256.
 - Authorization mechanism using JWT.
 - Asynchronous
-
+- Database layer<br>
+  - Input Sanitization for SQL Injection Prevention <br>
+  - Database Indexing<br>
 ## Usage
 [**REST API Documentation**](https://github.com/aivaraleksiev/Sticky-notes.com/blob/main/REST%20API%20documentation.md)<br>
 You could use Postman or browser to access the REST Service.
