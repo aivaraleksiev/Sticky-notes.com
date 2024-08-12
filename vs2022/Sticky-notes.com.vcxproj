@@ -24,7 +24,6 @@
     <ClCompile Include="..\server_src\auth\Crypto.cpp" />
     <ClCompile Include="..\server_src\database\SQLiteDBConnection.cpp" />
     <ClCompile Include="..\server_src\engine\Note.cpp" />
-    <ClCompile Include="..\server_src\engine\NoteBoard.cpp" />
     <ClCompile Include="..\server_src\engine\NoteManger.cpp" />
     <ClCompile Include="..\server_src\main.cpp" />
     <ClCompile Include="..\server_src\utils\HttpException.cpp" />
@@ -42,7 +41,6 @@
     <ClInclude Include="..\server_src\endpoint\NotesEndpoint.h" />
     <ClInclude Include="..\server_src\endpoint\UserEndPoint.h" />
     <ClInclude Include="..\server_src\engine\Note.h" />
-    <ClInclude Include="..\server_src\engine\NoteBoard.h" />
     <ClInclude Include="..\server_src\engine\NoteManager.h" />
     <ClInclude Include="..\server_src\utils\HttpException.h" />
     <ClInclude Include="..\server_src\utils\Logger.h" />
