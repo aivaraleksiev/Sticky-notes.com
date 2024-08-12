@@ -4,7 +4,6 @@
 #pragma once
 
 #include "Note.h"
-#include "../utils/HttpException.h"
 #include <map>
 #include <memory>
 #include <string>
