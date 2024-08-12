@@ -43,6 +43,8 @@ bool updateNoteByUid(
 
  bool deleteNoteByUid(std::string const& username, int uid);
 
+ bool deleteNotesForUser(std::string const& username);
+
 private:
    std::optional<int> getUserID(std::string const& username);
 
