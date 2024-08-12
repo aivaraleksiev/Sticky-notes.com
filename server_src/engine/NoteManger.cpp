@@ -105,7 +105,8 @@ NoteManager::updateNoteByUid(
    return result;
 }
 
-bool NoteManager::deleteNoteByUid(std::string const& username, int uid)
+bool
+NoteManager::deleteNoteByUid(std::string const& username, int uid)
 {
    bool result = false;
    std::optional<int> userId = getUserID(username);
