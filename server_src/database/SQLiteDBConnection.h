@@ -60,6 +60,7 @@ public:
       const std::optional<std::string>& text,
       const std::optional<Color>& noteColor);
    bool deleteNoteByUid(int user_id, int uid);
+   bool deleteAllNotesByUserId(int user_id);
 
 private:
    // Constructor
