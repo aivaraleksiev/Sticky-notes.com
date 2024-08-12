@@ -100,7 +100,6 @@ NotesEndpoint::handleGetRequests()
          try {
             auto userName = restinio::cast_to<std::string>(params["username"]);
             Authorization::verifyAccessToken(request->header(), userName);
-            auto noteBoardPtr = NoteManager::getInstance()->getUserNoteBoard(userName);
 
             const auto queryParams = restinio::parse_query(request->header().query());
             std::vector<std::shared_ptr<Note>> result;
