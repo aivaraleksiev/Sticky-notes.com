@@ -301,10 +301,10 @@ NotesEndpoint::handleDeleteRequests()
          try {
             auto userName = restinio::cast_to<std::string>(params["username"]);
             Authorization::verifyAccessToken(request->header(), userName);
-            auto noteBoardPtr = NoteManager::getInstance()->getUserNoteBoard(userName);
 
             auto noteId = restinio::cast_to<UID>(params["noteId"]);
-            auto deleted = noteBoardPtr->deleteNote(noteId);
+            bool deleted = 
+               NoteManager::getInstance()->deleteNoteByUid(userName, noteId);
             if (!deleted) {
                throw Utils::HttpException(restinio::status_bad_request(), "Invalid note id.");
             }
