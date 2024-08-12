@@ -7,6 +7,7 @@
 #include "../utils/HttpException.h"
 #include "../auth/AuthenticationManager.h"
 #include "../auth/Authorization.h"
+#include "../engine/NoteManager.h"
 #include "../database/SQLiteDBConnection.h"
 
 #include <cassert>
