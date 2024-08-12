@@ -13,17 +13,6 @@ NoteManager::getInstance()
    return sManagerPtr.get();
 }
 
-std::shared_ptr<NoteBoard>
-NoteManager::getUserNoteBoard(std::string const& user)
-{
-   std::shared_lock<std::shared_mutex> readLock(_mutex);
-   auto it = _noteboards.find(user);
-   if (it == _noteboards.end()) {
-      throw Utils::HttpException(restinio::status_not_found(), "User not found.");
-   }
-   return it->second;
-}
-
 std::optional<int> NoteManager::getUserID(std::string const& username)
 {
    std::optional<int> result;
