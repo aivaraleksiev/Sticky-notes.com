@@ -20,8 +20,6 @@ public:
    // Access to the singleton instance of this class.
    static NoteManager* getInstance();
 
-   std::shared_ptr<NoteBoard> getUserNoteBoard(std::string const& user);
-
    void setDbConnection(std::shared_ptr<SQLiteDBConnection> const& dbService) {
       _dbService = dbService;
    }
