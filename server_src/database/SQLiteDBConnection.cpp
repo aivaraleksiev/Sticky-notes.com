@@ -422,5 +422,14 @@ SQLiteDBConnection::deleteNoteByUid(int user_id, int uid)
    return executeParamQuery(query, params);
 }
 
+bool
+SQLiteDBConnection::deleteAllNotesByUserId(int user_id)
+{
+   static constexpr std::string_view query("DELETE FROM Notes WHERE user_id = ?;");
+   std::vector<std::string> params = { std::to_string(user_id)};
+   std::scoped_lock writeLock(_noteTableMutex);
+   return executeParamQuery(query, params);
+}
+
 } // namespace Notes
 
