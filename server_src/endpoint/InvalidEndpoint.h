@@ -8,7 +8,6 @@
 #include "../utils/Utils.h"
 #include "../utils/HttpException.h"
 
-
 #include <nlohmann/json.hpp>
 #include <restinio/all.hpp>
 
