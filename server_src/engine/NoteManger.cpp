@@ -105,4 +105,15 @@ NoteManager::deleteNoteByUid(std::string const& username, int uid)
    return result;
 }
 
+bool
+NoteManager::deleteNotesForUser(std::string const& username)
+{
+   bool result = false;
+   std::optional<int> userId = getUserID(username);
+   if (userId) {
+      result = _dbService->deleteAllNotesByUserId(*userId);
+   }
+   return result;
+}
+
 } // namespace Notes
