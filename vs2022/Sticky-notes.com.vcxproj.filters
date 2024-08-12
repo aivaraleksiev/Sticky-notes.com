@@ -118,10 +118,3 @@
     </ClInclude>
   </ItemGroup>
 </Project>
-      <Filter>Header Files\auth</Filter>
-    </ClInclude>
-    <ClInclude Include="..\server_src\database\SQLiteDBConnection.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-  </ItemGroup>
-</Project>
