@@ -48,12 +48,6 @@ private:
 
    std::shared_ptr<SQLiteDBConnection> _dbService {nullptr};
 
-   // Users' noteboards. [usersname -> noteboard]
-   std::unordered_map<std::string, std::shared_ptr<NoteBoard>> _noteboards;
-   
-   /// Mutex
-   mutable std::shared_mutex  _mutex;
-
 };
 
 } // namespace Notes
