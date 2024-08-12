@@ -152,8 +152,8 @@ UserEndpoint::handleDeleteRequests()
 				if (userNameParam != username) {
 					throw Utils::HttpException(restinio::status_bad_request(), "Username missmatch.");
 				}
-			   AuthenticationManager::getInstance()->deleteUser(username, password);				
-                           NoteManager::getInstance()->deleteNotesForUser(username);
+			        AuthenticationManager::getInstance()->deleteUser(username, password);				
+                                NoteManager::getInstance()->deleteNotesForUser(username);
 				Utils::createNoContentResponse(request).done();
 			}
 			catch (Utils::HttpException const& exc) {
