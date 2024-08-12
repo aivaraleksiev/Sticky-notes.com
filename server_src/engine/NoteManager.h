@@ -47,7 +47,6 @@ private:
    std::optional<int> getUserID(std::string const& username);
 
    std::shared_ptr<SQLiteDBConnection> _dbService {nullptr};
-
 };
 
 } // namespace Notes
