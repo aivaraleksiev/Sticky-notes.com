@@ -3,9 +3,9 @@
 
 #pragma once
 
-#include "HttpException.h"
 #include <restinio/all.hpp>
 #include <restinio/tls.hpp>
+#include <nlohmann/json.hpp>
 
 namespace Notes {
 namespace Utils {
@@ -44,7 +44,7 @@ createErrorResponse(auto const&  request, auto const& exception)
       .append_header(restinio::http_field::server, "sticky-notes.com")
       .append_header_date_field()
       .append_header(restinio::http_field::content_type, "text/json; charset=utf-8")
-      .set_body(json(exception).dump(3));      
+      .set_body(nlohmann::json(exception).dump(3));      
 }
 
 /* Parse authorization header searching for basic authentication.
